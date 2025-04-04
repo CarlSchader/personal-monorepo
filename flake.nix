@@ -6,8 +6,8 @@
 
   outputs = { self, nixpkgs, flake-utils }: {
     devShells = flake-utils.lib.eachDefaultSystem (system: {
-      default = nixpkgs.legacyPackages.${system}.mkShell {
-        buildInputs = with nixpkgs.legacyPackages.${system}; [
+      default = nixpkgs.${system}.mkShell {
+        buildInputs = with nixpkgs.${system}; [
             python312.withPackages (ps: [
                 # nothing yet
             ])
