@@ -11,7 +11,7 @@
       devShell = pkgs.mkShell {
         buildInputs = with pkgs; [
           (python312.withPackages (ps: [
-            # nothing yet
+            # nothing needed
           ]))
         ];
       };

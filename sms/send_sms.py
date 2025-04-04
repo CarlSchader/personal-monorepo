@@ -18,6 +18,7 @@ def load_config():
         'email': os.getenv('SMS_EMAIL', "carlschader@gmail.com"),
         'password': os.getenv('SMS_PASSWORD', "test-password"),
         'smtp_server': os.getenv('SMS_SMTP_SERVER', 'smtp.gmail.com'),
+        # 'smtp_server': os.getenv('SMS_SMTP_SERVER', 'vtext.com'),
         'smtp_port': int(os.getenv('SMS_SMTP_PORT', '587'))
     }
 
@@ -33,6 +34,9 @@ def send_sms(phone_number: str, carrier: str, message: str, config: dict) -> boo
     
     # Format the phone email address
     to_email = f"{phone_number}{CARRIERS[carrier.lower()]}"
+
+    print(to_email)
+
     msg['Subject'] = ''
     msg['From'] = config['email']
     msg['To'] = to_email
@@ -71,6 +75,7 @@ def main():
 
     args = parser.parse_args()
     config = load_config()
+    print(config)
     
     # Validate configuration
     if not all([config['email'], config['password']]):
