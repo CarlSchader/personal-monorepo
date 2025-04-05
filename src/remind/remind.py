@@ -9,7 +9,6 @@ import telegram
 UPCOMING_WARNING_DISTANCE = timedelta(days=7)
 
 TODOS_URL = "https://raw.githubusercontent.com/CarlSchader/personal-monorepo/refs/heads/main/todos.md"
-# SARONIC_URL = "https://raw.githubusercontent.com/CarlSchader/personal-monorepo/refs/heads/main/saronic.md"
 
 
 class MarkdownLog:
@@ -54,17 +53,14 @@ async def send_telegram(bot: telegram.Bot, chat_id: str, message: str):
 async def execute_async(bot_token: str):
     # fetch markdown
     todo_markdown = (await generate_markdown_reminder_string(TODOS_URL)).strip()
-    # saronic_markdown = (await generate_markdown_reminder_string(SARONIC_URL)).strip()
 
     todo_logs = [MarkdownLog.from_line(line) for line in todo_markdown.split('\n') if len(line.strip()) > 0]
-    # saronic_logs = [MarkdownLog.from_line(line) for line in saronic_markdown.split('\n') if len(line.strip()) > 0]
 
     # find timestamped logs
     time_warning_logs: list[MarkdownLog] = [log for log in todo_logs if log.timestamp is not None and log.timestamp - datetime.now() <= UPCOMING_WARNING_DISTANCE]
     
     time_warning_formatted = '\n\t'.join([log.formatted() for log in time_warning_logs])
     todo_formatted = '\n\t'.join([log.formatted() for log in todo_logs])
-    # saronic_formatted = '\n\t'.join([log.formatted() for log in saronic_logs])
 
     # format reminder message
     current_timestamp = datetime.now().strftime("%a %b %d %I %p")
@@ -73,8 +69,6 @@ async def execute_async(bot_token: str):
     message += f"\t{time_warning_formatted}\n\n"
     message += "Todos\n"
     message += f"\t{todo_formatted}\n\n"
-    # message += "Work Todos\n"
-    # message += f"\t{saronic_formatted}"
         
     bot = telegram.Bot(bot_token)
     async with bot:
@@ -90,8 +84,15 @@ async def execute_async(bot_token: str):
             update.message.from_user.id for update in updates 
             if update.message is not None and update.message.from_user is not None # Not sure if optional chaining is possible here instead
         ]
+
+        subscribers = [
+            f"{update.message.chat.first_name} {update.message.chat.last_name}" for update in updates 
+            if update.message is not None and update.message.chat is not None # Not sure if optional chaining is possible here instead
+        ]
         
-        print(f"SUBSCRIBER COUNT: {len(chat_ids)}")
+        print(f"telegram subs")
+        for sub in subscribers:
+            print(sub)
 
         for chat_id in chat_ids:
             # send message
@@ -113,7 +114,6 @@ def main():
 
     assert len(bot_token) > 0, "no telegram bot token given"
 
-    # asyncio.run(execute_async(message))
 
     asyncio.run(execute_async(bot_token))
 
