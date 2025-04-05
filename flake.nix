@@ -18,13 +18,14 @@
 
       python = pkgs.python312; # python version
     in {
-      # devShell = pkgs.mkShell {
-      #   buildInputs = [
-      #     (python.withPackages (ps: [
-      #       ps.build
-      #     ]))
-      #   ];
-      # };
+      devShell = pkgs.mkShell {
+        buildInputs = [
+          (python.withPackages (ps: [
+            ps.build
+            ps.pip
+          ]))
+        ];
+      };
 
       packages.default = 
       let
@@ -33,6 +34,7 @@
       in
       python.pkgs.buildPythonPackage (attrs // {
         # extra attributes added here
+        # env = { BOT_TOKEN = "replace-me"; };
       });
     });
 
