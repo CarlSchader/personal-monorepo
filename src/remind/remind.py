@@ -1,7 +1,7 @@
 import asyncio
 import aiohttp
 import os
-import argparse
+# import argparse
 
 import telegram
 
@@ -9,6 +9,8 @@ BOT_TOKEN: str = os.getenv("BOT_TOKEN", "")
 
 assert len(BOT_TOKEN) > 0, "BOT_TOKEN not set"
 
+TODOS_URL = "https://raw.githubusercontent.com/CarlSchader/personal-monorepo/refs/heads/main/todos.md"
+SARONIC_URL = "https://raw.githubusercontent.com/CarlSchader/personal-monorepo/refs/heads/main/saronic.md"
 
 async def generate_markdown_reminder_string(markdown_url: str) -> str:
     async with aiohttp.ClientSession() as ses:
@@ -22,7 +24,10 @@ async def send_telegram(bot: telegram.Bot, chat_id: str, message: str):
     await bot.send_message(text=message, chat_id=chat_id)
 
 
-async def execute_async(message: str):
+async def execute_async():
+    # fetch markdown
+    todo_markdown = await generate_markdown_reminder_string(TODOS_URL)
+
     bot = telegram.Bot(BOT_TOKEN)
     async with bot:
         updates = await bot.get_updates()
@@ -42,17 +47,19 @@ async def execute_async(message: str):
 
         for chat_id in chat_ids:
             # send message
-            await bot.send_message(text=message, chat_id=chat_id)
+            await bot.send_message(text=todo_markdown, chat_id=chat_id)
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Send a message to a Telegram chat.')
-    parser.add_argument('-m', '--message', type=str, required=True, help='The message to send.')
-    args = parser.parse_args()
+    # parser = argparse.ArgumentParser(description='Send a message to a Telegram chat.')
+    # parser.add_argument('-m', '--message', type=str, required=True, help='The message to send.')
+    # args = parser.parse_args()
 
-    message = args.message
+    # message = args.message
 
-    asyncio.run(execute_async(message))
+    # asyncio.run(execute_async(message))
+
+    asyncio.run(execute_async())
 
 
 if __name__ == '__main__':
