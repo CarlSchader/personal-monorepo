@@ -3,7 +3,6 @@ import aiohttp
 import os
 from datetime import datetime, timedelta
 from dateutil import parser
-from typing import Tuple
 
 import telegram
 
@@ -12,9 +11,7 @@ UPCOMING_WARNING_DISTANCE = timedelta(days=7)
 TODOS_URL = "https://raw.githubusercontent.com/CarlSchader/personal-monorepo/refs/heads/main/todos.md"
 SARONIC_URL = "https://raw.githubusercontent.com/CarlSchader/personal-monorepo/refs/heads/main/saronic.md"
 
-BOT_TOKEN: str = os.getenv("BOT_TOKEN", "")
 
-assert len(BOT_TOKEN) > 0, "BOT_TOKEN not set"
 
 
 class MarkdownLog:
@@ -56,7 +53,7 @@ async def send_telegram(bot: telegram.Bot, chat_id: str, message: str):
     await bot.send_message(text=message, chat_id=chat_id)
 
 
-async def execute_async():
+async def execute_async(bot_token: str):
     # fetch markdown
     todo_markdown = (await generate_markdown_reminder_string(TODOS_URL)).strip()
     saronic_markdown = (await generate_markdown_reminder_string(SARONIC_URL)).strip()
@@ -81,7 +78,7 @@ async def execute_async():
     message += "Work Todos\n"
     message += f"\t{saronic_formatted}"
         
-    bot = telegram.Bot(BOT_TOKEN)
+    bot = telegram.Bot(bot_token)
     async with bot:
         updates = await bot.get_updates()
 
@@ -104,17 +101,23 @@ async def execute_async():
 
 
 def main():
-    # import argparse
+    import argparse
 
-    # parser = argparse.ArgumentParser(description='Send a message to a Telegram chat.')
-    # parser.add_argument('-m', '--message', type=str, required=True, help='The message to send.')
-    # args = parser.parse_args()
+    parser = argparse.ArgumentParser(description='Send a message to a Telegram chat.')
+    parser.add_argument('-b', '--bot-token-path', type=str, required=False, help='Location to file containing bot toke. If not specified BOT_TOKEN environment variable is used')
+    args = parser.parse_args()
 
-    # message = args.message
+    if args.bot_token_path is not None: 
+        with open(args.bot_token_path, 'r') as f:
+            bot_token = f.read()
+    else:
+        bot_token = os.getenv("BOT_TOKEN", "")
+
+    assert len(bot_token) > 0, "no telegram bot token given"
 
     # asyncio.run(execute_async(message))
 
-    asyncio.run(execute_async())
+    asyncio.run(execute_async(bot_token))
 
 
 if __name__ == '__main__':
