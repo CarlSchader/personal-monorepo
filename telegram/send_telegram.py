@@ -2,7 +2,10 @@ import asyncio
 import telegram
 import os
 
-async def main():
+async def send_telegram(bot: telegram.Bot, chat_id: str, message: str):
+    await bot.send_message(text=message, chat_id=chat_id)
+
+async def main(message: str):
     BOT_TOKEN = os.getenv("BOT_TOKEN")
     BOT_CHAT_ID = os.getenv("BOT_CHAT_ID")
 
@@ -17,12 +20,14 @@ async def main():
             print(f"export BOT_CHAT_ID=\"{BOT_CHAT_ID}\"")
 
         # send message
-        bot.send_message(text="test", chat_id=BOT_CHAT_ID)
+        await send_telegram(bot, BOT_CHAT_ID, message)
 
 
 if __name__ == '__main__':
     import argparse
 
-    
+    parser = argparse.ArgumentParser(description='Send a message to a Telegram chat.')
+    parser.add_argument('-m', '--message', type=str, required=True, help='The message to send.')
+    args = parser.parse_args()
 
-    asyncio.run(main())
+    asyncio.run(main(args.message))
