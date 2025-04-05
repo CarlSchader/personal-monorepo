@@ -4,9 +4,9 @@ import argparse
 
 import telegram
 
-BOT_TOKEN = os.getenv("BOT_TOKEN")
+BOT_TOKEN: str = os.getenv("BOT_TOKEN", "")
 
-assert BOT_TOKEN is not None
+assert len(BOT_TOKEN) > 0, "BOT_TOKEN not set"
 
 
 async def send_telegram(bot: telegram.Bot, chat_id: str, message: str):
@@ -23,7 +23,10 @@ async def execute_async(message: str):
             print("NO CHATS FOUND -- BOT INFO:")
             print(bot_info)
         
-        chat_ids = [update.message.from_user.id for update in updates]
+        chat_ids = [
+            update.message.from_user.id for update in updates 
+            if update.message is not None and update.message.from_user is not None # Not sure if optional chaining is possible here instead
+        ]
         
         for chat_id in chat_ids:
             # send message
