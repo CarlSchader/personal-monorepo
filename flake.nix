@@ -22,15 +22,7 @@
     flake-utils, 
     pyproject-nix 
   }:
-  flake-utils.lib.eachDefaultSystem (system: let
-    pkgs = nixpkgs.legacyPackages.${system};
-    
-    project = pyproject-nix.lib.project.loadPyproject {
-      projectRoot = ./.;
-    };
-
-    python = pkgs.python312; # python version
-    in 
+  
   {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#Carls-MacBook-Pro-2
@@ -66,7 +58,7 @@
     nixosConfigurations.ml-pc = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        ./x86/ml-pc-configuration.nix
+        ./nix/x86/ml-pc-configuration.nix
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
@@ -120,24 +112,35 @@
       };
     };
 
-    
-    devShell = pkgs.mkShell {
-        buildInputs = [
-          (python.withPackages (ps: [
-            ps.build
-            ps.pip
-          ]))
-        ];
+    packages.remind = flake-utils.lib.eachDefaultSystem (system: 
+    let
+      pkgs = nixpkgs.legacyPackages.${system};
+      
+      project = pyproject-nix.lib.project.loadPyproject {
+        projectRoot = ./.;
       };
 
-    packages.remind = 
-      let
-        # returns attr set that can passed to buildPythonPackage
-        attrs = project.renderers.buildPythonPackage { inherit python; }; 
-      in
-      python.pkgs.buildPythonPackage (attrs // {
-        # extra attributes added here
-        # env = { BOT_TOKEN = "replace-me"; };
-      });
-  });
+      python = pkgs.python312; # python version
+    in 
+    {
+      devShell = pkgs.mkShell {
+          buildInputs = [
+            (python.withPackages (ps: [
+              ps.build
+              ps.pip
+            ]))
+          ];
+        };
+
+      remind = 
+        let
+          # returns attr set that can passed to buildPythonPackage
+          attrs = project.renderers.buildPythonPackage { inherit python; }; 
+        in
+        python.pkgs.buildPythonPackage (attrs // {
+          # extra attributes added here
+          # env = { BOT_TOKEN = "replace-me"; };
+        });
+    });
+  };
 }
