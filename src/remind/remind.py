@@ -12,8 +12,6 @@ TODOS_URL = "https://raw.githubusercontent.com/CarlSchader/personal-monorepo/ref
 SARONIC_URL = "https://raw.githubusercontent.com/CarlSchader/personal-monorepo/refs/heads/main/saronic.md"
 
 
-
-
 class MarkdownLog:
     def __init__(self, message: str, timestamp: datetime | None):
         self.message = message
