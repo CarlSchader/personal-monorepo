@@ -22,12 +22,16 @@ async def execute_async(message: str):
             bot_info = await bot.get_me()
             print("NO CHATS FOUND -- BOT INFO:")
             print(bot_info)
+            exit(1)
         
+
         chat_ids = [
             update.message.from_user.id for update in updates 
             if update.message is not None and update.message.from_user is not None # Not sure if optional chaining is possible here instead
         ]
         
+        print(f"SUBSCRIBER COUNT: {len(chat_ids)}")
+
         for chat_id in chat_ids:
             # send message
             await bot.send_message(text=message, chat_id=chat_id)
