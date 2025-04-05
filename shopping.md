@@ -1,3 +1,4 @@
 - shaker bottle
 - pillows
 - tv
+- blue light blockers

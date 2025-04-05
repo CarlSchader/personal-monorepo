@@ -3,5 +3,18 @@
 - move into new apartment 2025-4-28
 - sign up for piano lessons 2025-4-12
 - laundry 2025-4-5
+- pay taxes 2025-4-14
 - read nix pills
 - read rust book
+- read about systemd
+- read about quaternions
+- read about vpns
+- spike ffmpeg
+- read mastering bitcoin
+- read foundation trilogy book 3
+- get refunded for LA trip (rental and flight) 2025-4-8
+- get refunded for VB trip (rental) 2025-4-8
+- put mirror on truck 2025-4-19
+- get emissions on truck 2025-4-19 
+- get texas drivers license 2025-4-19 
+- get truck registered 2025-4-26
