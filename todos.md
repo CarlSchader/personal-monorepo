@@ -5,6 +5,7 @@
 - laundry 2025-4-5
 - pay taxes 2025-4-14
 - cardbook replace db so app is usable again 2025-4-5
+- run remind as systemctl timer 2025-4-5
 - read nix pills
 - read rust book
 - read about systemd
