@@ -63,8 +63,9 @@ async def execute_async(bot_token: str):
     todo_formatted = '\n\t'.join([log.formatted() for log in todo_logs])
 
     # format reminder message
-    current_timestamp = datetime.now().strftime("%a %b %d %I %p")
-    message = f"Reminder {current_timestamp}\n\n"
+    # current_timestamp = datetime.now().strftime("%a %b %d %I %p")
+    
+    message = f"Carl you've got shit to do\n\n" if len(time_warning_logs) > 0 else f"Nice lil reminder\n\n"
     message += "Upcoming!!!\n"
     message += f"\t{time_warning_formatted}\n\n"
     message += "Todos\n"

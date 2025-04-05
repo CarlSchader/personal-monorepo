@@ -12,7 +12,7 @@
 - read about vpns
 - spike ffmpeg
 - read mastering bitcoin
-- read foundation trilogy book 3
+- read foundation trilogy third book
 - get refunded for LA trip (rental and flight) 2025-4-8
 - get refunded for VB trip (rental) 2025-4-8
 - put mirror on truck 2025-4-19
