@@ -18,7 +18,7 @@ assert len(BOT_TOKEN) > 0, "BOT_TOKEN not set"
 
 
 class MarkdownLog:
-    def __init__(self, message: str, timestamp: datetime):
+    def __init__(self, message: str, timestamp: datetime | None):
         self.message = message
         self.timestamp = timestamp
 
@@ -26,14 +26,22 @@ class MarkdownLog:
     def from_line(line: str) -> 'MarkdownLog':
         stripped = line.strip()
         words = stripped .split(' ')
-        timestamp_string = words[-1]
-        log_message = ' '.join(words[1:-1])
+        try:
+            timestamp_string = words[-1]
+            timestamp = parser.parse(timestamp_string)
+            log_message = ' '.join(words[1:-1])
+        except:
+            timestamp = None
+            log_message = ' '.join(words[1:])
 
-        return MarkdownLog(log_message, parser.parse(timestamp_string))
+        return MarkdownLog(log_message, timestamp)
 
     def formatted(self) -> str:
-        formatted_time = self.timestamp.strftime("%a %b $d")
-        return f"{formatted_time}\t{self.message}"
+        if self.timestamp is not None:
+            formatted_time = self.timestamp.strftime("%a %b %d")
+            return f"- {formatted_time} {self.message}"
+        else:
+            return f"- {self.message}"
 
 
 async def generate_markdown_reminder_string(markdown_url: str) -> str:
@@ -57,26 +65,22 @@ async def execute_async():
     saronic_logs = [MarkdownLog.from_line(line) for line in saronic_markdown.split('\n') if len(line.strip()) > 0]
 
     # find timestamped logs
-    time_warning_logs: list[MarkdownLog] = [log for log in todo_logs + saronic_logs if log.timestamp - datetime.now() <= UPCOMING_WARNING_DISTANCE]
-   
+    time_warning_logs: list[MarkdownLog] = [log for log in todo_logs + saronic_logs if log.timestamp is not None and log.timestamp - datetime.now() <= UPCOMING_WARNING_DISTANCE]
+    
+    time_warning_formatted = '\n\t'.join([log.formatted() for log in time_warning_logs])
+    todo_formatted = '\n\t'.join([log.formatted() for log in todo_logs])
+    saronic_formatted = '\n\t'.join([log.formatted() for log in saronic_logs])
 
     # format reminder message
-    current_timestamp = datetime.now().strftime("%a %b $d %I:%M %p")
-    message = f"""
-        Reminder {current_timestamp}
-
-        Upcoming!
-        {'\n'.join([log.formatted() for log in time_warning_logs])}
+    current_timestamp = datetime.now().strftime("%a %b %d %I %p")
+    message = f"Reminder {current_timestamp}\n\n"
+    message += "Upcoming!!!\n"
+    message += f"\t{time_warning_formatted}\n\n"
+    message += "Todos\n"
+    message += f"\t{todo_formatted}\n\n"
+    message += "Work Todos\n"
+    message += f"\t{saronic_formatted}"
         
-        Todo
-        {'\n'.join([log.formatted() for log in todo_logs])}
-
-        Work Shit
-        {'\n'.join([log.formatted() for log in saronic_logs])}
-        
-        Don't forget to do this stuff.
-    """ 
-
     bot = telegram.Bot(BOT_TOKEN)
     async with bot:
         updates = await bot.get_updates()
