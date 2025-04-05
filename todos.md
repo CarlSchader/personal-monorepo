@@ -4,6 +4,7 @@
 - sign up for piano lessons 2025-4-12
 - laundry 2025-4-5
 - pay taxes 2025-4-14
+- cardbook replace db so app is usable again 2025-4-5
 - read nix pills
 - read rust book
 - read about systemd
