@@ -1,19 +1,27 @@
 import asyncio
-import telegram
 import os
+import argparse
+
+import telegram
+
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+
+assert BOT_TOKEN is not None
+
 
 async def send_telegram(bot: telegram.Bot, chat_id: str, message: str):
     await bot.send_message(text=message, chat_id=chat_id)
 
-async def main(message: str):
-    BOT_TOKEN = os.getenv("BOT_TOKEN")
 
-    assert BOT_TOKEN is not None
-
+async def execute_async(message: str):
     bot = telegram.Bot(BOT_TOKEN)
     async with bot:
         updates = await bot.get_updates()
-        print(updates)
+
+        if len(updates) == 0:
+            bot_info = await bot.get_me()
+            print("NO CHATS FOUND -- BOT INFO:")
+            print(bot_info)
         
         chat_ids = [update.message.from_user.id for update in updates]
         
@@ -22,11 +30,15 @@ async def main(message: str):
             await bot.send_message(text=message, chat_id=chat_id)
 
 
-if __name__ == '__main__':
-    import argparse
-
+def main():
     parser = argparse.ArgumentParser(description='Send a message to a Telegram chat.')
     parser.add_argument('-m', '--message', type=str, required=True, help='The message to send.')
     args = parser.parse_args()
 
-    asyncio.run(main(args.message))
+    message = args.message
+
+    asyncio.run(execute_async(message))
+
+
+if __name__ == '__main__':
+    main()

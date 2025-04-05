@@ -1,0 +1,20 @@
+[build-system] 
+requires = ["setuptools"] 
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["remind"]
+package-dir = {"" = "src"}
+
+[project]
+name = "personal-monorepo"
+dynamic = ["version"]
+
+requires-python = ">= 3.10"
+
+dependencies = [
+  "python-telegram-bot==22.0",
+]
+
+[project.scripts]
+remind = "remind.remind:main" 
