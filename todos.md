@@ -1,6 +1,7 @@
 - cole's webserver 2025-4-30
 - find new apartment 2025-4-13
 - move into new apartment 2025-4-28
+- sign up for piano lessons 2025-4-12
 - laundry 2025-4-5
 - read nix pills
 - read rust book
