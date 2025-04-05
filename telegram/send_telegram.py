@@ -19,7 +19,7 @@ async def main(message: str):
         
         for chat_id in chat_ids:
             # send message
-            bot.send_message(text="test", chat_id=chat_id)
+            await bot.send_message(text=message, chat_id=chat_id)
 
 
 if __name__ == '__main__':
