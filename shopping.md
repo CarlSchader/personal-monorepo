@@ -1,0 +1,3 @@
+- shaker bottle
+- pillows
+- tv
