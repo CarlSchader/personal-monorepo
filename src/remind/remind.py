@@ -9,7 +9,7 @@ import telegram
 UPCOMING_WARNING_DISTANCE = timedelta(days=7)
 
 TODOS_URL = "https://raw.githubusercontent.com/CarlSchader/personal-monorepo/refs/heads/main/todos.md"
-SARONIC_URL = "https://raw.githubusercontent.com/CarlSchader/personal-monorepo/refs/heads/main/saronic.md"
+# SARONIC_URL = "https://raw.githubusercontent.com/CarlSchader/personal-monorepo/refs/heads/main/saronic.md"
 
 
 class MarkdownLog:
@@ -54,17 +54,17 @@ async def send_telegram(bot: telegram.Bot, chat_id: str, message: str):
 async def execute_async(bot_token: str):
     # fetch markdown
     todo_markdown = (await generate_markdown_reminder_string(TODOS_URL)).strip()
-    saronic_markdown = (await generate_markdown_reminder_string(SARONIC_URL)).strip()
+    # saronic_markdown = (await generate_markdown_reminder_string(SARONIC_URL)).strip()
 
     todo_logs = [MarkdownLog.from_line(line) for line in todo_markdown.split('\n') if len(line.strip()) > 0]
-    saronic_logs = [MarkdownLog.from_line(line) for line in saronic_markdown.split('\n') if len(line.strip()) > 0]
+    # saronic_logs = [MarkdownLog.from_line(line) for line in saronic_markdown.split('\n') if len(line.strip()) > 0]
 
     # find timestamped logs
-    time_warning_logs: list[MarkdownLog] = [log for log in todo_logs + saronic_logs if log.timestamp is not None and log.timestamp - datetime.now() <= UPCOMING_WARNING_DISTANCE]
+    time_warning_logs: list[MarkdownLog] = [log for log in todo_logs if log.timestamp is not None and log.timestamp - datetime.now() <= UPCOMING_WARNING_DISTANCE]
     
     time_warning_formatted = '\n\t'.join([log.formatted() for log in time_warning_logs])
     todo_formatted = '\n\t'.join([log.formatted() for log in todo_logs])
-    saronic_formatted = '\n\t'.join([log.formatted() for log in saronic_logs])
+    # saronic_formatted = '\n\t'.join([log.formatted() for log in saronic_logs])
 
     # format reminder message
     current_timestamp = datetime.now().strftime("%a %b %d %I %p")
@@ -73,8 +73,8 @@ async def execute_async(bot_token: str):
     message += f"\t{time_warning_formatted}\n\n"
     message += "Todos\n"
     message += f"\t{todo_formatted}\n\n"
-    message += "Work Todos\n"
-    message += f"\t{saronic_formatted}"
+    # message += "Work Todos\n"
+    # message += f"\t{saronic_formatted}"
         
     bot = telegram.Bot(bot_token)
     async with bot:
