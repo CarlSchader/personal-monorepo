@@ -1,5 +1,4 @@
 - cole's webserver 2025-4-30
-- move nix-configs repo into here 2025-4-5
 - find new apartment 2025-4-13
 - move into new apartment 2025-4-28
 - sign up for piano lessons 2025-4-12
