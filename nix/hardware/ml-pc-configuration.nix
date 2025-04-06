@@ -10,9 +10,12 @@ let
     git
     code-cursor
   ];
-  authorizedKeys = [ 
+  carls-keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEfes+9mHAnHSb0GjyP305zzFtS2P12e3Ha/Vur+62He carlschader@Carls-MacBook-Pro.local" # personal
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILnEa9ffHtw4evQmVDKaoVDMLGan0k4Olrs1h+jPvhpc carlschader@Carls-MacBook-Pro.local" # work 
+
+  ];
+  connors-keys = [ 
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE8N1WCZEQv43tuIvndSbtSPa3uYxFUfGh6LN0BFbnyt connorjones@MacBookPro" # connor
   ];
 in 
@@ -20,7 +23,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./ml-pc-hardware-configuration.nix
-      ../modules/personal-services.nix
+      # ../modules/personal-services.nix
     ];
 
   # Bootloader.
@@ -131,18 +134,12 @@ in
 
   users.motd =
   ''
-          _   _         _                _           _      
-         /\_\/\_\ _    _\ \             /\ \       /\ \     
-        / / / / //\_\ /\__ \           /  \ \     /  \ \    
-       /\ \/ \ \/ / // /_ \_\         / /\ \ \   / /\ \ \   
-      /  \____\__/ // / /\/_/____    / / /\ \_\ / / /\ \ \  
-     / /\/________// / /   /\____/\ / / /_/ / // / /  \ \_\ 
-    / / /\/_// / // / /    \/____\// / /__\/ // / /    \/_/ 
-   / / /    / / // / / ____       / / /_____// / /          
-  / / /    / / // /_/_/ ___/\    / / /      / / /________   
-  \/_/    / / //_______/\__\/   / / /      / / /_________\  
-          \/_/ \_______\/       \/_/       \/____________/  
-                                                            
+                __                
+     ____ ___  / /     ____  _____
+    / __ `__ \/ /_____/ __ \/ ___/
+   / / / / / / /_____/ /_/ / /__  
+  /_/ /_/ /_/_/     / .___/\___/  
+                   /_/            
   '';
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -152,16 +149,16 @@ in
     extraGroups = [ "networkmanager" "wheel" ];
     packages = defaultUserPackages;
     shell = defaultShell;
-    openssh.authorizedKeys.keys = authorizedKeys; 
+    openssh.authorizedKeys.keys = carls-keys; 
   };
 
   users.users.connor = {
     isNormalUser = true;
     description = "Connor Jones";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ ];
     packages = defaultUserPackages;
     shell = defaultShell;
-    openssh.authorizedKeys.keys = authorizedKeys; 
+    openssh.authorizedKeys.keys = connors-keys ++ carls-keys; 
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -171,7 +168,7 @@ in
     extraGroups = [ "networkmanager" "wheel" ];
     packages = defaultUserPackages;
     shell = defaultShell;
-    openssh.authorizedKeys.keys = authorizedKeys; 
+    openssh.authorizedKeys.keys = carls-keys; 
   };
 
   # Allow unfree packages
