@@ -33,7 +33,7 @@
 
     python = pkgs.python312; # python version
 
-    projectPackage = python.pkgs.buildPythonPackage (project.renderers.buildPythonPackage { inherit python; } // { 
+    personal-monorepo = python.pkgs.buildPythonPackage (project.renderers.buildPythonPackage { inherit python; } // { 
       # extras
     });
   in
@@ -49,7 +49,10 @@
       };
     };
 
-    packages.default = projectPackage;
+    packages = {
+      default = personal-monorepo;
+      personal-monorepo = personal-monorepo;
+    };
     
 
   })) // { # system specific
@@ -90,7 +93,7 @@
         }
         ({ config, pkgs, self, ... }: {
           environment.systemPackages = with pkgs; [
-            self.packages.${config.nixpkgs.system}.default
+            self.packages.${config.nixpkgs.system}.personal-monorepo
           ];
         })
       ];
