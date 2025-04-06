@@ -12,7 +12,6 @@
       url = "github:nix-community/pyproject.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    personal-monorepo.url = "github:carlschader/personal-monorepo";
   };
 
   outputs = { 
@@ -22,7 +21,6 @@
     home-manager, 
     flake-utils, 
     pyproject-nix,
-    personal-monorepo,
     ...
   }@inputs:
   (flake-utils.lib.eachDefaultSystem (system: 
@@ -80,7 +78,7 @@
 
     nixosConfigurations.ml-pc = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = inputs;
+      specialArgs = { inherit inputs self; };
       modules = [
         ./nix/hardware/ml-pc-configuration.nix
         home-manager.nixosModules.home-manager {
@@ -90,9 +88,9 @@
           home-manager.users.connor = import ./nix/modules/home.nix;
           home-manager.users.saronic = import ./nix/modules/home.nix;
         }
-        ({ config, pkgs, ... }: {
+        ({ config, pkgs, self, ... }: {
           environment.systemPackages = with pkgs; [
-            projectPackage
+            self.packages.${config.nixpkgs.system}.default
           ];
         })
       ];

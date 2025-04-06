@@ -1,4 +1,4 @@
-{config, pkgs, ...}@inputs:
+{config, pkgs, ...}:
 {
   config = {
     systemd.timers."remind" = {

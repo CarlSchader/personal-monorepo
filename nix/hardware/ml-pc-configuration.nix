@@ -1,8 +1,8 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+# and in the NixOS manual (accessible by running 'nixos-help').
 
-{ config, pkgs, ... }:
+{ config, pkgs, system, self, ... }:
 let
   defaultShell = pkgs.bash;
   defaultUserPackages = with pkgs; [
@@ -142,7 +142,7 @@ in
                    /_/            
   '';
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.carl = {
     isNormalUser = true;
     description = "Carl Schader";
@@ -161,7 +161,7 @@ in
     openssh.authorizedKeys.keys = connors-keys ++ carls-keys; 
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.saronic = {
     isNormalUser = true;
     description = "carlschader-saronic";
@@ -180,6 +180,7 @@ in
     vim
     linuxPackages.v4l2loopback
     v4l-utils
+    self.packages.${system}.default
     # nodejs_23 
   ];
 
@@ -248,7 +249,7 @@ in
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # on your system were taken. It's perfectly fine and recommended to leave
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
