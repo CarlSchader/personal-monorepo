@@ -23,9 +23,8 @@
     pyproject-nix,
     ...
   }@inputs:
-  (flake-utils.lib.eachDefaultSystem (system: 
   let
-    pkgs = nixpkgs.legacyPackages.${system};
+    pkgs = nixpkgs.legacyPackages.x86_64-linux;
     
     project = pyproject-nix.lib.project.loadPyproject {
       projectRoot = ./.;
@@ -37,21 +36,18 @@
       # extras
     });
   in
-  { # all systems
-    devShells = { 
-      default = pkgs.mkShell {
-        buildInputs = [
-          (python.withPackages (ps: [
-            ps.build
-            ps.pip
-          ]))
-        ];
-      };
+  {
+    packages.x86_64-linux.default = personal-monorepo;
+
+    devShells.x86_64-linux.default = pkgs.mkShell {
+      buildInputs = [
+        (python.withPackages (ps: [
+          ps.build
+          ps.pip
+        ]))
+      ];
     };
-
-    packages.default = personal-monorepo;
-
-  })) // { # system specific
+      
     darwinConfigurations."Carls-MacBook-Pro-2" = nix-darwin.lib.darwinSystem {
       modules = [ 
         ./nix/modules/darwin.nix
@@ -77,7 +73,7 @@
 
     nixosConfigurations.ml-pc = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs personal-monorepo; };
+      specialArgs = { inherit personal-monorepo; };
       modules = [
         ./nix/hardware/ml-pc-configuration.nix
         home-manager.nixosModules.home-manager {

@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running 'nixos-help').
 
-{ config, pkgs, system, self, ... }:
+{ config, pkgs, system, ... }:
 let
   defaultShell = pkgs.bash;
   defaultUserPackages = with pkgs; [
@@ -180,7 +180,6 @@ in
     vim
     linuxPackages.v4l2loopback
     v4l-utils
-    self.packages.${system}.default
     # nodejs_23 
   ];
 
