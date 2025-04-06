@@ -23,7 +23,7 @@
     # The platform the configuration will be used on.
     nixpkgs.hostPlatform = "aarch64-darwin";
 
-    users.motd = 
+    users.users.motd = 
     ''
                                 ____                    __         
        /'\_/`\                 /\  _`\                 /\ \        
