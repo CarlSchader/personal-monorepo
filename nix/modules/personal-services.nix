@@ -1,22 +1,21 @@
 {config, pkgs, personal-monorepo, ...}:
 {
   config = {
-    systemd.timers."remind" = {
+    systemd.timers."remind-timer" = {
       wantedBy = [ "timers.target" ];
       timerConfig = {
         OnBootSec = "5m";
         OnUnitActiveSec = "5m";
-        Unit = "remind.service";
+        Unit = "remind-timer.service";
       };
     };
 
-    systemd.services."remind" = {
+    systemd.services."remind-timer" = {
       enable = true; 
       script = "${personal-monorepo}/bin/remind -b=/home/carl/secrets/personal-monorepo-bot-token";
       serviceConfig = {
         Type = "oneshot";
-        User = "carl";
-        Group = "users";
+        User = "root";
       };
     };
   };
