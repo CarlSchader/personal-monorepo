@@ -20,7 +20,9 @@ in
     environment.systemPackages =
     [ pkgs.vim ];
 
-    environment.extraInit = "echo ${motd}";
+    environment.etc.motd.text = motd;
+    environment.interactiveShellInit = "cat /etc/motd";
+    environment.loginShellInit = "cat /etc/motd";
 
     # Necessary for using flakes on this system.
     nix.settings.experimental-features = "nix-command flakes";
