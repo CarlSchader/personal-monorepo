@@ -5,7 +5,6 @@
       wantedBy = [ "timers.target" ];
       timerConfig = {
         OnBootSec = "1m";
-        OnUnitActiveSec = "5m";
         OnCalendar = [
           "*-*-* 08:00:00"
           "*-*-* 12:00:00"

@@ -18,6 +18,15 @@ let
   connors-keys = [ 
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE8N1WCZEQv43tuIvndSbtSPa3uYxFUfGh6LN0BFbnyt connorjones@MacBookPro" # connor
   ];
+
+  motd-string = ''
+                __                
+     ____ ___  / /     ____  _____
+    / __ `__ \/ /_____/ __ \/ ___/
+   / / / / / / /_____/ /_/ / /__  
+  /_/ /_/ /_/_/     / .___/\___/  
+                   /_/            
+  '';
 in 
 {
   imports =
@@ -83,6 +92,9 @@ in
 
   environment.pathsToLink = [ "/libexec" ];
 
+  environment.etc.motd.text = motd-string;
+  environment.interactiveShellInit = "cat /etc/motd";
+
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
@@ -131,16 +143,6 @@ in
 
   # enable docker
   virtualisation.docker.enable = true;
-
-  users.motd =
-  ''
-                __                
-     ____ ___  / /     ____  _____
-    / __ `__ \/ /_____/ __ \/ ___/
-   / / / / / / /_____/ /_/ / /__  
-  /_/ /_/ /_/_/     / .___/\___/  
-                   /_/            
-  '';
 
   # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.carl = {
