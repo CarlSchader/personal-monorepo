@@ -29,6 +29,7 @@ in {
     brave
 
     ## dev tools
+    git
     tmux
     neovim
     wezterm
@@ -46,6 +47,8 @@ in {
     nmap
     pnpm
     gnumake
+    postgresql
+    mysql-shell
 
     ## compilers and runtimes
     nodejs_23
@@ -66,16 +69,8 @@ in {
 
     # linters
     ruff
+    prettierd
   ];
-
-  # programs.nixvim = import ./nixvim.nix { inherit pkgs; };
-
-  # # Disabled because it's easier to just set this per user since this home config is used by multiple users
-  # programs.git = {
-  #   enable = true;
-  #   userName = "Carl Schader";
-  #   userEmail = "carl.schader@saronic.com";
-  # };
 
   programs.wezterm = {
     enable = true;
@@ -114,7 +109,7 @@ in {
       autoload -U colors && colors
       PS1="%{$fg[green]%}%n%{$reset_color%}@%{$fg[green]%}%m %{$fg[yellow]%}%~ %{$reset_color%}%% "
       eval $(ssh-agent -s)
-      find ~/.ssh -type f | xargs ssh-add
+      find ~/.ssh/keys | g -v ".pub" | xargs ssh-add
       export EDITOR=nvim
     '';
     shellAliases = shellAliases;
@@ -126,7 +121,7 @@ in {
     shellAliases = shellAliases;
     initExtra = ''
       eval $(ssh-agent -s)
-      find ~/.ssh -type f | xargs ssh-add
+      find ~/.ssh/keys | g -v ".pub" | xargs ssh-add
       export EDITOR=nvim
     '';
   };
@@ -138,7 +133,7 @@ in {
     };
     to = {
       owner = "CarlSchader";
-      repo = "nix-configs";
+      repo = "personal-monorepo";
       type = "github";
     };
   };
