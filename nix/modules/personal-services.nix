@@ -12,10 +12,11 @@
 
     systemd.services."remind" = {
       enable = true; 
-      script = "${inputs.personal-monorepo}/bin/remind -b=/home/carl/secrets/personal-monorepo-bot-token";
+      script = "${pkgs.personal-monorepo}/bin/remind -b=/home/carl/secrets/personal-monorepo-bot-token";
       serviceConfig = {
         Type = "oneshot";
-        User = "root";
+        User = "carl";
+        Group = "users";
       };
     };
   };

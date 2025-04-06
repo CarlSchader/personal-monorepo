@@ -22,6 +22,7 @@
     home-manager, 
     flake-utils, 
     pyproject-nix,
+    personal-monorepo,
     ...
   }@inputs:
   (flake-utils.lib.eachDefaultSystem (system: 
@@ -91,6 +92,11 @@
           home-manager.users.connor = import ./nix/modules/home.nix;
           home-manager.users.saronic = import ./nix/modules/home.nix;
         }
+        ({ config, pkgs, ... }: {
+          environment.systemPackages = with pkgs; [
+            personal-monorepo.packages.${system}.default
+          ];
+        })
       ];
     };
 
