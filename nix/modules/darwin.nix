@@ -23,6 +23,19 @@
     # The platform the configuration will be used on.
     nixpkgs.hostPlatform = "aarch64-darwin";
 
+    users.motd = 
+    ''
+                                ____                    __         
+       /'\_/`\                 /\  _`\                 /\ \        
+      /\      \     __      ___\ \ \L\ \    ___     ___\ \ \/'\    
+      \ \ \__\ \  /'__`\   /'___\ \  _ <'  / __`\  / __`\ \ , <    
+       \ \ \_/\ \/\ \L\.\_/\ \__/\ \ \L\ \/\ \L\ \/\ \L\ \ \ \\`\  
+        \ \_\\ \_\ \__/.\_\ \____\\ \____/\ \____/\ \____/\ \_\ \_\
+         \/_/ \/_/\/__/\/_/\/____/ \/___/  \/___/  \/___/  \/_/\/_/
+                                                                   
+                                                                   
+    '';
+
     # User configuration
     users.users.carlschader = {
         name = "carlschader";
