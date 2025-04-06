@@ -1,4 +1,4 @@
-inputs@{config, pkgs, ...}:
+{config, pkgs, ...}@inputs:
 {
   systemd.timers.remind = {
     wantedBy = [ "timers.target" ];

@@ -15,14 +15,15 @@
     personal-monorepo.url = "github:carlschader/personal-monorepo";
   };
 
-  outputs = inputs@{ 
+  outputs = { 
     self, 
     nixpkgs, 
     nix-darwin, 
     home-manager, 
     flake-utils, 
-    pyproject-nix 
-  }:
+    pyproject-nix,
+    ...
+  }@inputs:
   (flake-utils.lib.eachDefaultSystem (system: 
   let
     pkgs = nixpkgs.legacyPackages.${system};
@@ -57,7 +58,7 @@
   })) // { # system specific
     darwinConfigurations."Carls-MacBook-Pro-2" = nix-darwin.lib.darwinSystem {
       modules = [ 
-        ./nix/darwin.nix
+        ./nix/modules/darwin.nix
         home-manager.darwinModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
@@ -69,7 +70,7 @@
     # work laptop
     darwinConfigurations."Carls-MacBook-Pro" = nix-darwin.lib.darwinSystem {
       modules = [ 
-        ./nix/darwin.nix
+        ./nix/modules/darwin.nix
         home-manager.darwinModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
