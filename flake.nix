@@ -12,9 +12,10 @@
       url = "github:nix-community/pyproject.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    personal-monorepo.url = "github:carlschader/personal-monorepo";
   };
 
-  outputs = { 
+  outputs = inputs@{ 
     self, 
     nixpkgs, 
     nix-darwin, 
@@ -52,19 +53,15 @@
       # extra attributes added here
       # env = { BOT_TOKEN = "replace-me"; };
     });
+
   })) // { # system specific
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#Carls-MacBook-Pro-2
     darwinConfigurations."Carls-MacBook-Pro-2" = nix-darwin.lib.darwinSystem {
       modules = [ 
         ./nix/darwin.nix
         home-manager.darwinModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.carlschader = import ./nix/home.nix;
-          # home-manager.sharedModules = [
-          #   nixvim.homeManagerModules.nixvim
-          # ];
+          home-manager.users.carlschader = import ./nix/modules/home.nix;
         }
       ];
     };
@@ -76,27 +73,22 @@
         home-manager.darwinModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.carlschader = import ./nix/home.nix;
-          # home-manager.sharedModules = [
-          #   nixvim.homeManagerModules.nixvim
-          # ];
+          home-manager.users.carlschader = import ./nix/modules/home.nix;
         }
       ];
     };
 
     nixosConfigurations.ml-pc = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+      specialArgs = { inherit inputs; };
       modules = [
-        ./nix/x86/ml-pc-configuration.nix
+        ./nix/hardware/ml-pc-configuration.nix
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.carl = import ./nix/home.nix;
-          home-manager.users.connor = import ./nix/home.nix;
-          home-manager.users.saronic = import ./nix/home.nix;
-          # home-manager.sharedModules = [
-          #   nixvim.homeManagerModules.nixvim
-          # ];
+          home-manager.users.carl = import ./nix/modules/home.nix;
+          home-manager.users.connor = import ./nix/modules/home.nix;
+          home-manager.users.saronic = import ./nix/modules/home.nix;
         }
       ];
     };
@@ -104,15 +96,12 @@
     nixosConfigurations.lambda-carl = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        ./nix/x86/lambda-configuration.nix
+        ./nix/hardware/lambda-configuration.nix
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.carl = import ./nix/home.nix;
-          home-manager.users.saronic = import ./nix/home.nix;
-          # home-manager.sharedModules = [
-          #   nixvim.homeManagerModules.nixvim
-          # ];
+          home-manager.users.carl = import ./nix/modules/home.nix;
+          home-manager.users.saronic = import ./nix/modules/home.nix;
         }
       ];
     };

@@ -20,6 +20,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./ml-pc-hardware-configuration.nix
+      ../modules/personal-services.nix
     ];
 
   # Bootloader.
