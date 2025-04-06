@@ -34,6 +34,10 @@
     };
 
     python = pkgs.python312; # python version
+
+    projectPackage = python.pkgs.buildPythonPackage (project.renderers.buildPythonPackage { inherit python; } // { 
+      # extras
+    });
   in
   { # all systems
     devShells = { 
@@ -47,14 +51,8 @@
       };
     };
 
-    packages.default = let
-      # returns attr set that can passed to buildPythonPackage
-      attrs = project.renderers.buildPythonPackage { inherit python; }; 
-    in
-    python.pkgs.buildPythonPackage (attrs // {
-      # extra attributes added here
-      # env = { BOT_TOKEN = "replace-me"; };
-    });
+    packages.default = projectPackage;
+    
 
   })) // { # system specific
     darwinConfigurations."Carls-MacBook-Pro-2" = nix-darwin.lib.darwinSystem {
@@ -70,7 +68,7 @@
 
     # work laptop
     darwinConfigurations."Carls-MacBook-Pro" = nix-darwin.lib.darwinSystem {
-      modules = [ 
+      modules = [
         ./nix/modules/darwin.nix
         home-manager.darwinModules.home-manager {
           home-manager.useGlobalPkgs = true;
@@ -94,7 +92,7 @@
         }
         ({ config, pkgs, ... }: {
           environment.systemPackages = with pkgs; [
-            personal-monorepo.packages.${system}.default
+            projectPackage
           ];
         })
       ];
