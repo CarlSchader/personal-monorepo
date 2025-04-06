@@ -49,11 +49,7 @@
       };
     };
 
-    packages = {
-      default = personal-monorepo;
-      personal-monorepo = personal-monorepo;
-    };
-    
+    packages.default = personal-monorepo;
 
   })) // { # system specific
     darwinConfigurations."Carls-MacBook-Pro-2" = nix-darwin.lib.darwinSystem {
@@ -81,7 +77,7 @@
 
     nixosConfigurations.ml-pc = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs self; };
+      specialArgs = { inherit inputs personal-monorepo; };
       modules = [
         ./nix/hardware/ml-pc-configuration.nix
         home-manager.nixosModules.home-manager {
@@ -91,11 +87,6 @@
           home-manager.users.connor = import ./nix/modules/home.nix;
           home-manager.users.saronic = import ./nix/modules/home.nix;
         }
-        ({ config, pkgs, self, ... }: {
-          environment.systemPackages = with pkgs; [
-            self.packages.${config.nixpkgs.system}.personal-monorepo
-          ];
-        })
       ];
     };
 
