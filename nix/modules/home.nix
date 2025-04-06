@@ -109,7 +109,7 @@ in {
       autoload -U colors && colors
       PS1="%{$fg[green]%}%n%{$reset_color%}@%{$fg[green]%}%m %{$fg[yellow]%}%~ %{$reset_color%}%% "
       eval $(ssh-agent -s)
-      find ~/.ssh/keys | grep -v ".pub" | xargs ssh-add
+      find ~/.ssh/keys -type f | grep -v ".pub" | xargs ssh-add
       export EDITOR=nvim
     '';
     shellAliases = shellAliases;
@@ -121,7 +121,7 @@ in {
     shellAliases = shellAliases;
     initExtra = ''
       eval $(ssh-agent -s)
-      find ~/.ssh/keys | grep -v ".pub" | xargs ssh-add
+      find ~/.ssh/keys -type f | grep -v ".pub" | xargs ssh-add
       export EDITOR=nvim
     '';
   };
