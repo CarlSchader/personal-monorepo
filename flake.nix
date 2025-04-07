@@ -7,7 +7,6 @@
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
     pyproject-nix = {
       url = "github:nix-community/pyproject.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -15,14 +14,12 @@
   };
 
   outputs = { 
-    self, 
     nixpkgs, 
     nix-darwin, 
     home-manager, 
-    flake-utils, 
     pyproject-nix,
     ...
-  }@inputs:
+  }:
   let
     pkgs = nixpkgs.legacyPackages.x86_64-linux;
     
