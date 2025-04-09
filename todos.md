@@ -21,3 +21,4 @@
 - get emissions on truck 2025-4-19 
 - get texas drivers license 2025-4-19 
 - get truck registered 2025-4-26
+- experiment with CAD
