@@ -1,4 +1,4 @@
-{config, pkgs, personal-monorepo, ...}:
+{config, pkgs, personal-monorepo, bot-token-path, ...}:
 {
   config = {
     systemd.timers."remind-timer" = {
@@ -17,7 +17,7 @@
 
     systemd.services."remind-timer" = {
       enable = true; 
-      script = "${personal-monorepo}/bin/remind -b=/home/carl/secrets/personal-monorepo-bot-token"; # change this to somewhere in /etc in the future
+      script = "${personal-monorepo}/bin/remind -b=/etc/personal-monorepo/bot-token"; # change this to somewhere in /etc in the future
       serviceConfig = {
         Type = "oneshot";
         User = "root";

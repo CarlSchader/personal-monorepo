@@ -2,6 +2,13 @@
 
 {config, pkgs, ...}: 
 let
+  initExtraAllShells = ''
+    eval $(ssh-agent -s)
+    find ~/.ssh/keys -type f | grep -v ".pub" | xargs ssh-add
+
+    export EDITOR="nvim"
+    export ANTHROPIC_API_KEY=$(cat ~/.secrets/anthropic-api-key)
+  '';
   shellAliases = {
     n = "nvim";
     t = "tmux";
@@ -15,8 +22,8 @@ let
     gfa = "git fetch --all";
     ga = "git add .";
     gca = "git add . && git commit -am";
-    gp = "git push";
-    gpl = "git pull";
+    gpo = "git push origin";
+    gp = "git pull";
     gs = "git switch";
 
     tarz = "tar --zstd";
@@ -72,6 +79,10 @@ in {
     prettierd
   ];
 
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
+
   programs.wezterm = {
     enable = true;
     extraConfig = ''
@@ -105,12 +116,9 @@ in {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    initExtra = ''
+    initExtra = initExtraAllShells + ''
       autoload -U colors && colors
       PS1="%{$fg[green]%}%n%{$reset_color%}@%{$fg[green]%}%m %{$fg[yellow]%}%~ %{$reset_color%}%% "
-      eval $(ssh-agent -s)
-      find ~/.ssh/keys -type f | grep -v ".pub" | xargs ssh-add
-      export EDITOR=nvim
     '';
     shellAliases = shellAliases;
   };
@@ -119,11 +127,7 @@ in {
     enable = true;
     enableCompletion = true;
     shellAliases = shellAliases;
-    initExtra = ''
-      eval $(ssh-agent -s)
-      find ~/.ssh/keys -type f | grep -v ".pub" | xargs ssh-add
-      export EDITOR=nvim
-    '';
+    initExtra = initExtraAllShells;
   };
 
   nix.registry.configs = {
