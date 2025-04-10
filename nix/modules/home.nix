@@ -4,7 +4,7 @@
 let
   initExtraAllShells = ''
     eval $(ssh-agent -s)
-    find ~/.ssh/ -type f | grep -v ".pub" | xargs ssh-add
+    ssh-add ~/.ssh/id_ed25519
 
     export EDITOR="nvim"
     export ANTHROPIC_API_KEY=$(cat ~/.secrets/anthropic-api-key)
