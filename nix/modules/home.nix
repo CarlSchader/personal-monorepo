@@ -25,7 +25,7 @@ let
     gpo = "git push origin";
     gp = "git pull";
     gs = "git switch";
-    gclean = "git branch -D $(git branch | grep -v \\* | grep -v main | grep -v master)";
+    gitclean = "git branch -D $(git branch | grep -v \\* | grep -v main | grep -v master)";
 
     tarz = "tar --zstd";
     venv = "source .venv/bin/activate";
