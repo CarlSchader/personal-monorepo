@@ -2,3 +2,4 @@
 - pillows
 - tv
 - blue light blockers
+- all natural deoderant
