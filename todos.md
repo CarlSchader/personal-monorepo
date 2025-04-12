@@ -3,7 +3,6 @@
 - find new apartment 2025-4-13
 - move into new apartment 2025-4-28
 - sign up for piano lessons 2025-4-12
-- laundry 2025-4-5
 - pay taxes 2025-4-14
 - look at early exercising shares and determine if it's worth it 2025-4-10
 - zoom meeting with officer that gave you ticket for speeding 2025-4-15_1:30PM
