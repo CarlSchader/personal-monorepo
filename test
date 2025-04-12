@@ -1,0 +1,19 @@
+{
+	"data": "ENC[AES256_GCM,data:iZV2rMY1,iv:qrVwP9xkrJS9+SLju1bAuu9eV+kw3CFy1n4kAddNonA=,tag:9h5mJ9zZvnzzz3/mtbpYUA==,type:str]",
+	"sops": {
+		"age": [
+			{
+				"recipient": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILnEa9ffHtw4evQmVDKaoVDMLGan0k4Olrs1h+jPvhpc carlschader@Carls-MacBook-Pro.local",
+				"enc": "-----BEGIN AGE ENCRYPTED FILE-----\nYWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IHNzaC1lZDI1NTE5IEZhUU9VZyBCQmYr\nbmZDUkRYeEEwTHU0TEpVZWhER3JMN3RYV2txVTNHZm51SmhtN0FzCjNIVmprMjNo\nUGlnNWFIblBqL1RDRGdCYkYzTThFSVREbXFubUZWUGFRQUEKLS0tIDlJTjBjb3pN\neDE2ZkJXOTlldlNmSytpcHJzSUtvN042ZW1wL0pSMUhwT3MKdVQVTJyO5rhcN44N\ns1ciBgpMmhMPijUiFZC5wRYecmDW35p3jICczPPFi6/IrVY86AgIBBjbS3n7El5E\n0SkW0g==\n-----END AGE ENCRYPTED FILE-----\n"
+			},
+			{
+				"recipient": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB62ru41HgxMZwQ5z3BxiUmfsx4ict6BgfqTUmRqaALw carlschader@Carls-MacBook-Pro.local",
+				"enc": "-----BEGIN AGE ENCRYPTED FILE-----\nYWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IHNzaC1lZDI1NTE5IHZQMVZvZyAvUDNL\nMTloZmY2LzFIZFFzamlXSldqT05US0hNM21Kd1B5VW5IVFg3eW1rCktZVEJRQ3Z4\nWnNWL3lqQ1Rid1YyTmkvMkplKy9TZkcwSkNyRVVzbFkzVVUKLS0tIGpOS3YvZEEz\nNnRRc2NSSTM0dVhTbHVoY0xWTnhJVjh0V3JZRzBsNDhuRUUK2O86Uvnb74IiGdZI\nmV9zD32RR96JREb69UExYjJptT6oCz0woIP1AZxIL7/WetwAiqvnJPj28fTnBCLu\nkpfy9w==\n-----END AGE ENCRYPTED FILE-----\n"
+			}
+		],
+		"lastmodified": "2025-04-12T04:32:48Z",
+		"mac": "ENC[AES256_GCM,data:SCbtEpduXCcBD4cP9SI8ADv0nIDDO8lcjZ2J3UuyQd1orOmWEjP0t0pQAZdQW4frDjFp/+v2rle5voo1nePk72ivdiStHFN0zADj4LbuLFxQNQX+74W8W7T2i3XULgsDMG8MHKK/cTJGz2yuNjWJXwAC37/hsgEJbRXjSfyJ5aw=,iv:w7xx3bxTkE0wRV4q6z7noZG3FGtA+cgc4D6/ctBPQOE=,tag:CeeAFx3Y3HBsO8JYMFgXAQ==,type:str]",
+		"unencrypted_suffix": "_unencrypted",
+		"version": "3.10.1"
+	}
+}
