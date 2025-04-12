@@ -179,6 +179,9 @@ in
     openssh.authorizedKeys.keys = carls-keys; 
   };
 
+  # allows third party dynamically linked libs 
+  programs.nix-ld.enable = true;
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
