@@ -10,6 +10,17 @@ UPCOMING_WARNING_DISTANCE = timedelta(days=7)
 
 TODOS_URL = "https://raw.githubusercontent.com/CarlSchader/personal-monorepo/refs/heads/main/todos.md"
 
+CHAT_IDS_FILE = "/var/lib/personal-monorepo/chat-ids.txt"
+
+# check if file exists and if not create it and all parent directories
+if not os.path.exists(CHAT_IDS_FILE):
+    os.makedirs(os.path.dirname(CHAT_IDS_FILE), exist_ok=True)
+    with open(CHAT_IDS_FILE, 'w') as f:
+        f.write("")
+
+chat_ids: list[int] = []
+with open(CHAT_IDS_FILE, 'r') as f:
+    chat_ids = [int(line.strip()) for line in f.readlines() if len(line.strip()) > 0]
 
 class MarkdownLog:
     def __init__(self, message: str, timestamp: datetime | None):
@@ -76,26 +87,24 @@ async def execute_async(bot_token: str):
         updates = await bot.get_updates()
 
         if len(updates) == 0:
-            bot_info = await bot.get_me()
-            print("NO CHATS FOUND -- BOT INFO:")
-            print(bot_info)
-            exit(1)
-        
-        chat_ids = [
-            update.message.from_user.id for update in updates 
-            if update.message is not None and update.message.from_user is not None # Not sure if optional chaining is possible here instead
-        ]
+            print("No new chats found")
+        else:
+            new_chat_ids = [
+                update.message.from_user.id for update in updates 
+                if update.message is not None and update.message.from_user is not None # Not sure if optional chaining is possible here instead
+            ]
 
-        subscribers = [
-            f"{update.message.chat.first_name} {update.message.chat.last_name}" for update in updates 
-            if update.message is not None and update.message.chat is not None # Not sure if optional chaining is possible here instead
-        ]
-        
-        print(f"telegram subs")
-        for sub in subscribers:
-            print(sub)
+            for chat_id in new_chat_ids:
+                if chat_id not in chat_ids:
+                    chat_ids.append(chat_id)
+
+            with open(CHAT_IDS_FILE, 'w') as f:
+                for chat_id in chat_ids:
+                    f.write(f"{chat_id}\n")
+                    
 
         for chat_id in chat_ids:
+            print(f"sending to chat_id: {chat_id}")
             # send message
             await bot.send_message(text=message, chat_id=chat_id)
 
