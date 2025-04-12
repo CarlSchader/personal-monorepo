@@ -44,6 +44,7 @@ in {
     wezterm
     ripgrep
     awscli2
+    google-cloud-sdk
     kubectl
     jq
     zstd
