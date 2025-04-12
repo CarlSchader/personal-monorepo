@@ -1,0 +1,4 @@
+creation_rules:
+  - age: >- 
+        ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILnEa9ffHtw4evQmVDKaoVDMLGan0k4Olrs1h+jPvhpc carlschader@Carls-MacBook-Pro.local,
+        ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB62ru41HgxMZwQ5z3BxiUmfsx4ict6BgfqTUmRqaALw carlschader@Carls-MacBook-Pro.local
