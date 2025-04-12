@@ -59,6 +59,7 @@ in {
     postgresql
     mysql-shell
     sops
+    age
 
     ## compilers and runtimes
     nodejs_23
