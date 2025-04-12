@@ -14,8 +14,6 @@
 - spike ffmpeg
 - read mastering bitcoin
 - read foundation trilogy third book
-- get refunded for LA trip (rental and flight) 2025-4-8
-- get refunded for VB trip (rental) 2025-4-8
 - put mirror on truck 2025-4-19
 - get emissions on truck 2025-4-19 
 - get texas drivers license 2025-4-19 
