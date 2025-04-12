@@ -58,6 +58,7 @@ in {
     gnumake
     postgresql
     mysql-shell
+    sops
 
     ## compilers and runtimes
     nodejs_23
