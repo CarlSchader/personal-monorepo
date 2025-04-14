@@ -4,7 +4,7 @@
 {
   templates = {
     venv = {
-      path = ./nix/templates/python;
+      path = ./python;
       description = "Python virutal environment project template";
       welcomeText = ''
         # Nix and python
@@ -15,7 +15,7 @@
     };
 
     ml = {
-      path = ./nix/templates/python-cuda;
+      path = ./python-cuda;
       description = "Cuda python environment project template";
       welcomeText = ''
         # Nix and python
