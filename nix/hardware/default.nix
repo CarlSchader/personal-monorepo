@@ -7,7 +7,7 @@
   ...
 }@inputs:
 let
-  personal-monorepo-package = (import ../packages.nix inputs).packages.x86_64-linux.personal-monorepo-package;
+  remind-package = (import ../packages.nix inputs).packages.x86_64-linux.remind;
 in 
 {
   darwinConfigurations."Carls-MacBook-Pro-2" = nix-darwin.lib.darwinSystem {
@@ -35,7 +35,7 @@ in
 
   nixosConfigurations.ml-pc = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
-    specialArgs = { inherit personal-monorepo-package; };
+    specialArgs = { inherit remind-package; };
     modules = [
       ./ml-pc/configuration.nix
       ./ml-pc/hardware-configuration.nix

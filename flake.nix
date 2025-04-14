@@ -19,5 +19,6 @@
     ./nix/templates
 
     ./nix/packages.nix
+    ./nix/shells.nix
   ];
 }

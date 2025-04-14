@@ -29,18 +29,17 @@ let
     '';
   };
 
-  project = pyproject-nix.lib.project.loadPyproject {
+  remind-project = pyproject-nix.lib.project.loadPyproject {
     projectRoot = ../.;
   };
 
   python = pkgs.python312; # python version
-
-  personal-monorepo-package = python.pkgs.buildPythonPackage (project.renderers.buildPythonPackage { inherit python; } // { 
-    # extras
-  });
 in
 {
-  packages.personal-monorepo-package = personal-monorepo-package;
+  packages.remind = python.pkgs.buildPythonPackage (
+    remind-project.renderers.buildPythonPackage { inherit python; } // { 
+    # extras
+  });
 
   packages.decrypt = pkgs.writeShellApplication {
     name = "decrypt-store";

@@ -3,12 +3,12 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-packages = ["remind"]
-package-dir = {"" = "src"}
+# packages = ["remind"]
+package-dir = {"" = "."}
 
 [project]
-name = "personal-monorepo"
-version = "0.1.0"
+name = "remind"
+version = "1.0.0"
 
 requires-python = ">= 3.10"
 
@@ -19,4 +19,4 @@ dependencies = [
 ]
 
 [project.scripts]
-remind = "remind.remind:main" 
+remind = "main:main" 
