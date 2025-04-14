@@ -6,5 +6,11 @@ dist/
 result/
 result
 
+# secret-setore
+secrets
+secrets/
+secrets.tar
+secrets.tar.gz
+
 *.egg-info
 *.env

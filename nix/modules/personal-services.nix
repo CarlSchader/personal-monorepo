@@ -1,4 +1,4 @@
-{config, pkgs, personal-monorepo, bot-token-path, ...}:
+{ personal-monorepo, ... }:
 {
   config = {
     systemd.timers."remind-timer" = {
