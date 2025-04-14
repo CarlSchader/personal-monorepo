@@ -84,9 +84,6 @@ in
   environment.etc.motd.text = motd-string;
   environment.interactiveShellInit = "cat /etc/motd";
   
-  # tailscale
-  services.tailscale.enable = true;
-
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
@@ -161,19 +158,6 @@ in
     # nodejs_23 
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.ssh.enable = true;
-
   services.openssh = {
     enable = true;
     ports = [ 22 ];
@@ -181,12 +165,8 @@ in
     passwordAuthentication = true;
   };
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ 22 ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
+  # tailscale
+  services.tailscale.enable = true;
 
   # nvidia stuff
   hardware.graphics = {
