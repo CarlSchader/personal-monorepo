@@ -7,7 +7,7 @@
   ...
 }@inputs:
 let
-  personal-monorepo-package = (import ../packages.nix inputs).personal-monorepo-package;
+  personal-monorepo-package = (import ../packages.nix inputs).packages.x86_64-linux.personal-monorepo-package;
 in 
 {
   darwinConfigurations."Carls-MacBook-Pro-2" = nix-darwin.lib.darwinSystem {
