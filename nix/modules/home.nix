@@ -61,6 +61,7 @@ in {
     mysql-shell
     sops
     age
+    pwgen
 
     ## compilers and runtimes
     nodejs_23
