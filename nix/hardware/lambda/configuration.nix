@@ -83,6 +83,9 @@ in
 
   environment.etc.motd.text = motd-string;
   environment.interactiveShellInit = "cat /etc/motd";
+  
+  # tailscale
+  services.tailscale.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver = {
@@ -175,6 +178,7 @@ in
     enable = true;
     ports = [ 22 ];
     settings.X11Forwarding = true;
+    passwordAuthentication = true;
   };
 
   # Open ports in the firewall.

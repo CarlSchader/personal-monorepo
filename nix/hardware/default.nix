@@ -58,8 +58,6 @@ in
       home-manager.nixosModules.home-manager {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.users.carl = import ../modules/home.nix;
-        home-manager.users.connor = import ../modules/home.nix;
         home-manager.users.saronic = import ../modules/home.nix;
       }
     ];
