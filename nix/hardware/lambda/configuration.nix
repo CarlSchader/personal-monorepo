@@ -50,10 +50,6 @@ in
       { from = 8000; to = 9000; }
       { from = 3000; to = 4000; }
     ];
-    allowedUDPPortRanges = [
-      { from = 8000; to = 9000; }
-      { from = 3000; to = 4000; }
-    ];
   };
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
