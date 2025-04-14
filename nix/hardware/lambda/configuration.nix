@@ -37,7 +37,7 @@ in
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  networking.hostName = "ml-pc"; # Define your hostname.
+  networking.hostName = "lambda-carl"; # Define your hostname.
 
   networking.firewall = {
     enable = true;

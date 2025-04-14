@@ -49,4 +49,19 @@ in
       }
     ];
   };
+
+  nixosConfigurations.lambda-carl = nixpkgs.lib.nixosSystem {
+    system = "x86_64-linux";
+    modules = [
+      ./lambda/configuration.nix
+      ./lambda/hardware-configuration.nix
+      home-manager.nixosModules.home-manager {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.users.carl = import ../modules/home.nix;
+        home-manager.users.connor = import ../modules/home.nix;
+        home-manager.users.saronic = import ../modules/home.nix;
+      }
+    ];
+  };
 }
