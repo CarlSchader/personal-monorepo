@@ -30,7 +30,7 @@ let
   };
 
   remind-project = pyproject-nix.lib.project.loadPyproject {
-    projectRoot = ../.;
+    projectRoot = ../remind;
   };
 
   python = pkgs.python312; # python version
