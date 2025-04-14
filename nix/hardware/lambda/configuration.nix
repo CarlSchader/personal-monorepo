@@ -39,18 +39,18 @@ in
 
   networking.hostName = "lambda-carl"; # Define your hostname.
 
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = [ 22 80 443 ];
-    allowedTCPPortRanges = [ 
-      { from = 8000; to = 9000; }
-      { from = 3000; to = 4000; }
-    ];
-    allowedUDPPortRanges = [
-      { from = 8000; to = 9000; }
-      { from = 3000; to = 4000; }
-    ];
-  };
+  # networking.firewall = {
+  #   enable = true;
+  #   allowedTCPPorts = [ 22 80 443 ];
+  #   allowedTCPPortRanges = [ 
+  #     { from = 8000; to = 9000; }
+  #     { from = 3000; to = 4000; }
+  #   ];
+  #   allowedUDPPortRanges = [
+  #     { from = 8000; to = 9000; }
+  #     { from = 3000; to = 4000; }
+  #   ];
+  # };
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
