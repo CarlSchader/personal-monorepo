@@ -32,7 +32,7 @@ rm -rf "$ENCRYPTED_SECRET_STORE_PATH"
 
 cd "$REPO_ROOT"
 
-tar -czvf "secrets.tar.gz" secrets
+tar --no-xattrs -czvf "secrets.tar.gz" secrets
 sops encrypt "secrets.tar.gz" --output "secrets.tar.gz.enc"
 
 rm -rf "secrets.tar.gz"
