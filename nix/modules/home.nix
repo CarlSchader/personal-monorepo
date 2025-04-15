@@ -64,6 +64,9 @@ in {
     age
     pwgen
 
+    # saronic
+    mcap-cli
+
     ## compilers and runtimes
     nodejs_23
     gcc
