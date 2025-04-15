@@ -9,6 +9,7 @@ result
 # secret-setore
 secrets
 secrets/
+._secrets
 secrets.tar
 secrets.tar.gz
 
