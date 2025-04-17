@@ -1,0 +1,10 @@
+- learn about ffmpeg
+- learn about RSA
+- learn about id_25519
+- read nix pills
+- read rust book
+- read about quaternions
+- read about vpns
+- read mastering bitcoin
+- experiment with CAD
+- Read RFDETR and RTDETR

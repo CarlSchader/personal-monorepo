@@ -68,19 +68,30 @@ async def execute_async(bot_token: str):
     todo_logs = [MarkdownLog.from_line(line) for line in todo_markdown.split('\n') if len(line.strip()) > 0]
 
     # find timestamped logs
-    time_warning_logs: list[MarkdownLog] = [log for log in todo_logs if log.timestamp is not None and log.timestamp - datetime.now() <= UPCOMING_WARNING_DISTANCE]
-    
+    time_warning_logs: list[MarkdownLog] = [
+        log for log in todo_logs 
+        if log.timestamp is not None and log.timestamp - datetime.now() <= UPCOMING_WARNING_DISTANCE and log.timestamp - datetime.now() > timedelta(seconds=1)
+    ]
+
+    # find over due logs
+    over_due_logs: list[MarkdownLog] = [
+        log for log in todo_logs 
+        if log.timestamp is not None and log.timestamp - datetime.now() <= timedelta(seconds=1)
+    ]    
     time_warning_formatted = '\n\t'.join([log.formatted() for log in time_warning_logs])
+    over_due_formatted = '\n\t'.join([log.formatted() for log in over_due_logs])
     todo_formatted = '\n\t'.join([log.formatted() for log in todo_logs])
 
     # format reminder message
     # current_timestamp = datetime.now().strftime("%a %b %d %I %p")
     
     message = f"Carl you've got shit to do\n\n" if len(time_warning_logs) > 0 else f"Nice lil reminder\n\n"
-    message += "Upcoming!!!\n"
+    message += "Upcoming\n"
     message += f"\t{time_warning_formatted}\n\n"
-    message += "Todos\n"
-    message += f"\t{todo_formatted}\n\n"
+    message += "OVERDUE\n"
+    message += f"\t{over_due_formatted}\n\n"
+    # message += "Todos\n"
+    # message += f"\t{todo_formatted}\n\n"
         
     bot = telegram.Bot(bot_token)
     async with bot:
