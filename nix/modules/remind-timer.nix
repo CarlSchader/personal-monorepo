@@ -7,8 +7,8 @@
         OnBootSec = "1m";
         OnCalendar = [
           "*-*-* 08:00:00"
-          "*-*-* 12:00:00"
-          "*-*-* 18:00:00"
+          "*-*-* 14:00:00"
+          "*-*-* 20:00:00"
         ];
         Persistent = true;
         Unit = "remind-timer.service";
