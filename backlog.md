@@ -7,4 +7,6 @@
 - read about vpns
 - read mastering bitcoin
 - experiment with CAD
-- Read RFDETR and RTDETR
+- read RFDETR and RTDETR
+- implement attention is all you need
+- add a daemon for personal-deepseek
