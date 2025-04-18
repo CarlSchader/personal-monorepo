@@ -8,3 +8,4 @@
 - dish cleaning tool with bristles on a stick
 - coffee machine
 - plants
+- protien mix shaker bottle
