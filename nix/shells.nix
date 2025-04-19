@@ -1,7 +1,8 @@
-{ nixpkgs, flake-utils, ...}:
+{ self, nixpkgs, flake-utils, ...}:
 flake-utils.lib.eachDefaultSystem (system: 
 let
-  pkgs = nixpkgs.legacyPackages.${system};
+  overlays = [ self.overlays.default ];
+  pkgs = import nixpkgs { inherit system overlays; };
 in 
 {
   devShells.default = pkgs.mkShell {
@@ -9,6 +10,6 @@ in
       (python312.withPackages (ps: [ ps.build ps.pip ]))
       age
       sops
-    ];
+    ] ++ (builtins.attrValues pkgs.repo-packages);
   };
 })

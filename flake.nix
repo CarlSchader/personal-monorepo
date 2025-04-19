@@ -18,6 +18,7 @@
     ./nix/hardware
     ./nix/templates
 
+    ./nix/overlays.nix
     ./nix/packages.nix
     ./nix/shells.nix
   ];
