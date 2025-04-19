@@ -10,6 +10,6 @@ in
       (python312.withPackages (ps: [ ps.build ps.pip ]))
       age
       sops
-    ] ++ (builtins.attrValues pkgs.repo-packages);
+    ] ++ pkgs.repo-packages-list;
   };
 })
