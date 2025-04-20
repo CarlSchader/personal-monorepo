@@ -14,3 +14,4 @@
 - plfa agda https://plfa.github.io/ 2025-4-30 
 - hledger (plain text accountint) or beancount
 - swift app for quickly adding expenses
+- telegram bot api webhook for quickly viewing individual markdown files
