@@ -31,7 +31,8 @@ let
 
     tarz = "tar --zstd";
     venv = "source .venv/bin/activate";
-    bw-login = "export $(bw login | sed -En '4p' | awk '{print $3}')";
+
+    pwgen-secure = "pwgen -1cnys 16";
   };
 in {  
   home.packages = with pkgs; [ 
