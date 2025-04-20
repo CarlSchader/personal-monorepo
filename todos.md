@@ -12,5 +12,5 @@
 - get training on cardbook embedding model 2025-4-20
 - schedule 1 on 1 with carta 2025-4-25
 - plfa agda https://plfa.github.io/ 2025-4-30 
-- hledger (plain text accountint)
+- hledger (plain text accountint) or beancount
 - swift app for quickly adding expenses
