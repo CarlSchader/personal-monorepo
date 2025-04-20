@@ -44,6 +44,7 @@ in {
     git
     tmux
     neovim
+    emacs
     wezterm
     ripgrep
     awscli2

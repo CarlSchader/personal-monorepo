@@ -52,7 +52,7 @@ in
 
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 22 80 443 ];
+    allowedTCPPorts = [ 22 80 88 443 ];
     allowedTCPPortRanges = [ 
       { from = 8000; to = 9000; }
       { from = 3000; to = 4000; }

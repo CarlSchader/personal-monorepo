@@ -33,13 +33,20 @@ let
     projectRoot = ../remind;
   };
 
+  telegram-webhook-project = pyproject-nix.lib.project.loadPyproject {
+    projectRoot = ../telegram-webhook;
+  };
+
   python = pkgs.python312; # python version
 in
 {
   packages.remind = python.pkgs.buildPythonPackage (
-    remind-project.renderers.buildPythonPackage { inherit python; } // { 
-    # extras
-  });
+    remind-project.renderers.buildPythonPackage { inherit python; }
+  );
+
+  packages.telegram-webhook-server = python.pkgs.buildPythonPackage(
+    telegram-webhook-project.renderers.buildPythonPackage { inherit python; }
+  );
 
   packages.decrypt = pkgs.writeShellApplication {
     name = "decrypt-store";

@@ -5,7 +5,7 @@ async def register_webhook(bot_token: str, url: str, secret_token: str):
     bot = telegram.Bot(token=bot_token)
     await bot.set_webhook(url=url, secret_token=secret_token)
 
-async def main():
+async def execute_async():
     import argparse
 
     parser = argparse.ArgumentParser()
@@ -17,6 +17,8 @@ async def main():
 
     await register_webhook(args.bot_token, args.url, args.secret_token)
 
+def main():
+    asyncio.run(execute_async())
+
 if __name__ == "__main__":
-    asyncio.run(main())
-    
+    main()
