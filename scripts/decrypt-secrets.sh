@@ -20,7 +20,7 @@ REPO_ROOT="$(dirname ENCRYPTED_SECRETS_STORE_PATH)"
 SECRET_STORE_DIR="$REPO_ROOT/secrets"
 
 if [ -d "$SECRET_STORE_DIR" ]; then
-  echo "Secret store directory already exists, do you want to continue? This will overwrite the store [y/N]: "
+  printf "\033[31mSecret store directory already exists, do you want to continue? This will overwrite the store [y/N]: \033[0m"
   read -r response
   if [ "$response" != "y" ] && [ "$response" != "Y" ]; then
     echo "Operation cancelled."

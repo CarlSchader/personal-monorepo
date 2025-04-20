@@ -1,22 +1,15 @@
-[build-system] 
-requires = ["setuptools"] 
-build-backend = "setuptools.build_meta"
-
-[tool.setuptools]
-package-dir = {"" = "."}
-
 [project]
 name = "telegram-webhook"
-version = "1.0.0"
-
-requires-python = ">= 3.10"
-
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
 dependencies = [
-  "python-telegram-bot",
-  "aiohttp",
-  "python-dateutil",
-  "fastapi",
+    "fastapi>=0.115.12",
+    "python-telegram-bot>=22.0",
+    "uvicorn>=0.34.2",
 ]
 
 [project.scripts]
-remind = "main:main" 
+remind = "main:main"
+register-webhook = "main:register-webhook"

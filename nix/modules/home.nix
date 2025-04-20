@@ -88,6 +88,9 @@ in {
     # linters
     ruff
     prettierd
+
+    # packaging and project management 
+    uv
   ];
 
   home.sessionVariables = {

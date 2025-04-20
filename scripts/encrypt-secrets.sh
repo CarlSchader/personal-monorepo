@@ -20,7 +20,7 @@ fi
 ENCRYPTED_SECRET_STORE_PATH="$SECRETS_STORE_PATH.tar.gz.enc"
 
 if [ -d "$ENCRYPTED_SECRET_STORE_PATH" ]; then
-  echo "Encrypted secret store directory already exists, do you want to continue? This will overwrite the encrypted store [y/N]: "
+  printf "\033[31mEncrypted secret store directory already exists, do you want to continue? This will overwrite the encrypted store [y/N]: \033[0m"
   read -r response
   if [ "$response" != "y" ] && [ "$response" != "Y" ]; then
     echo "Operation cancelled."
