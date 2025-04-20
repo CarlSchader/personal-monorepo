@@ -10,3 +10,4 @@
 - get texas drivers license 2025-4-19 
 - get truck registered 2025-4-26
 - get training on cardbook embedding model 2025-4-20
+- schedule 1 on 1 with carta 2025-4-25
