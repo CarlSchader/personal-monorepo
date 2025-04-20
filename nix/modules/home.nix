@@ -32,7 +32,7 @@ let
     tarz = "tar --zstd";
     venv = "source .venv/bin/activate";
 
-    pwgen-secure = "pwgen -1cnys 16";
+    pwgen-secure = "pwgen -1cns 16";
   };
 in {  
   home.packages = with pkgs; [ 
