@@ -37,6 +37,7 @@ in {
   home.packages = with pkgs; [ 
     ## user applications
     brave
+    ledger # cli tool for accounting
 
     ## dev tools
     git
