@@ -39,12 +39,12 @@ in {
     ## user applications
     brave
     ledger # cli tool for accounting
+    emacs
 
     ## dev tools
     git
     tmux
     neovim
-    emacs
     wezterm
     ripgrep
     awscli2
