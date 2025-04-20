@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 package-dir = {"" = "."}
 
 [project]
-name = "remind"
+name = "telegram-webhook"
 version = "1.0.0"
 
 requires-python = ">= 3.10"
@@ -15,6 +15,7 @@ dependencies = [
   "python-telegram-bot",
   "aiohttp",
   "python-dateutil",
+  "fastapi",
 ]
 
 [project.scripts]
