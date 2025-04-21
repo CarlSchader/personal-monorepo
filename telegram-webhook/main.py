@@ -1,3 +1,5 @@
+from register_webhook import main as register_webhook_entrypoint
+
 from fastapi import FastAPI, Request
 import uvicorn
 
