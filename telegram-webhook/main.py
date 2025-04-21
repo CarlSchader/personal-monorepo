@@ -1,7 +1,8 @@
 from register_webhook import main as register_webhook_entrypoint
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, logger
 import uvicorn
+
 
 app = FastAPI()
 
@@ -11,8 +12,7 @@ async def root():
 
 @app.post("/webhook")
 async def webhook(request: Request):
-    data = await request.json()
-    print(data)
+    logger.info(request)
     return {"message": "Webhook received"}
 
 def main():
