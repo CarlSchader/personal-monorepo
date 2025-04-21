@@ -15,6 +15,10 @@ async def execute_async():
     parser.add_argument("--secret-token", "-s", type=str, required=True)
     args = parser.parse_args()
 
+    print(args.bot_token)
+    print(args.secret_token)
+    print(args.url)
+
     await register_webhook(args.bot_token, args.url, args.secret_token)
 
 def main():
