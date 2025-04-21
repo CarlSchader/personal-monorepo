@@ -37,7 +37,7 @@ let
     projectRoot = ../telegram-webhook;
   };
 
-  python = pkgs.python312; # python version
+  python = pkgs.python311; # python version
 in
 {
   packages.remind = python.pkgs.buildPythonPackage (
