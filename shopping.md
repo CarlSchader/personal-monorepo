@@ -9,3 +9,5 @@
 - coffee machine
 - robotic arm purchase
 - natural body wash
+- toilet bowl cleane
+- metal straw
