@@ -5,15 +5,17 @@
 { config, pkgs, system, ... }:
 let
   defaultShell = pkgs.bash;
+
   defaultUserPackages = with pkgs; [
     gcc
     git
     code-cursor
   ];
-  carls-keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEfes+9mHAnHSb0GjyP305zzFtS2P12e3Ha/Vur+62He carlschader@Carls-MacBook-Pro.local" # personal
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILnEa9ffHtw4evQmVDKaoVDMLGan0k4Olrs1h+jPvhpc carlschader@Carls-MacBook-Pro.local" # work 
-  ];
+
+  personal-pub-ssh-key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEfes+9mHAnHSb0GjyP305zzFtS2P12e3Ha/Vur+62He carlschader@Carls-MacBook-Pro.local";
+  saronic-pub-ssh-key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILnEa9ffHtw4evQmVDKaoVDMLGan0k4Olrs1h+jPvhpc carlschader@Carls-MacBook-Pro.local";
+
+  carls-keys = [ personal-pub-ssh-key saronic-pub-ssh-key ];
 
   motd-string = ''
     ___          _ _      _               _        _      
@@ -35,7 +37,36 @@ in
   systemd.targets.hibernate.enable = false;
   systemd.targets.hybrid-sleep.enable = false;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      trusted-users = [ "root" "saronic" "@wheel" ];
+  };
+
+  # remote builder setup
+  nix.buildMachines = [
+    {
+      hostName = "flyingbrick";
+      system = "aarch64-linux";
+      sshUser = "saronic";
+      
+      # protocol = "ssh";
+      maxJobs = 16;
+      supportedFeatures = [ "big-parallel" "kvm" ];
+      mandatoryFeatures = [ ];
+    }
+    {
+      hostName = "mondo";
+      system = "x86_64-linux";
+      sshUser = "saronic";
+      # protocol = "ssh";
+      maxJobs = 16;
+      supportedFeatures = [ "big-parallel" "kvm" "nvidia-L4" ];
+      mandatoryFeatures = [ ];
+    }
+  ];
+  nix.distributedBuilds = true;
+  nix.extraOptions = "builders-use-substitutes = true";
+  # end remote builder setup
 
   networking.hostName = "lambda-carl"; # Define your hostname.
 
