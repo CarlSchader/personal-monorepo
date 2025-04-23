@@ -15,3 +15,4 @@
 - hledger (plain text accountint) or beancount
 - swift app for quickly adding expenses
 - telegram bot api webhook for quickly viewing individual markdown files
+- pay new mexico court fees

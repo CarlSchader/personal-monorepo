@@ -66,8 +66,8 @@ in {
     age
     pwgen
 
-    # services
-    nginx
+    # # services
+    # nginx
 
     # saronic
     mcap-cli
