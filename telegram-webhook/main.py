@@ -15,6 +15,11 @@ async def webhook(request: Request):
     print(data)
     return {"message": "Webhook received"}
 
+@app.post("/hello-webhook")
+async def hello_webhook(request: Request):
+    print("hello")
+    return {"message": "Hello webhook received"}
+
 def main():
     uvicorn.run(app, host="0.0.0.0", port=88)
 
