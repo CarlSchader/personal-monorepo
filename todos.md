@@ -2,15 +2,14 @@
 - move into new apartment 2025-4-28
 - sign up for piano lessons 2025-4-12
 - find a way to learn tennis competatively 2025-4-23
-- look at early exercising shares and determine if it's worth it 2025-4-10
 - put mirror on truck 2025-4-19
 - get emissions on truck 2025-4-19 
 - get texas drivers license 2025-4-19 
 - get truck registered 2025-4-26
 - get training on cardbook embedding model 2025-4-20
-- schedule 1 on 1 with carta 2025-4-25
 - look into plfa agda https://plfa.github.io/ 2025-5-4 
 - telegram support for quickly adding expenses 2025-4-30
 - telegram bot api webhook for quickly viewing individual markdown files 2025-4-25
 - pay new mexico court fees 2025-5-1
 - get fitted for tuxedo 2025-5-1
+- calculate a reasonable early vesting schedule 2025-5-3

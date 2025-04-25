@@ -10,3 +10,4 @@
 - read RFDETR and RTDETR
 - implement attention is all you need
 - add a daemon for personal-deepseek
+- donald knuth concrete mathematics
