@@ -11,3 +11,4 @@
 - implement attention is all you need
 - add a daemon for personal-deepseek
 - donald knuth concrete mathematics
+- start abstract algebra
