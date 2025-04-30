@@ -1,9 +1,10 @@
 # packages sub-flake
 
-{ nixpkgs, flake-utils, pyproject-nix, ... }:
+{ self, nixpkgs, flake-utils, pyproject-nix, ... }:
 flake-utils.lib.eachDefaultSystem (system: 
 let
-  pkgs = nixpkgs.legacyPackages.${system};
+  overlays = [ self.overlays.default ];
+  pkgs = import nixpkgs { inherit system overlays; };
 
   decrypt-derivation = pkgs.stdenv.mkDerivation {
     name = "decrypt-script";
@@ -47,6 +48,8 @@ in
   packages.telegram-webhook-server = python.pkgs.buildPythonPackage(
     telegram-webhook-project.renderers.buildPythonPackage { inherit python; }
   );
+
+  packages.telegram-webhook-container = import ./container.nix { inherit pkgs; };
 
   packages.decrypt = pkgs.writeShellApplication {
     name = "decrypt-store";
