@@ -46,25 +46,27 @@ in {
     neovim
     wezterm
     ripgrep
-    awscli2
-    google-cloud-sdk
     kubectl
     jq
     zstd
     unzip
     pigz
-    virtualenv
-    mediainfo
     ffmpeg
-    postgresql_17
     nmap
     pnpm
     gnumake
-    postgresql
-    mysql-shell
     sops
     age
     pwgen
+
+    # databases
+    postgresql
+    mysql-shell
+
+    # cloud tools
+    flyctl
+    awscli2
+    google-cloud-sdk
 
     # # services
     # nginx
