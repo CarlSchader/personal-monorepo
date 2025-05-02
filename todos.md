@@ -1,5 +1,7 @@
-- find new apartment 2025-4-13
-- move into new apartment 2025-4-28
+- cancel renters insurance through usaa 2025-5-5
+- return gfiber equipment 2025-5-10
+- cancel all recurring payments on twistai bank account 2025-5-10
+- pay electric bill 2025-5-5
 - sign up for piano lessons 2025-4-12
 - find a way to learn tennis competatively 2025-4-23
 - put mirror on truck 2025-4-19
