@@ -8,3 +8,4 @@
 - robotic arm purchase
 - natural body wash
 - metal straw
+- gorilla glue
