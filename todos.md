@@ -15,3 +15,5 @@
 - pay new mexico court fees 2025-5-1
 - get fitted for tuxedo 2025-5-1
 - calculate a reasonable early vesting schedule 2025-5-3
+- read comosable memory transactions 2025-5-10
+- create reading md file
