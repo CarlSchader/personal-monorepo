@@ -1,3 +1,4 @@
+- jailbreak switch 2025-5-15
 - cancel renters insurance through usaa 2025-5-5
 - return gfiber equipment 2025-5-10
 - cancel all recurring payments on twistai bank account 2025-5-10
