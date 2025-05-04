@@ -19,4 +19,4 @@ dependencies = [
 
 [project.scripts]
 telegram-webhook-server = "main:main"
-register-webhook = "main:register_webhook_entrypoint"
+register-webhook = "register_webhook_entrypoint:main"
