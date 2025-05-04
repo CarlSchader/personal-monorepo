@@ -9,3 +9,8 @@
 - natural body wash
 - metal straw
 - gorilla glue
+- shoe holder
+- drying rack
+- mattress
+- couch
+- coffee machine
