@@ -1,7 +1,6 @@
 from fastapi import FastAPI, Request, logger
 import uvicorn
 
-
 app = FastAPI()
 
 @app.get("/")

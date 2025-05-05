@@ -4,8 +4,6 @@
 - blue light blockers
 - all natural deoderant
 - Andrew Huberman creatine
-- coffee machine
-- robotic arm purchase
 - natural body wash
 - metal straw
 - gorilla glue

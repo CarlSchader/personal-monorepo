@@ -97,23 +97,24 @@ async def execute_async(bot_token: str):
         
     bot = telegram.Bot(bot_token)
     async with bot:
-        updates = await bot.get_updates()
-
-        if len(updates) == 0:
-            print("No new chats found")
-        else:
-            new_chat_ids = [
-                update.message.from_user.id for update in updates 
-                if update.message is not None and update.message.from_user is not None # Not sure if optional chaining is possible here instead
-            ]
-
-            for chat_id in new_chat_ids:
-                if chat_id not in chat_ids:
-                    chat_ids.append(chat_id)
-
-            with open(CHAT_IDS_FILE, 'w') as f:
-                for chat_id in chat_ids:
-                    f.write(f"{chat_id}\n")
+        #### OBSOLETE WITH WEBHOOKS
+        # updates = await bot.get_updates()
+        #
+        # if len(updates) == 0:
+        #     print("No new chats found")
+        # else:
+        #     new_chat_ids = [
+        #         update.message.from_user.id for update in updates 
+        #         if update.message is not None and update.message.from_user is not None # Not sure if optional chaining is possible here instead
+        #     ]
+        #
+        #     for chat_id in new_chat_ids:
+        #         if chat_id not in chat_ids:
+        #             chat_ids.append(chat_id)
+        #
+        #     with open(CHAT_IDS_FILE, 'w') as f:
+        #         for chat_id in chat_ids:
+        #             f.write(f"{chat_id}\n")
                     
 
         for chat_id in chat_ids:

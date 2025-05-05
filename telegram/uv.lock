@@ -696,7 +696,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "aiohttp", specifier = ">=3.11.18" },
+    { name = "aiohttp", specifier = ">=3.11" },
     { name = "fastapi", specifier = ">=0.115.10" },
     { name = "python-dateutil", specifier = ">=2.9.0.post0" },
     { name = "python-telegram-bot", specifier = ">=22.0" },
