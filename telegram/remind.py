@@ -128,12 +128,11 @@ def main():
     args = parser.parse_args()
 
     if args.bot_token is not None: 
-       bot_token = args.bot_token 
+        bot_token = args.bot_token 
     else:
         bot_token = os.getenv("BOT_TOKEN", "")
 
     assert len(bot_token) > 0, "no telegram bot token given"
-
 
     asyncio.run(execute_async(bot_token))
 
