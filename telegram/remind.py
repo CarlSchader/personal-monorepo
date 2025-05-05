@@ -12,6 +12,8 @@ TODOS_URL = "https://raw.githubusercontent.com/CarlSchader/personal-monorepo/ref
 
 CHAT_IDS_FILE = "/var/lib/personal-monorepo/chat-ids.txt"
 
+FALLBACK_TOKEN_FILE_PATH = "/etc/personal-monorepo/bot-token"
+
 # check if file exists and if not create it and all parent directories
 if not os.path.exists(CHAT_IDS_FILE):
     os.makedirs(os.path.dirname(CHAT_IDS_FILE), exist_ok=True)
@@ -124,20 +126,23 @@ def main():
     import argparse
 
     parser = argparse.ArgumentParser(description='Send a message to a Telegram chat.')
-    parser.add_argument('-b', '--bot-token', type=str, required=False, help='bot token. If not specified BOT_TOKEN environment variable is used')
+    parser.add_argument('-b', '--bot-token', type=str, required=False, help=f'bot token. If not specified BOT_TOKEN environment variable is used, if environment variable not set then {FALLBACK_TOKEN_FILE_PATH} is read')
     args = parser.parse_args()
 
     bot_token: str | None = None
-    if args.bot_token is not None: 
+    if args.bot_token is not None and args.bot_token != "": 
         bot_token = args.bot_token 
-    elif os.getenv("BOT_TOKEN"):
-        bot_token = os.getenv("BOT_TOKEN")
-    elif os.path.exists("/etc/personal-monorepo/bot-token"):
+        print("using arg")
+    elif os.getenv("BOT_TOKEN", "") != "":
+        bot_token = os.getenv("BOT_TOKEN", "")
+        print("using environment variable")
+    if os.path.exists(FALLBACK_TOKEN_FILE_PATH):
         # finally check for an etc file
-        with open("/etc/personal-monorepo/bot-token", "r") as f:
+        with open(FALLBACK_TOKEN_FILE_PATH, "r") as f:
             bot_token = f.read().strip()
+            print("using file at ")
 
-    assert bot_token is not None, "telegram bot token is None"
+    assert bot_token is not None, "unable to set bot-token"
     assert len(bot_token) > 0, "telegram bot token is empty string"
 
     asyncio.run(execute_async(bot_token))

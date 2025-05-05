@@ -40,7 +40,7 @@
       {
         config.services.telegram-remind = {
           enable = true;
-          bot-token = builtins.readFile ../../secrets/telegram-bot/bot-token;
+          # bot-token = builtins.readFile ../../secrets/telegram-bot/bot-token;
         };
       }
       home-manager.nixosModules.home-manager {
