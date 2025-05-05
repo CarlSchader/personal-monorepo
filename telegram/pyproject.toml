@@ -12,7 +12,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-    "aiohttp>=3.11.18",
+    "aiohttp>=3.11",
     "fastapi>=0.115.10",
     "python-dateutil>=2.9.0.post0",
     "python-telegram-bot>=22.0",
@@ -20,6 +20,6 @@ dependencies = [
 ]
 
 [project.scripts]
-telegram-server = "server:main"
+server = "server:main"
 register-webhook = "register_webhook:main"
 unregister-webhook = "unregister_webhook:main"
