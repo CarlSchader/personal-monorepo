@@ -47,5 +47,5 @@ in
     text = "encrypt-script secrets";
   };
 
-  # packages.telegram = telegram.outputs.packages."${system}".default;
+  # packages.telegram = telegram.packages."${system}".default;
 })

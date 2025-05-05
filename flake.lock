@@ -13,23 +13,6 @@
         "type": "github"
       },
       "original": {
-        "id": "flake-utils",
-        "type": "indirect"
-      }
-    },
-    "flake-utils_2": {
-      "inputs": {
-        "systems": "systems_2"
-      },
-      "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
-        "type": "github"
-      },
-      "original": {
         "owner": "numtide",
         "repo": "flake-utils",
         "type": "github"
@@ -95,26 +78,6 @@
     "pyproject-nix": {
       "inputs": {
         "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1743438845,
-        "narHash": "sha256-1GSaoubGtvsLRwoYwHjeKYq40tLwvuFFVhGrG8J9Oek=",
-        "owner": "nix-community",
-        "repo": "pyproject.nix",
-        "rev": "8063ec98edc459571d042a640b1c5e334ecfca1e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "pyproject.nix",
-        "type": "github"
-      }
-    },
-    "pyproject-nix_2": {
-      "inputs": {
-        "nixpkgs": [
           "telegram",
           "nixpkgs"
         ]
@@ -139,7 +102,6 @@
         "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",
-        "pyproject-nix": "pyproject-nix",
         "telegram": "telegram"
       }
     },
@@ -158,37 +120,24 @@
         "type": "github"
       }
     },
-    "systems_2": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
     "telegram": {
       "inputs": {
-        "flake-utils": "flake-utils_2",
+        "flake-utils": [
+          "flake-utils"
+        ],
         "nixpkgs": [
           "nixpkgs"
         ],
-        "pyproject-nix": "pyproject-nix_2"
+        "pyproject-nix": "pyproject-nix"
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-6b9w877U9uAqiND3qBd93MQhKOPcgmGCw8fBO1dY0Lc=",
-        "path": "/nix/store/49mh6yx0lkdcfinll6bhp3ly4sccmrmm-source/telegram",
+        "narHash": "sha256-1hbozohWViYzmARqf43Wq3/CjlvCRieHFF0O78wDx4M=",
+        "path": "/nix/store/viil3fgd34r8k3i2js9h3b9d3lc5xkh2-source/telegram",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/49mh6yx0lkdcfinll6bhp3ly4sccmrmm-source/telegram",
+        "path": "/nix/store/viil3fgd34r8k3i2js9h3b9d3lc5xkh2-source/telegram",
         "type": "path"
       }
     }

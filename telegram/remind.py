@@ -127,12 +127,18 @@ def main():
     parser.add_argument('-b', '--bot-token', type=str, required=False, help='bot token. If not specified BOT_TOKEN environment variable is used')
     args = parser.parse_args()
 
+    bot_token: str | None = None
     if args.bot_token is not None: 
         bot_token = args.bot_token 
-    else:
-        bot_token = os.getenv("BOT_TOKEN", "")
+    elif os.getenv("BOT_TOKEN"):
+        bot_token = os.getenv("BOT_TOKEN")
+    elif os.path.exists("/etc/personal-monorepo/bot-token"):
+        # finally check for an etc file
+        with open("/etc/personal-monorepo/bot-token", "r") as f:
+            bot_token = f.read().strip()
 
-    assert len(bot_token) > 0, "no telegram bot token given"
+    assert bot_token is not None, "telegram bot token is None"
+    assert len(bot_token) > 0, "telegram bot token is empty string"
 
     asyncio.run(execute_async(bot_token))
 

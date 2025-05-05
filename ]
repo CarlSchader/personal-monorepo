@@ -7,6 +7,9 @@
   telegram,
   ...
 }:
+let
+  
+in 
 {
   darwinConfigurations."Carls-MacBook-Pro-2" = nix-darwin.lib.darwinSystem {
     modules = [ 
@@ -33,16 +36,15 @@
 
   nixosConfigurations.ml-pc = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
+    specialArgs = { inherit remind-package; };
     modules = [
       ./ml-pc/configuration.nix
       ./ml-pc/hardware-configuration.nix
-      telegram.nixosModules.telegram-remind 
-      {
-        config.services.telegram-remind = {
-          enable = true;
-          bot-token = builtins.readFile ../../secrets/telegram-bot/bot-token;
+      { ... }: {
+        config = {
+          services.telegram-remind.enable = true;
         };
-      }
+      };
       home-manager.nixosModules.home-manager {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;

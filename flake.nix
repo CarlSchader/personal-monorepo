@@ -7,13 +7,14 @@
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     telegram = {
       url = "./telegram";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    pyproject-nix = {
-      url = "github:nix-community/pyproject.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
     };
   };
 
@@ -21,10 +22,6 @@
   flake-utils.lib.meld inputs [
     ./nix/hardware
     ./nix/templates
-
-    ./nix/overlays.nix
     ./nix/packages.nix
-    ./nix/shells.nix
-
   ];
 }
