@@ -124,12 +124,11 @@ def main():
     import argparse
 
     parser = argparse.ArgumentParser(description='Send a message to a Telegram chat.')
-    parser.add_argument('-b', '--bot-token-path', type=str, required=False, help='Location to file containing bot toke. If not specified BOT_TOKEN environment variable is used')
+    parser.add_argument('-b', '--bot-token', type=str, required=False, help='bot token. If not specified BOT_TOKEN environment variable is used')
     args = parser.parse_args()
 
-    if args.bot_token_path is not None: 
-        with open(args.bot_token_path, 'r') as f:
-            bot_token = f.read()
+    if args.bot_token is not None: 
+       bot_token = args.bot_token 
     else:
         bot_token = os.getenv("BOT_TOKEN", "")
 
