@@ -21,5 +21,6 @@ dependencies = [
 
 [project.scripts]
 server = "server:main"
+remind = "remind:main"
 register-webhook = "register_webhook:main"
 unregister-webhook = "unregister_webhook:main"
