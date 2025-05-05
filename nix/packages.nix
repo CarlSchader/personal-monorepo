@@ -1,10 +1,14 @@
 # packages sub-flake
 
-{ self, nixpkgs, flake-utils, pyproject-nix, ... }:
+{ 
+  nixpkgs, 
+  flake-utils, 
+  # telegram, 
+  ... 
+}:
 flake-utils.lib.eachDefaultSystem (system: 
 let
-  overlays = [ self.overlays.default ];
-  pkgs = import nixpkgs { inherit system overlays; };
+  pkgs = import nixpkgs { inherit system; };
 
   decrypt-derivation = pkgs.stdenv.mkDerivation {
     name = "decrypt-script";
@@ -29,28 +33,8 @@ let
       chmod +x $out/bin/encrypt-script
     '';
   };
-
-  remind-project = pyproject-nix.lib.project.loadPyproject {
-    projectRoot = ../remind;
-  };
-
-  telegram-webhook-project = pyproject-nix.lib.project.loadPyproject {
-    projectRoot = ../telegram-webhook;
-  };
-
-  python = pkgs.python311; # python version
 in
 {
-  packages.remind = python.pkgs.buildPythonPackage (
-    remind-project.renderers.buildPythonPackage { inherit python; }
-  );
-
-  packages.telegram-webhook-server = python.pkgs.buildPythonPackage(
-    telegram-webhook-project.renderers.buildPythonPackage { inherit python; }
-  );
-
-  packages.telegram-webhook-container = import ./container.nix { inherit pkgs; };
-
   packages.decrypt = pkgs.writeShellApplication {
     name = "decrypt-store";
     runtimeInputs = [ decrypt-derivation pkgs.age pkgs.sops ];
@@ -62,4 +46,6 @@ in
     runtimeInputs = [ encrypt-derivation pkgs.age pkgs.sops ];
     text = "encrypt-script secrets";
   };
+
+  # packages.telegram = telegram.outputs.packages."${system}".default;
 })
