@@ -1,4 +1,4 @@
-# Telegram Webhook Server
+# Telegram Server and Scripts
 
 A FastAPI-based webhook server for handling Telegram bot updates. This project provides a simple and secure way to receive and process Telegram bot messages through webhooks.
 
