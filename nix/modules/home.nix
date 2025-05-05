@@ -58,6 +58,7 @@ in {
     sops
     age
     pwgen
+    watch
 
     # databases
     postgresql

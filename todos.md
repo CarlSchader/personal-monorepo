@@ -4,18 +4,19 @@
 - return gfiber equipment 2025-5-10
 - cancel all recurring payments on twistai bank account 2025-5-10
 - pay electric bill 2025-5-5
-- sign up for piano lessons 2025-4-12
-- find a way to learn tennis competatively 2025-4-23
-- put mirror on truck 2025-4-19
-- get emissions on truck 2025-4-19 
-- get texas drivers license 2025-4-19 
-- get truck registered 2025-4-26
-- get training on cardbook embedding model 2025-4-20
+- sign up for piano lessons 2025-5-8
+- put mirror on truck 2025-5-10
+- schedule emissions testing on truck 2025-5-7 
+- get emissions tested on truck 2025-5-10 
+- schedule appointment for texas drivers license 2025-5-9 
+- schedule appointment to get truck registered 2025-5-15
+- get training on cardbook embedding model 2025-5-10
 - look into plfa agda https://plfa.github.io/ 2025-5-4 
-- telegram support for quickly adding expenses 2025-4-30
-- telegram bot api webhook for quickly viewing individual markdown files 2025-4-25
+- telegram support for quickly adding expenses 2025-5-11
+- telegram bot api webhook for quickly viewing individual markdown files 2025-5-7
 - pay new mexico court fees 2025-5-1
-- get fitted for tuxedo 2025-5-1
+- schedule appointment to get fitted for tuxedo 2025-5-6
+- get fitted for tuxedo 2025-5-17
 - calculate a reasonable early vesting schedule 2025-5-3
 - get deposit back 2025-5-6
 - cancel lifetime membership 2025-5-7
