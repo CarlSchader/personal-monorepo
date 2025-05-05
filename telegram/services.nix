@@ -12,7 +12,7 @@
       bot-token = mkOption {
         type = types.string;
         default = "";
-        description = "telegram bot token to use. REQUIRED";
+        description = "telegram bot token to use";
       };
 
       OnCalendar = mkOption {
@@ -43,7 +43,7 @@
 
       systemd.services."telegram-remind" = {
         enable = true; 
-        script = "${self.packages."${pkgs.system}".default}/bin/remind -b ${cfg.bot-token}"; # change this to somewhere in /etc in the future
+        script = "${self.packages."${pkgs.system}".default}/bin/remind -b \"${cfg.bot-token}\""; # change this to somewhere in /etc in the future
         serviceConfig = {
           Type = "oneshot";
           User = "root";
