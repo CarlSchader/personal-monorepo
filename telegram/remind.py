@@ -68,6 +68,7 @@ async def execute_async(bot_token: str):
     todo_markdown = (await generate_markdown_reminder_string(TODOS_URL)).strip()
 
     todo_logs = [MarkdownLog.from_line(line) for line in todo_markdown.split('\n') if len(line.strip()) > 0]
+    todo_logs.sort(key=lambda log: log.timestamp if log.timestamp is not None else datetime.max)
 
     # find timestamped logs
     time_warning_logs: list[MarkdownLog] = [
@@ -87,11 +88,19 @@ async def execute_async(bot_token: str):
     # format reminder message
     # current_timestamp = datetime.now().strftime("%a %b %d %I %p")
     
-    message = f"Carl you've got shit to do\n\n" if len(time_warning_logs) > 0 else f"Nice lil reminder\n\n"
-    message += "Upcoming\n"
-    message += f"\t{time_warning_formatted}\n\n"
-    message += "OVERDUE\n"
-    message += f"\t{over_due_formatted}\n\n"
+    message: str = ""
+    if len(time_warning_logs) > 0 or len(over_due_logs) > 0:
+        message += f"Carl you've got shit to do\n\n"
+        if len(time_warning_logs) > 0:
+            message += "Upcoming\n"
+            message += f"\t{time_warning_formatted}\n\n"
+
+        if len(over_due_logs) > 0:
+            message += "OVERDUE\n"
+            message += f"\t{over_due_formatted}\n\n"
+    else:
+        message += "Nice lil reminder\n\n"
+    
     # message += "Todos\n"
     # message += f"\t{todo_formatted}\n\n"
         
