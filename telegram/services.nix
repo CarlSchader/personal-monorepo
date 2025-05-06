@@ -23,6 +23,7 @@
     config = {
       systemd.services."telegram-server" = {
         enable = true; 
+        wantedBy = [ "multi-user.target" ];
         environment.BOT_TOKEN = cfg.bot-token;
         environment.PORT = cfg.port;
         after = [ "network.target" ];
@@ -34,6 +35,7 @@
       };
     };
   };
+
   nixosModules.telegram-remind = { config, lib, pkgs, ... }:
   with lib;
   let
