@@ -36,6 +36,14 @@
     modules = [
       ./ml-pc/configuration.nix
       ./ml-pc/hardware-configuration.nix
+      ../modules/nginx-reverse-proxy.nix
+      {
+        config.nginxHost = "carlschader.com";
+        config.nginxHostPath = "/telegram";
+        config.nginxProxy = "http://127.0.0.1:8080";
+        config.nginxAcmeEmail = "carlschader@proton.me";
+      }
+      telegram.nixosModules.telegram-server
       telegram.nixosModules.telegram-remind 
       {
         config.services.telegram-remind = {
