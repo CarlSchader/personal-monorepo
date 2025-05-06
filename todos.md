@@ -10,7 +10,6 @@
 - schedule appointment to get truck registered 2025-5-15
 - get training on cardbook embedding model 2025-5-10
 - telegram support for quickly adding expenses 2025-5-11
-- telegram bot api webhook for quickly viewing individual markdown files 2025-5-7
 - schedule appointment to get fitted for tuxedo 2025-5-6
 - get fitted for tuxedo 2025-5-17
 - get deposit back 2025-5-6
