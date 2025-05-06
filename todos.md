@@ -19,3 +19,4 @@
 - get deposit back 2025-5-6
 - cancel lifetime membership 2025-5-7
 - verify you recieved ramp reimbursements 2025-5-8
+- shop around for cheaper auto insurance 2025-5-11
