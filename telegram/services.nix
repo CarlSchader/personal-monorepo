@@ -1,5 +1,32 @@
 { self, ... }:
 {
+  nixosModules.telegram-server = { config, lib, pkgs, ... }:
+  with lib;
+  let
+    cfg = config.services.telegram-server;
+  in 
+  {
+    options.services.telegram-server = {
+      bot-token = mkOption {
+        type = types.string;
+        default = "";
+        description = "telegram bot token to use, if not set then the contensts of the file at /etc/personal-monorepo/bot-token is used";
+      };
+    };
+
+    config = {
+      systemd.services."telegram-server" = {
+        enable = true; 
+        environment.BOT_TOKEN = cfg.bot-token;
+        after = [ "network.target" ];
+        serviceConfig = {
+          ExecStart = "${self.packages."${pkgs.system}".default}/bin/server";
+          Restart = "always";
+          User = "root";
+        };
+      };
+    };
+  };
   nixosModules.telegram-remind = { config, lib, pkgs, ... }:
   with lib;
   let
