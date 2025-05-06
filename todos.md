@@ -1,9 +1,7 @@
 - research mycology 2025-5-7
 - jailbreak switch 2025-5-15
-- cancel renters insurance through usaa 2025-5-5
 - return gfiber equipment 2025-5-10
 - cancel all recurring payments on twistai bank account 2025-5-10
-- pay electric bill 2025-5-5
 - sign up for piano lessons 2025-5-8
 - put mirror on truck 2025-5-10
 - schedule emissions testing on truck 2025-5-7 
