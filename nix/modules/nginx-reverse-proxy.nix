@@ -32,7 +32,7 @@
       package = pkgs.nginxStable.override { openssl = pkgs.libressl; };
       recommendedProxySettings = true;
       recommendedTlsSettings = true;
-      virtualHosts."${config.nginxHost}" = rec {
+      virtualHosts."${config.nginxHost}" = {
         enableACME = true;
         forceSSL = true;
         root = "/var/www/${config.nginxHost}";
