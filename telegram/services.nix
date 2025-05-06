@@ -24,6 +24,7 @@
       systemd.services."telegram-server" = {
         enable = true; 
         environment.BOT_TOKEN = cfg.bot-token;
+        environment.PORT = cfg.port;
         after = [ "network.target" ];
         serviceConfig = {
           ExecStart = "${self.packages."${pkgs.system}".default}/bin/server";
