@@ -1,33 +1,21 @@
+import asyncio
 import ssl 
-import os
 import certifi
 import re
 import logging
 
 import aiohttp
-import telegram
 from fastapi import FastAPI, Request
 import uvicorn
 
 logger = logging.getLogger('uvicorn.info')
-ssl_context = ssl.create_default_context(cafile=certifi.where())
-
-FALLBACK_TOKEN_FILE_PATH = "/etc/personal-monorepo/bot-token"
-
-BOT_TOKEN: str = os.getenv("BOT_TOKEN", "")
-if BOT_TOKEN == "" and os.path.exists(FALLBACK_TOKEN_FILE_PATH):
-    with open(FALLBACK_TOKEN_FILE_PATH, 'r') as f:
-        BOT_TOKEN = f.read()
-
-bot = telegram.Bot(BOT_TOKEN)
-
-assert len(BOT_TOKEN) > 0, "bot token is empty"
+aiohttp_connector: aiohttp.TCPConnector | None = None
 
 REPO_FILES_ROOT = "https://raw.githubusercontent.com/CarlSchader/personal-monorepo/refs/heads/main/"
 
+
 async def fetch_repo_file(repo_sub_path: str) -> str:
-    aiohttp_connector = aiohttp.TCPConnector(ssl=ssl_context)
-    async with aiohttp.ClientSession(connector=aiohttp_connector) as session:
+    async with aiohttp.ClientSession() as session:
         url = REPO_FILES_ROOT + repo_sub_path
         logger.info(f"fetching file: {url}")
         async with session.get(url) as response:
@@ -91,10 +79,8 @@ async def root():
 async def webhook(request: Request):
     try:
         body: dict = await request.json()
-        logger.info(body)
-
         message: str = body["message"]["text"]
-        chat_id: int = body["message"]["chat"]["id"]
+        logger.info(f"received message: {message}")
         
         message = message.lower().strip()
 
@@ -108,18 +94,19 @@ async def webhook(request: Request):
                 md_content = await fetch_repo_file(md_filename)
                 # Format the markdown for chat
                 formatted_content = format_markdown_for_chat(md_content)
-
-                async with bot:
-                    await bot.send_message(text=formatted_content, chat_id=chat_id)
-                    
-
+                logger.info(formatted_content)
     except Exception as e:
         logger.error(e)
 
     return {"message": "Webhook received"}
 
+async def initialize_ssl():
+    global aiohttp_connector
+    ssl_context = ssl.create_default_context(cafile=certifi.where())
+    aiohttp_connector = aiohttp.TCPConnector(ssl=ssl_context)
 
 def main():
+    asyncio.run(initialize_ssl())
     uvicorn.run(app, host="0.0.0.0", port=8080)
 
 if __name__ == "__main__":
