@@ -6,13 +6,15 @@ import logging
 
 import aiohttp
 import telegram
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, Response, status
 import uvicorn
 
 logger = logging.getLogger('uvicorn.info')
 ssl_context = ssl.create_default_context(cafile=certifi.where())
 
 FALLBACK_TOKEN_FILE_PATH = "/etc/personal-monorepo/bot-token"
+FALLBACK_SECRET_FILE_PATH = "/etc/personal-monorepo/webhook-secret"
+REPO_FILES_ROOT = "https://raw.githubusercontent.com/CarlSchader/personal-monorepo/refs/heads/main/"
 
 PORT: int = int(os.getenv("PORT", "8080"))
 
@@ -20,12 +22,19 @@ BOT_TOKEN: str = os.getenv("BOT_TOKEN", "")
 if BOT_TOKEN == "" and os.path.exists(FALLBACK_TOKEN_FILE_PATH):
     with open(FALLBACK_TOKEN_FILE_PATH, 'r') as f:
         BOT_TOKEN = f.read()
-
-bot = telegram.Bot(BOT_TOKEN)
+BOT_TOKEN = BOT_TOKEN.strip()
 
 assert len(BOT_TOKEN) > 0, "bot token is empty"
 
-REPO_FILES_ROOT = "https://raw.githubusercontent.com/CarlSchader/personal-monorepo/refs/heads/main/"
+WEBHOOK_SECRET: str = os.getenv("WEBHOOK_SECRET", "")
+if WEBHOOK_SECRET == "" and os.path.exists(FALLBACK_TOKEN_FILE_PATH):
+    with open(FALLBACK_SECRET_FILE_PATH, 'r') as f:
+        WEBHOOK_SECRET = f.read()
+WEBHOOK_SECRET = WEBHOOK_SECRET.strip()
+
+assert len(WEBHOOK_SECRET) > 0, "bot token is empty"
+
+bot = telegram.Bot(BOT_TOKEN)
 
 async def fetch_repo_file(repo_sub_path: str) -> str:
     aiohttp_connector = aiohttp.TCPConnector(ssl=ssl_context)
@@ -83,6 +92,18 @@ def format_markdown_for_chat(markdown: str) -> str:
     return ''.join(formatted_text)
 
 app = FastAPI()
+
+@app.middleware('http')
+async def check_webhook_secret(request: Request, call_next): 
+    request_secret: str = request.headers.get("X-Telegram-Bot-Api-Secret-Token", "")
+    logger.info(f"request_secret: {request_secret}")
+    logger.info(f"webhook_secret: {WEBHOOK_SECRET}")
+    if request_secret != WEBHOOK_SECRET:
+        response = Response(content='{"error": "unauthorized"}', media_type="application/json")
+        response.status_code = status.HTTP_401_UNAUTHORIZED
+    else:
+        response = await call_next(request)
+    return response
 
 @app.get("/")
 @app.get("/health")
