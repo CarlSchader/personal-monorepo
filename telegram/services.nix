@@ -12,6 +12,12 @@
         default = "";
         description = "telegram bot token to use, if not set then the contensts of the file at /etc/personal-monorepo/bot-token is used";
       };
+
+      port = mkOption {
+        type = types.string;
+        default = "8080";
+        description = "port to run the server on";
+      };
     };
 
     config = {

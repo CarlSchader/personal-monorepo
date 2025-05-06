@@ -14,6 +14,8 @@ ssl_context = ssl.create_default_context(cafile=certifi.where())
 
 FALLBACK_TOKEN_FILE_PATH = "/etc/personal-monorepo/bot-token"
 
+PORT: int = int(os.getenv("PORT", "8080"))
+
 BOT_TOKEN: str = os.getenv("BOT_TOKEN", "")
 if BOT_TOKEN == "" and os.path.exists(FALLBACK_TOKEN_FILE_PATH):
     with open(FALLBACK_TOKEN_FILE_PATH, 'r') as f:
@@ -120,7 +122,7 @@ async def webhook(request: Request):
 
 
 def main():
-    uvicorn.run(app, host="0.0.0.0", port=8080)
+    uvicorn.run(app, host="0.0.0.0", port=PORT)
 
 if __name__ == "__main__":
     main()
