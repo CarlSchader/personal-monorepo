@@ -1,6 +1,9 @@
 import asyncio
 import aiohttp
 import os
+import ssl
+import certifi
+
 from datetime import datetime, timedelta
 from dateutil import parser
 
@@ -13,6 +16,8 @@ TODOS_URL = "https://raw.githubusercontent.com/CarlSchader/personal-monorepo/ref
 CHAT_IDS_FILE = "/var/lib/personal-monorepo/chat-ids.txt"
 
 FALLBACK_TOKEN_FILE_PATH = "/etc/personal-monorepo/bot-token"
+
+aiohttp_connector: aiohttp.TCPConnector | None = None
 
 # check if file exists and if not create it and all parent directories
 if not os.path.exists(CHAT_IDS_FILE):
@@ -52,7 +57,7 @@ class MarkdownLog:
 
 
 async def generate_markdown_reminder_string(markdown_url: str) -> str:
-    async with aiohttp.ClientSession() as ses:
+    async with aiohttp.ClientSession(connector=aiohttp_connector) as ses:
         async with ses.get(markdown_url) as res:
             if res.status < 200 or res.status >= 300:
                 raise Exception(f"error retrieving : {markdown_url}")
@@ -64,6 +69,10 @@ async def send_telegram(bot: telegram.Bot, chat_id: str, message: str):
 
 
 async def execute_async(bot_token: str):
+    global aiohttp_connector
+    ssl_context = ssl.create_default_context(cafile=certifi.where())
+    aiohttp_connector = aiohttp.TCPConnector(ssl=ssl_context)
+
     # fetch markdown
     todo_markdown = (await generate_markdown_reminder_string(TODOS_URL)).strip()
 
