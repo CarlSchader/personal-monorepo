@@ -1,3 +1,4 @@
+- opt out of rent plus 2025-5-6
 - research mycology 2025-5-7
 - jailbreak switch 2025-5-15
 - cancel renters insurance through usaa 2025-5-5
