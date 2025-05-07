@@ -80,6 +80,7 @@ in {
     gcc
     cargo
     python310
+    lua
     go
     docker_26
     jdk23
