@@ -11,3 +11,4 @@
 - [plfa agda](https://plfa.github.io)
 - mastering bitcoin
 - donald knuth concrete mathematics
+-[TrackFormer: Multi-Object Tracking with Transformers](https://arxiv.org/pdf/2101.02702)
