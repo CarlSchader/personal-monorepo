@@ -1,4 +1,6 @@
 - [active learning](https://lilianweng.github.io/posts/2022-02-20-active-learning/) 
+- rust book
+- nix pills
 - original transformers paper
 - original diffusion paper
 - vision transformer paper
@@ -7,3 +9,5 @@
 - matter and interactions
 - [Quaternion kinematics for the error-state Kalman filter](https://arxiv.org/pdf/1711.02508)
 - [plfa agda](https://plfa.github.io)
+- mastering bitcoin
+- donald knuth concrete mathematics

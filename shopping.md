@@ -12,3 +12,5 @@
 - mattress
 - couch
 - coffee machine
+- plants
+- art
