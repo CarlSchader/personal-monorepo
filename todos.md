@@ -1,3 +1,4 @@
+- schedule std test 2025-5-10
 - opt out of rent plus 2025-5-6
 - research mycology 2025-5-7
 - jailbreak switch 2025-5-15
