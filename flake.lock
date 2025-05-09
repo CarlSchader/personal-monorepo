@@ -132,12 +132,12 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-7OMWES2K0okNZFKj2s+hc9oJvSTAVnpuJT1L0lDQigo=",
-        "path": "/nix/store/k5glkcarg8l1gqd7cbqks9b58l25caid-source/telegram",
+        "narHash": "sha256-aYofpYR7tMaUcd4SOah9C6EivK8AYsmRKnntGB3QYOY=",
+        "path": "/nix/store/nv150vpvzp3hrb9zrp4z7vlp62r64k3q-source/telegram",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/k5glkcarg8l1gqd7cbqks9b58l25caid-source/telegram",
+        "path": "/nix/store/nv150vpvzp3hrb9zrp4z7vlp62r64k3q-source/telegram",
         "type": "path"
       }
     }
