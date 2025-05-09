@@ -54,6 +54,8 @@ assert len(WEBHOOK_SECRET) > 0, "webhook secret is empty"
 OBJECT_STORAGE_ENDPOINT: str = "https://8ffc049de8a865c3922d3097c069a717.r2.cloudflarestorage.com"
 FALLBACK_ACCESS_KEY_ID_FILE_PATH: str = "/etc/personal-monorepo/access-key-id"
 FALLBACK_SECRET_ACCESS_KEY_PATH: str = "/etc/personal-monorepo/secret-access-key"
+BUCKET: str = os.getenv("TELEGRAM_BUCKET", "telegram-documents")
+BUCKET_REGION: str = os.getenv("TELEGRAM_BUCKET_REGION", "wnam")
 
 ACCESS_KEY_ID: str = os.getenv("ACCESS_KEY_ID", "")
 if ACCESS_KEY_ID == "" and os.path.exists(FALLBACK_ACCESS_KEY_ID_FILE_PATH):
@@ -76,6 +78,7 @@ s3_client = boto3.client(
     endpoint_url=OBJECT_STORAGE_ENDPOINT,
     aws_access_key_id=ACCESS_KEY_ID,
     aws_secret_access_key=SECRET_ACCESS_KEY,
+    region_name=BUCKET_REGION,
 )
 
 
@@ -155,6 +158,37 @@ async def handle_text_message(message_text: str, chat_id: int):
                 await bot.send_message(text=formatted_content, chat_id=chat_id)
 
 
+async def handle_document(document, chat_id):
+    try:
+        # Get file information from Telegram
+        async with bot:
+            file = await bot.get_file(document['file_id'])
+            file_path = file.file_path
+            file_name = document.get('file_name', f"unknown_{document['file_id']}.file")
+            
+            # Download the file
+            file_content = await file.download_as_bytearray()
+            
+            # Upload to S3
+            s3_client.put_object(
+                Bucket=BUCKET,
+                Key=file_name,
+                Body=file_content
+            )
+            
+            # Notify user of successful upload
+            await bot.send_message(
+                chat_id=chat_id,
+                text=f"Document '{file_name}' has been stored successfully."
+            )
+    except Exception as e:
+        logger.error(f"Error storing document: {e}")
+        await bot.send_message(
+            chat_id=chat_id,
+            text=f"Sorry, there was an error storing your document: {str(e)}"
+        )
+
+
 app = FastAPI()
 
 @app.middleware('http')
@@ -178,22 +212,38 @@ async def root():
 async def webhook(request: Request):
     try:
         update: dict = await request.json()
-        logger.info(json.dumps(update, indent=2))
+        logger.info("received update: " + json.dumps(update, indent=2))
 
         if not 'message' in update:
+            logger.info("no message")
             return {"message": "no message"}
         message: dict = update['message']
 
         if 'chat' not in message and 'id' not in message['chat']:
+            logger.info("no chat in message")
             return {'message': "no chat in message"}
         chat_id: int = int(message['chat']['id'])
 
-        if 'text' in message: # handle text from user
-            message_text = message['text']
-            await handle_text_message(message_text, chat_id) 
+        try:
+            if 'text' in message: # handle text from user
+                logger.info('reveived text')
+                message_text = message['text']
+                await handle_text_message(message_text, chat_id) 
+            
+            if 'document' in message: # store the document in object storage
+                logger.info('received document')
+                document = message['document']
+                await handle_document(document, chat_id)
+        except Exception as e:
+            logger.error(e)
+            await bot.send_message(
+                chat_id=chat_id,
+                text=f"Sorry, there was an error processing your message: {str(e)}"
+            )
 
     except Exception as e:
         logger.error(e)
+        
 
     return {"message": "processed update"}
 
