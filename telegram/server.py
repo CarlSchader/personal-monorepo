@@ -181,20 +181,21 @@ async def webhook(request: Request):
         logger.info(json.dumps(update, indent=2))
 
         if not 'message' in update:
-            return {"message": "No message"}
+            return {"message": "no message"}
         message: dict = update['message']
 
         if 'chat' not in message and 'id' not in message['chat']:
-            return {'message': "No chat in message"}
+            return {'message': "no chat in message"}
         chat_id: int = int(message['chat']['id'])
 
         if 'text' in message: # handle text from user
             message_text = message['text']
             await handle_text_message(message_text, chat_id) 
+
     except Exception as e:
         logger.error(e)
 
-    return {"message": "Webhook received"}
+    return {"message": "processed update"}
 
 
 def main():
