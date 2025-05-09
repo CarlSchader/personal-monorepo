@@ -1,3 +1,4 @@
+import json
 import ssl 
 import os
 import certifi
@@ -135,6 +136,25 @@ def format_markdown_for_chat(markdown: str) -> str:
     
     return ''.join(formatted_text)
 
+
+async def handle_text_message(message_text: str, chat_id: int):
+    message_text = message_text.lower().strip()
+    # check if message contains <word>.md where word can include dashes, underscores, numbers, and symbols
+    regex = r'\b([\w\-]+\.md)\b'
+    if re.search(regex, message_text):
+        # Extract the markdown filename
+        match = re.search(regex, message_text)
+        if match:
+            md_filename = match.group(1)
+            # Fetch the markdown file from the repository
+            md_content = await fetch_repo_file(md_filename)
+            # Format the markdown for chat
+            formatted_content = format_markdown_for_chat(md_content)
+
+            async with bot:
+                await bot.send_message(text=formatted_content, chat_id=chat_id)
+
+
 app = FastAPI()
 
 @app.middleware('http')
@@ -157,30 +177,20 @@ async def root():
 @app.post("/webhook")
 async def webhook(request: Request):
     try:
-        body: dict = await request.json()
-        logger.info(body)
+        update: dict = await request.json()
+        logger.info(json.dumps(update, indent=2))
 
-        message: str = body["message"]["text"]
-        chat_id: int = body["message"]["chat"]["id"]
-        
-        message = message.lower().strip()
+        if not 'message' in update:
+            return {"message": "No message"}
+        message: dict = update['message']
 
-        # check if message contains <word>.md where word can include dashes, underscores, numbers, and symbols
-        regex = r'\b([\w\-]+\.md)\b'
-        if re.search(regex, message):
-            # Extract the markdown filename
-            match = re.search(regex, message)
-            if match:
-                md_filename = match.group(1)
-                # Fetch the markdown file from the repository
-                md_content = await fetch_repo_file(md_filename)
-                # Format the markdown for chat
-                formatted_content = format_markdown_for_chat(md_content)
+        if 'chat' not in message and 'id' not in message['chat']:
+            return {'message': "No chat in message"}
+        chat_id: int = int(message['chat']['id'])
 
-                async with bot:
-                    await bot.send_message(text=formatted_content, chat_id=chat_id)
-                    
-
+        if 'text' in message: # handle text from user
+            message_text = message['text']
+            await handle_text_message(message_text, chat_id) 
     except Exception as e:
         logger.error(e)
 
