@@ -2,7 +2,6 @@
 - find a way so other people with the bot can't send documents (trusted user_ids) 2025-05-10
 - alert me on recurring payments 2025-05-13
 - schedule std test 2025-5-10
-- opt out of rent plus 2025-5-6
 - research mycology 2025-5-7
 - jailbreak switch 2025-5-15
 - return gfiber equipment 2025-5-10
@@ -18,5 +17,4 @@
 - schedule appointment to get fitted for tuxedo 2025-5-6
 - get fitted for tuxedo 2025-5-17
 - get deposit back 2025-5-6
-- cancel lifetime membership 2025-5-7
 - shop around for cheaper auto insurance 2025-5-11
