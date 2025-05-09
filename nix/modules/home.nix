@@ -31,6 +31,7 @@ let
 
     tarz = "tar --zstd";
     venv = "source .venv/bin/activate";
+    necho = "echo -n";
 
     pwgen-secure = "pwgen -1cns 16";
   };
