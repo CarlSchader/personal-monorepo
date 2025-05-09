@@ -1,7 +1,23 @@
 - (*-*-1 00:00:00) auto loan payment
 -- liabilities:personal:car-loan $773.00
 -- assets:personal:checking
+
 - (*-*-4 00:00:00) student loans payment
 -- liabilities:personal:student-loans $590.00
 -- assets:personal:checking
 
+- (*-*-19 00:00:00) electricity bill 
+-- expenses:personal:electricity
+-- assets:personal:checking
+
+- (*-*-1 00:00:00) rent 
+-- expenses:personal:rent $1667.00
+-- assets:personal:checking
+
+- (*-*-15 00:00:00) saronic salary 
+-- income:saronic:salary $-4700.71
+-- assets:personal:checking
+
+- (*-*-28 00:00:00) saronic salary 
+-- income:saronic:salary $-4700.71
+-- assets:personal:checking
