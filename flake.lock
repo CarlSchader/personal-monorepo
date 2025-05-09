@@ -133,11 +133,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-Ymp36Flrr9JCBnMydp/x4zyBUTkpmu21ykG0LFAVbCk=",
-        "path": "/nix/store/kpk6jpn1y8jzz5kjjkai4gqzxp858j0h-source/telegram",
+        "path": "/nix/store/7vdzks61f9mzyhrvfa7zn981c2nwjrk5-source/telegram",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/kpk6jpn1y8jzz5kjjkai4gqzxp858j0h-source/telegram",
+        "path": "/nix/store/7vdzks61f9mzyhrvfa7zn981c2nwjrk5-source/telegram",
         "type": "path"
       }
     }

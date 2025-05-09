@@ -1,3 +1,5 @@
+- save all messages sent to bot in R2 2025-05-14
+- alert me on recurring payments 2025-05-13
 - schedule std test 2025-5-10
 - opt out of rent plus 2025-5-6
 - research mycology 2025-5-7
