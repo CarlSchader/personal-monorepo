@@ -121,10 +121,11 @@ async def webhook(request: Request):
         
         message = message.lower().strip()
 
-        # check if message contains <no_whitespace_word>.md
-        if re.search(r'\b\w+\.md\b', message):
+        # check if message contains <word>.md where word can include dashes, underscores, numbers, and symbols
+        regex = r'\b([\w\-]+\.md)\b'
+        if re.search(regex, message):
             # Extract the markdown filename
-            match = re.search(r'\b(\w+\.md)\b', message)
+            match = re.search(regex, message)
             if match:
                 md_filename = match.group(1)
                 # Fetch the markdown file from the repository
