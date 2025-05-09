@@ -34,7 +34,7 @@ let
     '';
   };
 in
-{
+rec {
   packages.decrypt = pkgs.writeShellApplication {
     name = "decrypt-store";
     runtimeInputs = [ decrypt-derivation pkgs.age pkgs.sops ];
@@ -47,5 +47,5 @@ in
     text = "encrypt-script secrets";
   };
 
-  # packages.telegram = telegram.packages."${system}".default;
+  apps.decrypt = { type = "app"; program = "${packages.decrypt}/bin/decrypt-store"; }; 
 })
