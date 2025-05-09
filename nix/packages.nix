@@ -48,4 +48,6 @@ rec {
   };
 
   apps.decrypt = { type = "app"; program = "${packages.decrypt}/bin/decrypt-store"; }; 
+  
+    apps.encrypt = { type = "app"; program = "${packages.encrypt}/bin/encrypt-store"; }; 
 })
