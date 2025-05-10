@@ -15,5 +15,5 @@
 - get training on cardbook embedding model 2025-5-10
 - telegram support for quickly adding expenses 2025-5-12
 - get fitted for tuxedo 2025-5-17
-- get deposit back 2025-5-6
+- cash deposit for appartment 2025-5-25
 - shop around for cheaper auto insurance 2025-5-11
