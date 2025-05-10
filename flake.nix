@@ -12,10 +12,12 @@
     };
     repo-utils = {
       url = "path:./repo-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
     telegram = {
       url = "path:./telegram";
+      inputs.nixpkgs.follows = "nixpkgs";
       inputs.repo-utils.follows = "repo-utils";
       inputs.flake-utils.follows = "flake-utils";
     };

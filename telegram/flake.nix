@@ -16,6 +16,7 @@
 
     repo-utils = {
       url = "path:../repo-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 

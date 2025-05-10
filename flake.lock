@@ -75,38 +75,6 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
-      "locked": {
-        "lastModified": 1746576598,
-        "narHash": "sha256-FshoQvr6Aor5SnORVvh/ZdJ1Sa2U4ZrIMwKBX5k2wu0=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "b3582c75c7f21ce0b429898980eddbbf05c68e55",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_3": {
-      "locked": {
-        "lastModified": 1746576598,
-        "narHash": "sha256-FshoQvr6Aor5SnORVvh/ZdJ1Sa2U4ZrIMwKBX5k2wu0=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "b3582c75c7f21ce0b429898980eddbbf05c68e55",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "pyproject-nix": {
       "inputs": {
         "nixpkgs": [
@@ -133,18 +101,19 @@
         "flake-utils": [
           "flake-utils"
         ],
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-CjaWTRQk1OaDIxcnPkMUA7tzWWxOigXEj1k8oIvwmIg=",
         "path": "./repo-utils",
         "type": "path"
       },
       "original": {
         "path": "./repo-utils",
         "type": "path"
-      }
+      },
+      "parent": []
     },
     "root": {
       "inputs": {
@@ -176,22 +145,23 @@
         "flake-utils": [
           "flake-utils"
         ],
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
         "pyproject-nix": "pyproject-nix",
         "repo-utils": [
           "repo-utils"
         ]
       },
       "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-redLQP1ZRyIl6kx5A/Fc9j4Y+BFatnZU/SveLx7GqyU=",
         "path": "./telegram",
         "type": "path"
       },
       "original": {
         "path": "./telegram",
         "type": "path"
-      }
+      },
+      "parent": []
     }
   },
   "root": "root",

@@ -22,7 +22,7 @@
       name = "encrypt";
       src = ./encrypt.sh;
       dontUnpack = true;
-      buildInputs = [ pkgs.age pkgs.sops ];
+      propagatedBuildInputs = [ pkgs.gzip pkgs.gnutar pkgs.age pkgs.sops ];
       installPhase = ''
         mkdir -p $out/bin
         cp $src $out/bin/encrypt
@@ -34,7 +34,7 @@
       name = "decrypt";
       src = ./decrypt.sh;
       dontUnpack = true;
-      buildInputs = [ pkgs.age pkgs.sops ];
+      propagatedBuildInputs = [ pkgs.gzip pkgs.gnutar pkgs.age pkgs.sops ];
       installPhase = ''
         mkdir -p $out/bin
         cp $src $out/bin/decrypt
@@ -46,7 +46,7 @@
       name = "network-decrypt";
       src = ./network-decrypt.sh;
       dontUnpack = true;
-      buildInputs = [ pkgs.age pkgs.sops ];
+      propagatedBuildInputs = [ pkgs.gzip pkgs.gnutar pkgs.curl pkgs.age pkgs.sops ];
       installPhase = ''
         mkdir -p $out/bin
         cp $src $out/bin/network-decrypt

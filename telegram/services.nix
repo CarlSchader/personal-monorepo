@@ -18,6 +18,12 @@
         default = "8080";
         description = "port to run the server on";
       };
+
+      ssh-key-path = mkOption {
+        type = types.string;
+        default = "";
+        description = "path to ssh key used to decrypt secret store";
+      };
     };
 
     config = {
@@ -26,6 +32,7 @@
         wantedBy = [ "multi-user.target" ];
         environment.BOT_TOKEN = cfg.bot-token;
         environment.PORT = cfg.port;
+        environment.SSH_KEY_PATH = cfg.ssh-key-path;
         after = [ "network.target" ];
         serviceConfig = {
           ExecStart = "${self.packages."${pkgs.system}".default}/bin/server";
