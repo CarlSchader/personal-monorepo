@@ -102,7 +102,8 @@
         "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",
-        "telegram": "telegram"
+        "telegram": "telegram",
+        "utils": "utils"
       }
     },
     "systems": {
@@ -133,11 +134,31 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-aYofpYR7tMaUcd4SOah9C6EivK8AYsmRKnntGB3QYOY=",
-        "path": "/nix/store/0bkbhblbw07kd0dykv1p6fmiy0zazb7x-source/telegram",
+        "path": "/nix/store/cc4zmqnqpn0h1hih5x676jymlrnkdy4i-source/telegram",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/0bkbhblbw07kd0dykv1p6fmiy0zazb7x-source/telegram",
+        "path": "/nix/store/cc4zmqnqpn0h1hih5x676jymlrnkdy4i-source/telegram",
+        "type": "path"
+      }
+    },
+    "utils": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-3Bb0lhUnzDxQ7bFIR+kzdebkHSCwqH6w+n4oDbWl/SE=",
+        "path": "/nix/store/cc4zmqnqpn0h1hih5x676jymlrnkdy4i-source/utils",
+        "type": "path"
+      },
+      "original": {
+        "path": "/nix/store/cc4zmqnqpn0h1hih5x676jymlrnkdy4i-source/utils",
         "type": "path"
       }
     }
