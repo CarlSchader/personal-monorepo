@@ -172,10 +172,11 @@ async def handle_text_message(message_text: str, chat_id: int):
 
             async with bot:
                 await bot.send_message(text=formatted_content, chat_id=chat_id)
-    elif message_text == 'finances':
-        # pull secrets/finances.dat    
+    elif len(message_text) >= 8 and message_text[:8] == 'finances':
+        # pull secrets/finances.dat
         subprocess_list: list[str] = [
-            "network-decrypt",
+            # "network-decrypt",
+            "../repo-utils/network-decrypt.sh",
             "https://raw.githubusercontent.com/CarlSchader/personal-monorepo/refs/heads/main/secrets.tar.gz.enc",
             "secrets/finances.dat",
         ]
@@ -183,18 +184,24 @@ async def handle_text_message(message_text: str, chat_id: int):
         if len(SSH_KEY_PATH) > 0:
             subprocess_list += [SSH_KEY_PATH]
 
-        run = subprocess.run(
+        network_decrypt_run = subprocess.run(
             subprocess_list, 
             capture_output=True,
         )
 
-        # stderr: str = run.stderr.decode()
-        # if len(stderr) > 0:
-        #     raise Exception(stderr)
-        
-        stdout: str = run.stdout.decode()
-        
-        await bot.send_message(text=stdout, chat_id=chat_id)
+        finances_file_bytes: bytes = network_decrypt_run.stdout
+
+        # ledger is a program that can query and format the finances file content
+        if len(message_text) > 8: 
+            ledger_args = message_text[8:].strip()
+            ledger_run = subprocess.run(
+                ['ledger', '-f', '-'] + ledger_args.split(), 
+                input=finances_file_bytes,
+                capture_output=True,
+            )
+            await bot.send_message(text=ledger_run.stdout.decode(), chat_id=chat_id)
+        else:
+            await bot.send_message(text=finances_file_bytes.decode(), chat_id=chat_id)
     else:
         await bot.send_message(text=help_string(), chat_id=chat_id)
 
