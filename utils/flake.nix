@@ -21,7 +21,7 @@
   {
     packages.encrypt = pkgs.stdenv.mkDerivation {
       name = "encrypt";
-      src = ./encrypt-secrets.sh;
+      src = ./encrypt.sh;
       dontUnpack = true;
       buildInputs = [ pkgs.age pkgs.sops ];
       installPhase = ''
@@ -33,7 +33,7 @@
 
     packages.decrypt = pkgs.stdenv.mkDerivation {
       name = "decrypt";
-      src = ./decrypt-secrets.sh;
+      src = ./decrypt.sh;
       dontUnpack = true;
       buildInputs = [ pkgs.age pkgs.sops ];
       installPhase = ''

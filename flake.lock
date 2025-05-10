@@ -134,11 +134,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-aYofpYR7tMaUcd4SOah9C6EivK8AYsmRKnntGB3QYOY=",
-        "path": "/nix/store/cc4zmqnqpn0h1hih5x676jymlrnkdy4i-source/telegram",
+        "path": "/nix/store/aifn446dpzkfw7lgy586mliv3mvn2ciw-source/telegram",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/cc4zmqnqpn0h1hih5x676jymlrnkdy4i-source/telegram",
+        "path": "/nix/store/aifn446dpzkfw7lgy586mliv3mvn2ciw-source/telegram",
         "type": "path"
       }
     },
@@ -153,12 +153,12 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-3Bb0lhUnzDxQ7bFIR+kzdebkHSCwqH6w+n4oDbWl/SE=",
-        "path": "/nix/store/cc4zmqnqpn0h1hih5x676jymlrnkdy4i-source/utils",
+        "narHash": "sha256-PS20d2ADhoLEh/CfxVPxoZ7WyOK34dR4SPLvaSEIYyg=",
+        "path": "/nix/store/aifn446dpzkfw7lgy586mliv3mvn2ciw-source/utils",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/cc4zmqnqpn0h1hih5x676jymlrnkdy4i-source/utils",
+        "path": "/nix/store/aifn446dpzkfw7lgy586mliv3mvn2ciw-source/utils",
         "type": "path"
       }
     }
