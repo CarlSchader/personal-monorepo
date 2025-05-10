@@ -9,16 +9,14 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-utils = {
       url = "github:numtide/flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
-    telegram = {
-      url = "./telegram";
-      inputs.nixpkgs.follows = "nixpkgs";
+    repo-utils = {
+      url = "path:./repo-utils";
       inputs.flake-utils.follows = "flake-utils";
     };
-    utils = {
-      url = "./utils";
-      inputs.nixpkgs.follows = "nixpkgs";
+    telegram = {
+      url = "path:./telegram";
+      inputs.repo-utils.follows = "repo-utils";
       inputs.flake-utils.follows = "flake-utils";
     };
   };

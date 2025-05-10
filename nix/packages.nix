@@ -3,7 +3,7 @@
 { 
   flake-utils, 
   nixpkgs,
-  utils, 
+  repo-utils, 
   ... 
 }:
 flake-utils.lib.eachDefaultSystem (system: 
@@ -13,13 +13,13 @@ in
 rec {
   packages.decrypt = pkgs.writeShellApplication {
     name = "decrypt";
-    runtimeInputs = [ utils.packages."${system}".decrypt ];
+    runtimeInputs = [ repo-utils.packages."${system}".decrypt ];
     text = "decrypt secrets.tar.gz.enc";
   };
 
   packages.encrypt = pkgs.writeShellApplication {
     name = "encrypt";
-    runtimeInputs = [ utils.packages."${system}".encrypt ];
+    runtimeInputs = [ repo-utils.packages."${system}".encrypt ];
     text = "encrypt secrets";
   };
 

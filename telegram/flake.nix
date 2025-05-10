@@ -14,8 +14,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    utils = {
-      url = "../utils";
+    repo-utils = {
+      url = "path:../repo-utils";
     };
   };
 

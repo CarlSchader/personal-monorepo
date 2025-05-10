@@ -77,7 +77,7 @@ in {
     mcap-cli
 
     ## compilers and runtimes
-    nodejs_23
+    nodejs
     gcc
     cargo
     python310
