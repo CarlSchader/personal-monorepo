@@ -134,11 +134,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-aYofpYR7tMaUcd4SOah9C6EivK8AYsmRKnntGB3QYOY=",
-        "path": "/nix/store/aifn446dpzkfw7lgy586mliv3mvn2ciw-source/telegram",
+        "path": "/nix/store/6aad71pxyjhl5r22knk6v4f4assmasmk-source/telegram",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/aifn446dpzkfw7lgy586mliv3mvn2ciw-source/telegram",
+        "path": "/nix/store/6aad71pxyjhl5r22knk6v4f4assmasmk-source/telegram",
         "type": "path"
       }
     },
@@ -154,11 +154,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-PS20d2ADhoLEh/CfxVPxoZ7WyOK34dR4SPLvaSEIYyg=",
-        "path": "/nix/store/aifn446dpzkfw7lgy586mliv3mvn2ciw-source/utils",
+        "path": "/nix/store/6aad71pxyjhl5r22knk6v4f4assmasmk-source/utils",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/aifn446dpzkfw7lgy586mliv3mvn2ciw-source/utils",
+        "path": "/nix/store/6aad71pxyjhl5r22knk6v4f4assmasmk-source/utils",
         "type": "path"
       }
     }
