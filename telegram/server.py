@@ -20,6 +20,7 @@ ssl_context = ssl.create_default_context(cafile=certifi.where())
 REPO_FILES_ROOT: str = "https://raw.githubusercontent.com/CarlSchader/personal-monorepo/refs/heads/main/"
 
 PORT: int = int(os.getenv("PORT", "8080"))
+SSH_KEY_PATH = os.getenv("SSH_KEY_PATH", "")
 
 
 ## telegram bot token
@@ -158,14 +159,23 @@ async def handle_text_message(message_text: str, chat_id: int):
 
             async with bot:
                 await bot.send_message(text=formatted_content, chat_id=chat_id)
-    else:
+    elif message_text == 'finances':
         # pull secrets/finances.dat    
-        subprocess.run([
-            "../utils/network-decrypt.sh",
+        subprocess_list: list[str] = [
+            "network-decrypt",
             "https://raw.githubusercontent.com/CarlSchader/personal-monorepo/refs/heads/main/secrets.tar.gz.enc",
             "secrets/finances.dat",
-        ])
-            
+        ]
+
+        if len(SSH_KEY_PATH) > 0:
+            subprocess_list += [SSH_KEY_PATH]
+
+        finances_database_string: str = subprocess.run(
+            subprocess_list, 
+            capture_output=True,
+        ).stdout.decode()
+        
+        await bot.send_message(text=finances_database_string, chat_id=chat_id)
 
 async def handle_document(document, chat_id):
     try:
@@ -235,7 +245,7 @@ async def webhook(request: Request):
 
         try:
             if 'text' in message: # handle text from user
-                logger.info('reveived text')
+                logger.info('received text')
                 message_text = message['text']
                 await handle_text_message(message_text, chat_id) 
             

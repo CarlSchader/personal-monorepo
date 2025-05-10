@@ -13,6 +13,10 @@
       url = "github:nix-community/pyproject.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    utils = {
+      url = "../utils";
+    };
   };
 
   outputs = { flake-utils, ... }@inputs:
