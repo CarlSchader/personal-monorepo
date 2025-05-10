@@ -46,7 +46,7 @@
       name = "network-decrypt";
       src = ./network-decrypt.sh;
       dontUnpack = true;
-      propagatedBuildInputs = [ pkgs.gzip pkgs.gnutar pkgs.curl pkgs.age pkgs.sops ];
+      propagatedBuildInputs = [ pkgs.ledger pkgs.gzip pkgs.gnutar pkgs.curl pkgs.age pkgs.sops ];
       installPhase = ''
         mkdir -p $out/bin
         cp $src $out/bin/network-decrypt
