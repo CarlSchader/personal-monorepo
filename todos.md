@@ -1,3 +1,5 @@
+- buy couch 2025-5-11
+- buy mattress 2025-5-15
 - allow photo storage in r2 2025-05-12
 - find a way so other people with the bot can't send documents (trusted user_ids) 2025-05-10
 - alert me on recurring payments 2025-05-13
