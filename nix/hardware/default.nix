@@ -1,10 +1,10 @@
 # hardware nix configs sub-flake
 
 { 
+  self,
   nixpkgs, 
   nix-darwin, 
   home-manager, 
-  telegram,
   ...
 }:
 {
@@ -42,10 +42,10 @@
         config.nginxProxy = "http://127.0.0.1:8080";
         config.nginxAcmeEmail = "carlschader@proton.me";
       }
-      telegram.nixosModules.telegram-server {
+      self.nixosModules.telegram-server {
         config.services.telegram-server = { ssh-key-path="/home/carl/.ssh/id_ed25519"; };
       }
-      telegram.nixosModules.telegram-remind {
+      self.nixosModules.telegram-remind {
         config.services.telegram-remind = {
           enable = true;
           # bot-token = builtins.readFile ../../secrets/telegram-bot/bot-token;

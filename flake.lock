@@ -78,7 +78,6 @@
     "pyproject-nix": {
       "inputs": {
         "nixpkgs": [
-          "telegram",
           "nixpkgs"
         ]
       },
@@ -96,33 +95,13 @@
         "type": "github"
       }
     },
-    "repo-utils": {
-      "inputs": {
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "path": "./repo-utils",
-        "type": "path"
-      },
-      "original": {
-        "path": "./repo-utils",
-        "type": "path"
-      },
-      "parent": []
-    },
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",
-        "repo-utils": "repo-utils",
-        "telegram": "telegram"
+        "pyproject-nix": "pyproject-nix"
       }
     },
     "systems": {
@@ -139,29 +118,6 @@
         "repo": "default",
         "type": "github"
       }
-    },
-    "telegram": {
-      "inputs": {
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "pyproject-nix": "pyproject-nix",
-        "repo-utils": [
-          "repo-utils"
-        ]
-      },
-      "locked": {
-        "path": "./telegram",
-        "type": "path"
-      },
-      "original": {
-        "path": "./telegram",
-        "type": "path"
-      },
-      "parent": []
     }
   },
   "root": "root",

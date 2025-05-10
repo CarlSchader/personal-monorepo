@@ -1,4 +1,4 @@
-{ nixpkgs, pyproject-nix, flake-utils, repo-utils, ... }:
+{ self, nixpkgs, pyproject-nix, flake-utils, ... }:
   flake-utils.lib.eachDefaultSystem (system:
   let
     pkgs = import nixpkgs { inherit system; };   
@@ -11,7 +11,7 @@
   rec {
     packages.default = python.pkgs.buildPythonPackage (
       (project.renderers.buildPythonPackage { inherit python; }) // {
-        propagatedBuildInputs = [ repo-utils.packages."${system}".network-decrypt ];
+        propagatedBuildInputs = [ self.packages."${system}".network-decrypt ];
       }
     );
 

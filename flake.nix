@@ -10,16 +10,9 @@
     flake-utils = {
       url = "github:numtide/flake-utils";
     };
-    repo-utils = {
-      url = "path:./repo-utils";
+    pyproject-nix = {
+      url = "github:nix-community/pyproject.nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-    };
-    telegram = {
-      url = "path:./telegram";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.repo-utils.follows = "repo-utils";
-      inputs.flake-utils.follows = "flake-utils";
     };
   };
 
@@ -27,6 +20,7 @@
   flake-utils.lib.meld inputs [
     ./nix/hardware
     ./nix/templates
-    ./nix/packages.nix
+    ./repo-utils
+    ./telegram
   ];
 }
