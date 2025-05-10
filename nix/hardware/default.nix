@@ -44,6 +44,9 @@
         config.nginxAcmeEmail = "carlschader@proton.me";
       }
       telegram.nixosModules.telegram-server
+      {
+        config.services.telegram-server = { ssh-key-path="/home/carl/.ssh/id_ed25519"; };
+      }
       telegram.nixosModules.telegram-remind 
       {
         config.services.telegram-remind = {
