@@ -9,11 +9,12 @@
 - return gfiber equipment 2025-5-10
 - sign up for piano lessons 2025-5-8
 - put mirror on truck 2025-5-12
-- get emissions tested on truck 2025-5-10 
+- get emissions tested on truck 2025-5-10
 - schedule appointment for texas drivers license 2025-5-15 
-- schedule appointment to get truck registered 2025-5-9
+- schedule appointment to get truck registered 2025-5-12
 - get training on cardbook embedding model 2025-5-10
 - telegram support for quickly adding expenses 2025-5-12
+- telegram support for quickly updating markdown files 2025-5-13
 - get fitted for tuxedo 2025-5-17
 - cash deposit for appartment 2025-5-25
 - shop around for cheaper auto insurance 2025-5-11
