@@ -5,14 +5,13 @@
 - research mycology 2025-5-7
 - jailbreak switch 2025-5-15
 - return gfiber equipment 2025-5-10
-- cancel all recurring payments on twistai bank account 2025-5-10
 - sign up for piano lessons 2025-5-8
-- put mirror on truck 2025-5-10
+- put mirror on truck 2025-5-12
 - get emissions tested on truck 2025-5-10 
-- schedule appointment for texas drivers license 2025-5-9 
-- schedule appointment to get truck registered 2025-5-15
+- schedule appointment for texas drivers license 2025-5-15 
+- schedule appointment to get truck registered 2025-5-9
 - get training on cardbook embedding model 2025-5-10
-- telegram support for quickly adding expenses 2025-5-11
+- telegram support for quickly adding expenses 2025-5-12
 - get fitted for tuxedo 2025-5-17
 - get deposit back 2025-5-6
 - shop around for cheaper auto insurance 2025-5-11
