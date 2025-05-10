@@ -42,5 +42,17 @@
         chmod +x $out/bin/decrypt
       '';
     };
+
+    packages.network-decrypt = pkgs.stdenv.mkDerivation {
+      name = "network-decrypt";
+      src = ./network-decrypt.sh;
+      dontUnpack = true;
+      buildInputs = [ pkgs.age pkgs.sops ];
+      installPhase = ''
+        mkdir -p $out/bin
+        cp $src $out/bin/network-decrypt
+        chmod +x $out/bin/network-decrypt
+      '';
+    };
   });
 }
