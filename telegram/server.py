@@ -87,6 +87,18 @@ s3_client = boto3.client(
 
 ### END SETUP ###
 
+
+def help_string() -> str:
+    return '''
+        help: list help
+        finances: you can type in ledger args or leave empty to read all transactions
+        list: list all available markdown files
+        <file>.md: read markdown file
+        
+        You can also send files and they'll be stored in R2.
+    '''
+
+
 async def fetch_repo_file(repo_sub_path: str) -> str:
     aiohttp_connector = aiohttp.TCPConnector(ssl=ssl_context)
     async with aiohttp.ClientSession(connector=aiohttp_connector) as session:
@@ -183,6 +195,9 @@ async def handle_text_message(message_text: str, chat_id: int):
         stdout: str = run.stdout.decode()
         
         await bot.send_message(text=stdout, chat_id=chat_id)
+    else:
+        await bot.send_message(text=help_string(), chat_id=chat_id)
+
 
 async def handle_document(document, chat_id):
     try:
