@@ -4,6 +4,7 @@ import os
 import certifi
 import re
 import logging
+import subprocess
 
 import aiohttp
 import telegram
@@ -142,6 +143,7 @@ def format_markdown_for_chat(markdown: str) -> str:
 
 async def handle_text_message(message_text: str, chat_id: int):
     message_text = message_text.lower().strip()
+
     # check if message contains <word>.md where word can include dashes, underscores, numbers, and symbols
     regex = r'\b([\w\-]+\.md)\b'
     if re.search(regex, message_text):
@@ -156,7 +158,14 @@ async def handle_text_message(message_text: str, chat_id: int):
 
             async with bot:
                 await bot.send_message(text=formatted_content, chat_id=chat_id)
-
+    else:
+        # pull secrets/finances.dat    
+        subprocess.run([
+            "../utils/network-decrypt.sh",
+            "https://raw.githubusercontent.com/CarlSchader/personal-monorepo/refs/heads/main/secrets.tar.gz.enc",
+            "secrets/finances.dat",
+        ])
+            
 
 async def handle_document(document, chat_id):
     try:
