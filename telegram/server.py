@@ -175,8 +175,8 @@ async def handle_text_message(message_text: str, chat_id: int):
     elif len(message_text) >= 8 and message_text[:8] == 'finances':
         # pull secrets/finances.dat
         subprocess_list: list[str] = [
-            # "network-decrypt",
-            "../repo-utils/network-decrypt.sh",
+            "network-decrypt",
+            # "../repo-utils/network-decrypt.sh", # just for dev
             "https://raw.githubusercontent.com/CarlSchader/personal-monorepo/refs/heads/main/secrets.tar.gz.enc",
             "secrets/finances.dat",
         ]
