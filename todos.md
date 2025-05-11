@@ -17,3 +17,5 @@
 - get fitted for tuxedo 2025-5-17
 - cash deposit for appartment 2025-5-25
 - add auto insurance to recurring payments 2025-5-15
+- setup personal llm server 2025-5-18
+- setup ocr parsing of receipt images 2025-5-25
