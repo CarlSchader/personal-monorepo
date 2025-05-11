@@ -5,7 +5,6 @@
 - find a way so other people with the bot can't send documents (trusted user_ids) 2025-05-10
 - alert me on recurring payments 2025-05-13
 - schedule std test 2025-5-10
-- research mycology 2025-5-7
 - jailbreak switch 2025-5-15
 - return gfiber equipment 2025-5-10
 - sign up for piano lessons 2025-5-8
