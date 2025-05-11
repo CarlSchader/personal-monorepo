@@ -6,6 +6,8 @@ REPO="carlschader/personal-monorepo"
 
 mkdir -p /var/tmp/personal-monorepo/secrets
 
+cd /var/tmp/personal-monorepo/
+
 # check if the user supplied two args
 if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
   echo "Usage: commit-secret-file <secret_file_path> <commit_message> <github_token> [ssh_key_path]"
@@ -21,14 +23,14 @@ if [ ! -z "$4" ]; then
   export SOPS_AGE_SSH_PRIVATE_KEY_FILE=$4
 fi
 
-# decrypt, decompress, and extract the entire secret store blob and save the directory in /var/tmp/personal-monorepo/secrets
-curl -L $SECRET_STORE_BLOB_URL | sops decrypt | tar -xzf - -C /var/tmp/personal-monorepo/
+# decrypt, decompress, and extract the entire secret store blob and save the directory in secrets
+curl -L $SECRET_STORE_BLOB_URL | sops decrypt | tar -xzf - -C ./
 
 # update the secret file with the new secret file contents from stdin
 echo -n "$STDIN_CONTENTS" > /var/tmp/personal-monorepo/$SECRET_FILE_PATH
 
-# re-archive, compress, and encrypt the secret store blob
-NEW_SECRET_STORE_BLOB=$(tar -czvf - /var/tmp/personal-monorepo/secrets | sops encrypt --filename-override=secrets.tar.gz)
+tar --no-xattrs -czvf "/var/tmp/personal-monorepo/secrets.tar.gz" "/var/tmp/personal-monorepo/secrets"
+sops encrypt "/var/tmp/personal-monorepo/secrets.tar.gz" --output "/var/tmp/personal-monorepo/secrets.tar.gz.enc"
 
 # pass encrypted blob into commit-file to replace the secret store in github
-echo -n "$NEW_SECRET_STORE_BLOB" | commit-file --repo "$REPO" --file secrets.tar.gz.enc --message "$COMMIT_MESSAGE" --token "$GITHUB_TOKEN"
+cat "/var/tmp/personal-monorepo/secrets.tar.gz.enc" | commit-file --repo "$REPO" --file secrets.tar.gz.enc --message "$COMMIT_MESSAGE" --token "$GITHUB_TOKEN"
