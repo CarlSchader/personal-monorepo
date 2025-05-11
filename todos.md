@@ -1,7 +1,6 @@
 - verify you have no outstanding tickets that will prevent you from walking on a military base 2025-05-14
 - buy couch 2025-5-11
 - buy mattress 2025-5-15
-- allow photo storage in r2 2025-05-12
 - alert me on recurring payments 2025-05-13
 - schedule std test 2025-5-10
 - jailbreak switch 2025-5-15
