@@ -19,9 +19,21 @@ ssl_context = ssl.create_default_context(cafile=certifi.where())
 
 REPO_FILES_ROOT: str = "https://raw.githubusercontent.com/CarlSchader/personal-monorepo/refs/heads/main/"
 
+
 PORT: int = int(os.getenv("PORT", "8080"))
 SSH_KEY_PATH = os.getenv("SSH_KEY_PATH", "")
 logger.info(f"SSH_KEY_PATH: {SSH_KEY_PATH}")
+
+
+## trusted chat_ids
+
+# this file is the same file used by remind service and any chat-ids in here we assume are trusterd
+# and we will allow them to access sensitive commands and information.
+CHAT_IDS_FILE = "/var/lib/personal-monorepo/chat-ids.txt"
+trusted_chat_ids: set[int] = set()
+if os.path.exists(CHAT_IDS_FILE):
+    with open(CHAT_IDS_FILE, 'r') as f:
+        trusted_chat_ids = set([int(line.strip()) for line in f.readlines()])
 
 
 ## telegram bot token
@@ -271,6 +283,10 @@ async def webhook(request: Request):
             logger.info("no chat in message")
             return {'message': "no chat in message"}
         chat_id: int = int(message['chat']['id'])
+
+        if chat_id not in trusted_chat_ids:
+            logger.info(f"untrusted chat id used: {chat_id}")
+            return {'message': f"untrusted chat id used: {chat_id}"}
 
         try:
             if 'text' in message: # handle text from user
