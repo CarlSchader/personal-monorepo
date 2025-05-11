@@ -3,7 +3,6 @@
 - buy couch 2025-5-11
 - buy mattress 2025-5-15
 - alert me on recurring payments 2025-05-13
-- schedule std test 2025-5-10
 - jailbreak switch 2025-5-15
 - return gfiber equipment 2025-5-10
 - schedule time for piano self teaching 2025-5-12 
