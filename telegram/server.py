@@ -299,6 +299,13 @@ async def webhook(request: Request):
                 logger.info('received document')
                 document = message['document']
                 await handle_document(document, chat_id)
+
+            # photo property contains a list of documents of different resolution photos. The last index is the largest
+            if 'photo' in message: 
+                logger.info('received photo')
+                document = message['photo'][-1]
+                await handle_document(document, chat_id)
+
         except Exception as e:
             logger.error(e)
             await bot.send_message(

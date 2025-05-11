@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.0.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- 
+Copyright © 2003-2023, John Wiegley.  All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+
+Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+
+Redistributions in binary form must reproduce the above copyright
+notice, this list of conditions and the following disclaimer in the
+documentation and/or other materials provided with the distribution.
+
+Neither the name of New Artisans LLC nor the names of its
+contributors may be used to endorse or promote products derived from
+this software without specific prior written permission.
+
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ -->
+<title>Ledger: Command-Line Accounting</title>
+
+<meta name="description" content="Ledger: Command-Line Accounting">
+<meta name="keywords" content="Ledger: Command-Line Accounting">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="#Top" rel="start" title="Top">
+<link href="#Concepts-Index" rel="index" title="Concepts Index">
+<link href="#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="dir.html#Top" rel="up" title="(dir)">
+<link href="#Introduction-to-Ledger" rel="next" title="Introduction to Ledger">
+<link href="dir.html#Top" rel="prev" title="(dir)">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter-printindex {text-decoration: none}
+div.example {margin-left: 3.2em}
+kbd.kbd {font-style: oblique}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+td.printindex-index-entry {vertical-align: top}
+td.printindex-index-section {vertical-align: top}
+th.entries-header-printindex {text-align:left}
+th.sections-header-printindex {text-align:left}
+ul.mark-bullet {list-style-type: disc}
+ul.toc-numbered-mark {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://www.gnu.org/software/gnulib/manual.css"><link rel="stylesheet" type="text/css" href="/css/doc.css">
+
+
+</head>
+
+<body lang="en">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="top-level-extent" id="Top">
+<div class="nav-panel">
+<p>
+Next: <a href="#Introduction-to-Ledger" accesskey="n" rel="next">Introduction to Ledger</a>, Previous: <a href="dir.html#Top" accesskey="p" rel="prev">(dir)</a>, Up: <a href="dir.html#Top" accesskey="u" rel="up">(dir)</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Concepts-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<h1 class="top" id="Overview">Overview</h1>
+
+<p>Ledger is a command-line accounting tool that provides double-entry
+accounting based on a text journal.  It provides no bells or whistles,
+and returns the user to the days before user interfaces were even a
+twinkling in their fathers&rsquo; CRTs.
+</p>
+
+
+<div class="element-contents" id="SEC_Contents">
+<h2 class="contents-heading">Table of Contents</h2>
+
+<div class="contents">
+
+<ul class="toc-numbered-mark">
+  <li><a id="toc-Introduction-to-Ledger-1" href="#Introduction-to-Ledger">1 Introduction to Ledger</a>
+  <ul class="toc-numbered-mark">
+    <li><a id="toc-Fat_002dfree-Accounting-1" href="#Fat_002dfree-Accounting">1.1 Fat-free Accounting</a></li>
+    <li><a id="toc-Building-the-program-1" href="#Building-the-program">1.2 Building the program</a></li>
+    <li><a id="toc-Getting-help-1" href="#Getting-help">1.3 Getting help</a></li>
+    <li><a id="toc-Third_002dParty-Ledger-Tutorials-1" href="#Third_002dParty-Ledger-Tutorials">1.4 Third-Party Ledger Tutorials</a></li>
+  </ul></li>
+  <li><a id="toc-Ledger-Tutorial-1" href="#Ledger-Tutorial">2 Ledger Tutorial</a>
+  <ul class="toc-numbered-mark">
+    <li><a id="toc-Start-a-Journal-File-1" href="#Start-a-Journal-File">2.1 Start a Journal File</a></li>
+    <li><a id="toc-Run-a-Few-Reports-1" href="#Run-a-Few-Reports">2.2 Run a Few Reports</a>
+    <ul class="toc-numbered-mark">
+      <li><a id="toc-Balance-Report-1" href="#Balance-Report">2.2.1 Balance Report</a></li>
+      <li><a id="toc-Register-Report-1" href="#Register-Report">2.2.2 Register Report</a></li>
+      <li><a id="toc-Cleared-Report-1" href="#Cleared-Report">2.2.3 Cleared Report</a></li>
+      <li><a id="toc-Using-the-Windows-Command_002dLine-1" href="#Using-the-Windows-Command_002dLine">2.2.4 Using the Windows Command-Line</a></li>
+    </ul></li>
+  </ul></li>
+  <li><a id="toc-Principles-of-Accounting-with-Ledger-1" href="#Principles-of-Accounting-with-Ledger">3 Principles of Accounting with Ledger</a>
+  <ul class="toc-numbered-mark">
+    <li><a id="toc-Accounting-with-Ledger-1" href="#Accounting-with-Ledger">3.1 Accounting with Ledger</a></li>
+    <li><a id="toc-Stating-where-money-goes-1" href="#Stating-where-money-goes">3.2 Stating where money goes</a></li>
+    <li><a id="toc-Assets-and-Liabilities-1" href="#Assets-and-Liabilities">3.3 Assets and Liabilities</a>
+    <ul class="toc-numbered-mark">
+      <li><a id="toc-Tracking-reimbursable-expenses-1" href="#Tracking-reimbursable-expenses">3.3.1 Tracking reimbursable expenses</a></li>
+    </ul></li>
+    <li><a id="toc-Commodities-and-Currencies-1" href="#Commodities-and-Currencies">3.4 Commodities and Currencies</a>
+    <ul class="toc-numbered-mark">
+      <li><a id="toc-Commodity-price-histories-1" href="#Commodity-price-histories">3.4.1 Commodity price histories</a></li>
+      <li><a id="toc-Commodity-equivalences-1" href="#Commodity-equivalences">3.4.2 Commodity equivalences</a></li>
+    </ul></li>
+    <li><a id="toc-Accounts-and-Inventories-1" href="#Accounts-and-Inventories">3.5 Accounts and Inventories</a></li>
+    <li><a id="toc-Understanding-Equity-1" href="#Understanding-Equity">3.6 Understanding Equity</a></li>
+    <li><a id="toc-Dealing-with-Petty-Cash-1" href="#Dealing-with-Petty-Cash">3.7 Dealing with Petty Cash</a></li>
+    <li><a id="toc-Working-with-multiple-funds-and-accounts-1" href="#Working-with-multiple-funds-and-accounts">3.8 Working with multiple funds and accounts</a></li>
+  </ul></li>
+  <li><a id="toc-Keeping-a-Journal-1" href="#Keeping-a-Journal">4 Keeping a Journal</a>
+  <ul class="toc-numbered-mark">
+    <li><a id="toc-The-Most-Basic-Entry-1" href="#The-Most-Basic-Entry">4.1 The Most Basic Entry</a></li>
+    <li><a id="toc-Starting-up-1" href="#Starting-up">4.2 Starting up</a></li>
+    <li><a id="toc-Structuring-your-Accounts-1" href="#Structuring-your-Accounts">4.3 Structuring your Accounts</a></li>
+    <li><a id="toc-Commenting-on-your-Journal-1" href="#Commenting-on-your-Journal">4.4 Commenting on your Journal</a></li>
+    <li><a id="toc-Currency-and-Commodities-1" href="#Currency-and-Commodities">4.5 Currency and Commodities</a>
+    <ul class="toc-numbered-mark">
+      <li><a id="toc-Naming-Commodities-1" href="#Naming-Commodities">4.5.1 Naming Commodities</a></li>
+      <li><a id="toc-Buying-and-Selling-Stock-1" href="#Buying-and-Selling-Stock">4.5.2 Buying and Selling Stock</a></li>
+      <li><a id="toc-Fixing-Lot-Prices-1" href="#Fixing-Lot-Prices">4.5.3 Fixing Lot Prices</a></li>
+      <li><a id="toc-Complete-control-over-commodity-pricing-1" href="#Complete-control-over-commodity-pricing">4.5.4 Complete control over commodity pricing</a></li>
+    </ul></li>
+    <li><a id="toc-Keeping-it-Consistent-1" href="#Keeping-it-Consistent">4.6 Keeping it Consistent</a></li>
+    <li><a id="toc-Journal-Format-1" href="#Journal-Format">4.7 Journal Format</a>
+    <ul class="toc-numbered-mark">
+      <li><a id="toc-Transactions-and-Comments-1" href="#Transactions-and-Comments">4.7.1 Transactions and Comments</a></li>
+      <li><a id="toc-Command-Directives-1" href="#Command-Directives">4.7.2 Command Directives</a></li>
+    </ul></li>
+    <li><a id="toc-Converting-from-other-formats-1" href="#Converting-from-other-formats">4.8 Converting from other formats</a></li>
+    <li><a id="toc-Archiving-Previous-Years-1" href="#Archiving-Previous-Years">4.9 Archiving Previous Years</a></li>
+  </ul></li>
+  <li><a id="toc-Transactions-1" href="#Transactions">5 Transactions</a>
+  <ul class="toc-numbered-mark">
+    <li><a id="toc-Basic-format-1" href="#Basic-format">5.1 Basic format</a></li>
+    <li><a id="toc-Eliding-amounts-1" href="#Eliding-amounts">5.2 Eliding amounts</a></li>
+    <li><a id="toc-Auxiliary-dates-1" href="#Auxiliary-dates">5.3 Auxiliary dates</a></li>
+    <li><a id="toc-Codes-1" href="#Codes">5.4 Codes</a></li>
+    <li><a id="toc-Transaction-state-1" href="#Transaction-state">5.5 Transaction state</a></li>
+    <li><a id="toc-Transaction-notes-1" href="#Transaction-notes">5.6 Transaction notes</a></li>
+    <li><a id="toc-Metadata-1" href="#Metadata">5.7 Metadata</a>
+    <ul class="toc-numbered-mark">
+      <li><a id="toc-Metadata-tags-1" href="#Metadata-tags">5.7.1 Metadata tags</a></li>
+      <li><a id="toc-Metadata-values-1" href="#Metadata-values">5.7.2 Metadata values</a></li>
+      <li><a id="toc-Typed-metadata-1" href="#Typed-metadata">5.7.3 Typed metadata</a></li>
+      <li><a id="toc-Payee-metadata-1" href="#Payee-metadata">5.7.4 Payee metadata</a></li>
+    </ul></li>
+    <li><a id="toc-Virtual-postings-1" href="#Virtual-postings">5.8 Virtual postings</a></li>
+    <li><a id="toc-Expression-amounts-1" href="#Expression-amounts">5.9 Expression amounts</a></li>
+    <li><a id="toc-Balance-verification-1" href="#Balance-verification">5.10 Balance verification</a>
+    <ul class="toc-numbered-mark">
+      <li><a id="toc-Balance-assertions-1" href="#Balance-assertions">5.10.1 Balance assertions</a>
+      <ul class="toc-numbered-mark">
+        <li><a id="toc-Special-assertion-value-0" href="#Special-assertion-value-0">5.10.1.1 Special assertion value 0</a></li>
+      </ul></li>
+      <li><a id="toc-Balance-assignments-1" href="#Balance-assignments">5.10.2 Balance assignments</a></li>
+      <li><a id="toc-Resetting-a-balance-1" href="#Resetting-a-balance">5.10.3 Resetting a balance</a></li>
+      <li><a id="toc-Balancing-transactions-1" href="#Balancing-transactions">5.10.4 Balancing transactions</a></li>
+    </ul></li>
+    <li><a id="toc-Posting-cost-1" href="#Posting-cost">5.11 Posting cost</a></li>
+    <li><a id="toc-Explicit-posting-costs-1" href="#Explicit-posting-costs">5.12 Explicit posting costs</a>
+    <ul class="toc-numbered-mark">
+      <li><a id="toc-Primary-and-secondary-commodities-1" href="#Primary-and-secondary-commodities">5.12.1 Primary and secondary commodities</a></li>
+    </ul></li>
+    <li><a id="toc-Posting-cost-expressions-1" href="#Posting-cost-expressions">5.13 Posting cost expressions</a></li>
+    <li><a id="toc-Total-posting-costs-1" href="#Total-posting-costs">5.14 Total posting costs</a></li>
+    <li><a id="toc-Virtual-posting-costs-1" href="#Virtual-posting-costs">5.15 Virtual posting costs</a></li>
+    <li><a id="toc-Commodity-prices-1" href="#Commodity-prices">5.16 Commodity prices</a>
+    <ul class="toc-numbered-mark">
+      <li><a id="toc-Total-commodity-prices-1" href="#Total-commodity-prices">5.16.1 Total commodity prices</a></li>
+    </ul></li>
+    <li><a id="toc-Prices-versus-costs-1" href="#Prices-versus-costs">5.17 Prices versus costs</a></li>
+    <li><a id="toc-Fixated-prices-and-costs-1" href="#Fixated-prices-and-costs">5.18 Fixated prices and costs</a></li>
+    <li><a id="toc-Lot-dates-1" href="#Lot-dates">5.19 Lot dates</a></li>
+    <li><a id="toc-Lot-notes-1" href="#Lot-notes">5.20 Lot notes</a></li>
+    <li><a id="toc-Lot-value-expressions-1" href="#Lot-value-expressions">5.21 Lot value expressions</a></li>
+    <li><a id="toc-Automated-Transactions-1" href="#Automated-Transactions">5.22 Automated Transactions</a>
+    <ul class="toc-numbered-mark">
+      <li><a id="toc-Amount-multipliers-1" href="#Amount-multipliers">5.22.1 Amount multipliers</a></li>
+      <li><a id="toc-Accessing-the-matching-posting_0027s-amount-1" href="#Accessing-the-matching-posting_0027s-amount">5.22.2 Accessing the matching posting&rsquo;s amount</a></li>
+      <li><a id="toc-Referring-to-the-matching-posting_0027s-account-1" href="#Referring-to-the-matching-posting_0027s-account">5.22.3 Referring to the matching posting&rsquo;s account</a></li>
+      <li><a id="toc-Applying-metadata-to-every-matched-posting-1" href="#Applying-metadata-to-every-matched-posting">5.22.4 Applying metadata to every matched posting</a></li>
+      <li><a id="toc-Applying-metadata-to-the-generated-posting-1" href="#Applying-metadata-to-the-generated-posting">5.22.5 Applying metadata to the generated posting</a></li>
+      <li><a id="toc-State-flags-1" href="#State-flags">5.22.6 State flags</a></li>
+      <li><a id="toc-Effective-Dates-1" href="#Effective-Dates">5.22.7 Effective Dates</a></li>
+      <li><a id="toc-Periodic-Transactions-1" href="#Periodic-Transactions">5.22.8 Periodic Transactions</a></li>
+      <li><a id="toc-Concrete-Example-of-Automated-Transactions-1" href="#Concrete-Example-of-Automated-Transactions">5.22.9 Concrete Example of Automated Transactions</a>
+      <ul class="toc-numbered-mark">
+        <li><a id="toc-Tithing" href="#Tithing">5.22.9.1 Tithing</a></li>
+        <li><a id="toc-Credit-Card-Cashback" href="#Credit-Card-Cashback">5.22.9.2 Credit Card Cashback</a></li>
+      </ul></li>
+    </ul></li>
+  </ul></li>
+  <li><a id="toc-Building-Reports-1" href="#Building-Reports">6 Building Reports</a>
+  <ul class="toc-numbered-mark">
+    <li><a id="toc-Introduction-1" href="#Introduction">6.1 Introduction</a></li>
+    <li><a id="toc-Balance-Reports-1" href="#Balance-Reports">6.2 Balance Reports</a>
+    <ul class="toc-numbered-mark">
+      <li><a id="toc-Controlling-the-Accounts-and-Payees-1" href="#Controlling-the-Accounts-and-Payees">6.2.1 Controlling the Accounts and Payees</a></li>
+      <li><a id="toc-Controlling-Formatting-1" href="#Controlling-Formatting">6.2.2 Controlling Formatting</a></li>
+    </ul></li>
+    <li><a id="toc-Typical-queries-1" href="#Typical-queries">6.3 Typical queries</a>
+    <ul class="toc-numbered-mark">
+      <li><a id="toc-Reporting-monthly-expenses-1" href="#Reporting-monthly-expenses">6.3.1 Reporting monthly expenses</a></li>
+    </ul></li>
+    <li><a id="toc-Advanced-Reports-1" href="#Advanced-Reports">6.4 Advanced Reports</a>
+    <ul class="toc-numbered-mark">
+      <li><a id="toc-Asset-Allocation-1" href="#Asset-Allocation">6.4.1 Asset Allocation</a></li>
+      <li><a id="toc-Visualizing-with-Gnuplot-1" href="#Visualizing-with-Gnuplot">6.4.2 Visualizing with Gnuplot</a></li>
+    </ul></li>
+  </ul></li>
+  <li><a id="toc-Reporting-Commands-1" href="#Reporting-Commands">7 Reporting Commands</a>
+  <ul class="toc-numbered-mark">
+    <li><a id="toc-Primary-Financial-Reports-1" href="#Primary-Financial-Reports">7.1 Primary Financial Reports</a>
+    <ul class="toc-numbered-mark">
+      <li><a id="toc-The-balance-command-1" href="#The-balance-command">7.1.1 The <code class="command">balance</code> command</a></li>
+      <li><a id="toc-The-equity-command-1" href="#The-equity-command">7.1.2 The <code class="command">equity</code> command</a></li>
+      <li><a id="toc-The-register-command-1" href="#The-register-command">7.1.3 The <code class="command">register</code> command</a></li>
+      <li><a id="toc-The-print-command-1" href="#The-print-command">7.1.4 The <code class="command">print</code> command</a></li>
+    </ul></li>
+    <li><a id="toc-Reports-in-other-Formats-1" href="#Reports-in-other-Formats">7.2 Reports in other Formats</a>
+    <ul class="toc-numbered-mark">
+      <li><a id="toc-Comma-Separated-Values-files-1" href="#Comma-Separated-Values-files">7.2.1 Comma Separated Values files</a>
+      <ul class="toc-numbered-mark">
+        <li><a id="toc-The-csv-command-1" href="#The-csv-command">7.2.1.1 The <code class="command">csv</code> command</a></li>
+        <li><a id="toc-The-convert-command-1" href="#The-convert-command">7.2.1.2 The <code class="command">convert</code> command</a></li>
+      </ul></li>
+      <li><a id="toc-The-lisp-command-1" href="#The-lisp-command">7.2.2 The <code class="command">lisp</code> command</a></li>
+      <li><a id="toc-Emacs-org-Mode-1" href="#Emacs-org-Mode">7.2.3 Emacs <code class="command">org</code> Mode</a></li>
+      <li><a id="toc-Org-mode-with-Babel-1" href="#Org-mode-with-Babel">7.2.4 Org mode with Babel</a>
+      <ul class="toc-numbered-mark">
+        <li><a id="toc-Embedded-Ledger-example-with-single-source-block-1" href="#Embedded-Ledger-example-with-single-source-block">7.2.4.1 Embedded Ledger example with single source block</a></li>
+        <li><a id="toc-Multiple-Ledger-source-blocks-with-noweb-1" href="#Multiple-Ledger-source-blocks-with-noweb">7.2.4.2 Multiple Ledger source blocks with <code class="code">noweb</code></a></li>
+        <li><a id="toc-Income-Entries-1" href="#Income-Entries">7.2.4.3 Income Entries</a></li>
+        <li><a id="toc-Expenses-1" href="#Expenses">7.2.4.4 Expenses</a></li>
+        <li><a id="toc-Financial-Summaries-1" href="#Financial-Summaries">7.2.4.5 Financial Summaries</a></li>
+        <li><a id="toc-An-overall-balance-summary-1" href="#An-overall-balance-summary">7.2.4.6 An overall balance summary</a></li>
+        <li><a id="toc-Generating-a-monthly-register-1" href="#Generating-a-monthly-register">7.2.4.7 Generating a monthly register</a></li>
+        <li><a id="toc-Summary-1" href="#Summary">7.2.4.8 Summary</a></li>
+      </ul></li>
+      <li><a id="toc-The-pricemap-command-1" href="#The-pricemap-command">7.2.5 The <code class="command">pricemap</code> command</a></li>
+      <li><a id="toc-The-xml-command-1" href="#The-xml-command">7.2.6 The <code class="command">xml</code> command</a></li>
+      <li><a id="toc-prices-and-pricedb-commands-1" href="#prices-and-pricedb-commands">7.2.7 <code class="command">prices</code> and <code class="command">pricedb</code> commands</a></li>
+    </ul></li>
+    <li><a id="toc-Reports-about-your-Journals-1" href="#Reports-about-your-Journals">7.3 Reports about your Journals</a>
+    <ul class="toc-numbered-mark">
+      <li><a id="toc-accounts-1" href="#accounts">7.3.1 <code class="command">accounts</code></a></li>
+      <li><a id="toc-payees-1" href="#payees">7.3.2 <code class="command">payees</code></a></li>
+      <li><a id="toc-commodities-1" href="#commodities">7.3.3 <code class="command">commodities</code></a></li>
+      <li><a id="toc-tags-1" href="#tags">7.3.4 <code class="command">tags</code></a></li>
+      <li><a id="toc-xact-1" href="#xact">7.3.5 <code class="command">xact</code></a></li>
+      <li><a id="toc-stats-1" href="#stats">7.3.6 <code class="command">stats</code></a></li>
+      <li><a id="toc-select-1" href="#select">7.3.7 <code class="command">select</code></a></li>
+    </ul></li>
+  </ul></li>
+  <li><a id="toc-Command_002dLine-Syntax-1" href="#Command_002dLine-Syntax">8 Command-Line Syntax</a>
+  <ul class="toc-numbered-mark">
+    <li><a id="toc-Basic-Usage-1" href="#Basic-Usage">8.1 Basic Usage</a></li>
+    <li><a id="toc-Command_002dLine-Quick-Reference-1" href="#Command_002dLine-Quick-Reference">8.2 Command-Line Quick Reference</a>
+    <ul class="toc-numbered-mark">
+      <li><a id="toc-Basic-Reporting-Commands-1" href="#Basic-Reporting-Commands">8.2.1 Basic Reporting Commands</a></li>
+      <li><a id="toc-Basic-Options-1" href="#Basic-Options">8.2.2 Basic Options</a></li>
+      <li><a id="toc-Report-Filtering-1" href="#Report-Filtering">8.2.3 Report Filtering
