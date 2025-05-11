@@ -1,3 +1,10 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "."}
+
 [project]
 name = "repo-utils"
 version = "0.1.0"
@@ -7,3 +14,6 @@ requires-python = ">=3.12"
 dependencies = [
     "pygithub>=2.6.1",
 ]
+
+[project.scripts]
+commit-file = "commit_file:main"
