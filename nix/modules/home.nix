@@ -171,9 +171,9 @@ in {
           -- Make Option-Right equivalent to Alt-f; forward-word
           {key="RightArrow", mods="OPT", action=wezterm.action{SendString="\x1bf"}},
           -- Switch color scheme
-          {key="t", mods="OPT", action = wezterm.action.EmitEvent 'toggle-colorscheme',}
+          {key="t", mods="OPT", action = wezterm.action.EmitEvent 'toggle-colorscheme',},
           -- Theme switcher
-          {key = "k", mods = "OPT", action = wezterm.action.EmitEvent 'theme-switcher'}
+          {key="k", mods="OPT", action = wezterm.action.EmitEvent 'theme-switcher',}
       }
 
       return config
