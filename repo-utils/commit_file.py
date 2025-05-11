@@ -18,8 +18,6 @@ def main():
     parser.add_argument("--token", '-t', type=str, required=True)
     args = parser.parse_args()
 
-    print(args.token)
-
     auth = Auth.Token(args.token)
     g = Github(auth=auth)
 

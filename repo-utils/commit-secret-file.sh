@@ -28,7 +28,7 @@ curl -L $SECRET_STORE_BLOB_URL | sops decrypt | tar -xzf - -C /var/tmp/personal-
 echo -n "$STDIN_CONTENTS" > /var/tmp/personal-monorepo/$SECRET_FILE_PATH
 
 # re-archive, compress, and encrypt the secret store blob
-NEW_SECRET_STORE_BLOB=$(tar -czf /var/tmp/personal-monorepo/secrets/ | sops encrypt --filename-override=secrets.tar.gz)
+NEW_SECRET_STORE_BLOB=$(tar -czvf - /var/tmp/personal-monorepo/secrets | sops encrypt --filename-override=secrets.tar.gz)
 
 # pass encrypted blob into commit-file to replace the secret store in github
 echo -n "$NEW_SECRET_STORE_BLOB" | commit-file --repo "$REPO" --file secrets.tar.gz.enc --message "$COMMIT_MESSAGE" --token "$GITHUB_TOKEN"
