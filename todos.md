@@ -7,9 +7,9 @@
 - schedule std test 2025-5-10
 - jailbreak switch 2025-5-15
 - return gfiber equipment 2025-5-10
-- sign up for piano lessons 2025-5-8
+- schedule time for piano self teaching 2025-5-12 
 - put mirror on truck 2025-5-12
-- get emissions tested on truck 2025-5-10
+- get emissions tested on truck 2025-5-12
 - schedule appointment for texas drivers license 2025-5-15 
 - schedule appointment to get truck registered 2025-5-12
 - get training on cardbook embedding model 2025-5-10
