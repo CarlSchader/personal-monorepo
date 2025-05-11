@@ -1,3 +1,4 @@
+- verify you have no outstanding tickets that will prevent you from walking on a military base 2025-05-14
 - buy couch 2025-5-11
 - buy mattress 2025-5-15
 - allow photo storage in r2 2025-05-12
