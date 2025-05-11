@@ -113,6 +113,48 @@ in {
 
       local config = wezterm.config_builder()
 
+      wezterm.on('theme-switcher', function(window, pane)
+        -- get builting color schemes
+        local schemes = wezterm.get_builtin_color_schemes()
+        local choices = {}
+        local config_path = "/mnt/c/Users/Andrew/.config/wezterm/wezterm.lua"
+
+        -- populate theme names in choices list
+        for key, _ in pairs(schemes) do
+        table.insert(choices, { label = tostring(key) })
+        end
+
+        -- sort choices list
+        table.sort(choices, function(c1, c2)
+        return c1.label < c2.label
+        end)
+
+        window:perform_action(
+        act.InputSelector({
+          title = "🎨 Pick a Theme!",
+          choices = choices,
+          fuzzy = true,
+
+          -- execute 'sed' shell command to replace the line 
+                -- responsible of colorscheme in my config
+          action = wezterm.action_callback(function(inner_window, inner_pane, _, label)
+          inner_window:perform_action(
+            act.SpawnCommandInNewTab({
+            args = {
+              "sed",
+              "-i",
+              '/^Colorscheme/c\\Colorscheme = "' .. label .. '"',
+              config_path,
+                  },
+            }),
+            inner_pane
+            )
+          end),
+          }),
+          pane
+        )
+      end)
+
       wezterm.on('toggle-colorscheme', function(window, pane)
         local overrides = window:get_config_overrides() or {}
         if not overrides.color_scheme then
@@ -130,6 +172,8 @@ in {
           {key="RightArrow", mods="OPT", action=wezterm.action{SendString="\x1bf"}},
           -- Switch color scheme
           {key="t", mods="OPT", action = wezterm.action.EmitEvent 'toggle-colorscheme',}
+          -- Theme switcher
+          {key = "k", mods = "OPT", action = wezterm.action.EmitEvent 'theme-switcher'}
       }
 
       return config
