@@ -16,3 +16,4 @@
 - telegram support for quickly updating markdown files 2025-5-13
 - get fitted for tuxedo 2025-5-17
 - cash deposit for appartment 2025-5-25
+- add auto insurance to recurring payments 2025-5-15
