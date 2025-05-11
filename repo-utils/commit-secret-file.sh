@@ -4,9 +4,9 @@ STDIN_CONTENTS=$(cat)
 SECRET_STORE_BLOB_URL="https://raw.githubusercontent.com/CarlSchader/personal-monorepo/refs/heads/main/secrets.tar.gz.enc"
 REPO="carlschader/personal-monorepo"
 
-mkdir -p /var/tmp/personal-monorepo/secrets
+mkdir -p /var/tmp/personal-monorepo
 
-cd /var/tmp/personal-monorepo/
+cd /var/tmp/personal-monorepo
 
 # check if the user supplied two args
 if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
