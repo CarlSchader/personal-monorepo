@@ -1,13 +1,31 @@
 { 
+  self,
   nixpkgs, 
-  flake-utils, 
+  flake-utils,
+  pyproject-nix,
   ... 
 }:
 flake-utils.lib.eachDefaultSystem (system: 
 let
   pkgs = import nixpkgs { inherit system; };
+  project = pyproject-nix.lib.project.loadPyproject {
+    projectRoot = ./.;
+  };
+
+  python = pkgs.python312;
 in
 rec {
+  packages.default = python.pkgs.buildPythonPackage (
+    (project.renderers.buildPythonPackage { inherit python; }) // {
+      propagatedBuildInputs = [];
+    }
+  );
+
+  apps.commit-file = {
+    type = "app";
+    program = "${packages.default}/bin/commit-file";
+  };
+
   packages.encrypt-store = pkgs.stdenv.mkDerivation {
     name = "encrypt-store";
     src = ./encrypt.sh;
