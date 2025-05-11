@@ -16,4 +16,3 @@
 - telegram support for quickly updating markdown files 2025-5-13
 - get fitted for tuxedo 2025-5-17
 - cash deposit for appartment 2025-5-25
-- shop around for cheaper auto insurance 2025-5-11
