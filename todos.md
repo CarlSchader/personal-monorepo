@@ -1,4 +1,5 @@
 - verify you have no outstanding tickets that will prevent you from walking on a military base 2025-05-14
+- get twistai debit card and cancel all others 2025-5-12
 - buy couch 2025-5-11
 - buy mattress 2025-5-15
 - alert me on recurring payments 2025-05-13
@@ -10,7 +11,7 @@
 - get emissions tested on truck 2025-5-12
 - schedule appointment for texas drivers license 2025-5-15 
 - schedule appointment to get truck registered 2025-5-12
-- get training on cardbook embedding model 2025-5-10
+- get training on cardbook embedding model 2025-5-14
 - telegram support for quickly adding expenses 2025-5-12
 - telegram support for quickly updating markdown files 2025-5-13
 - get fitted for tuxedo 2025-5-17
