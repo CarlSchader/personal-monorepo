@@ -6,7 +6,7 @@
 - jailbreak switch 2025-5-15
 - return gfiber equipment 2025-5-10
 - schedule time for piano self teaching 2025-5-12 
-- put mirror on truck 2025-5-12
+- put mirror on truck 2025-5-14
 - get emissions tested on truck 2025-5-12
 - schedule appointment for texas drivers license 2025-5-15 
 - schedule appointment to get truck registered 2025-5-12
@@ -18,3 +18,5 @@
 - add auto insurance to recurring payments 2025-5-15
 - setup personal llm server 2025-5-18
 - setup ocr parsing of receipt images 2025-5-25
+- finish chapter 1 of matter and interactions 2025-5-12
+- finish chapter 1 of probability models 2025-5-13
