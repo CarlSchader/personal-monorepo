@@ -1,5 +1,4 @@
 { 
-  self,
   nixpkgs, 
   flake-utils,
   pyproject-nix,
@@ -61,7 +60,6 @@ rec {
       chmod +x $out/bin/network-decrypt
     '';
   };
-
 
   packages.decrypt = pkgs.writeShellApplication {
     name = "decrypt";
