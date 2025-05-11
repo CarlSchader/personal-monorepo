@@ -182,8 +182,7 @@ async def handle_text_message(message_text: str, chat_id: int):
             # Format the markdown for chat
             formatted_content = format_markdown_for_chat(md_content)
 
-            async with bot:
-                await bot.send_message(text=formatted_content, chat_id=chat_id)
+            await bot.send_message(text=formatted_content, chat_id=chat_id)
     elif len(message_text) >= 8 and message_text[:8] == 'finances':
         # pull secrets/finances.dat
         subprocess_list: list[str] = [
@@ -221,8 +220,7 @@ async def handle_text_message(message_text: str, chat_id: int):
 async def handle_document(document, chat_id):
     try:
         # Get file information from Telegram
-        async with bot:
-            file = await bot.get_file(document['file_id'])
+        file = await bot.get_file(document['file_id'])
             file_path = file.file_path
             file_name = document.get('file_name', f"unknown_{document['file_id']}.file")
             
