@@ -99,15 +99,15 @@ s3_client = boto3.client(
 
 ## github token
 
-FALLBACK_GITHUB_TOKEN_FILE_PATH: str = "/etc/personal-monorepo/bot-token"
+FALLBACK_GITHUB_TOKEN_FILE_PATH: str = "/etc/personal-monorepo/github-token"
 
-GITHUB_TOKEN: str = os.getenv("BOT_TOKEN", "")
+GITHUB_TOKEN: str = os.getenv("GITHUB_TOKEN", "")
 if GITHUB_TOKEN == "" and os.path.exists(FALLBACK_GITHUB_TOKEN_FILE_PATH):
     with open(FALLBACK_GITHUB_TOKEN_FILE_PATH, 'r') as f:
         GITHUB_TOKEN = f.read().strip()
 GITHUB_TOKEN = GITHUB_TOKEN.strip()
 
-assert len(GITHUB_TOKEN) > 0, "bot token is empty"
+assert len(GITHUB_TOKEN) > 0, "github token is empty"
 
 
 ### END SETUP ###
