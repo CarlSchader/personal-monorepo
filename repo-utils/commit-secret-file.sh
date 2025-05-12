@@ -2,6 +2,7 @@
 
 STDIN_CONTENTS=$(cat)
 SECRET_STORE_BLOB_URL="https://raw.githubusercontent.com/CarlSchader/personal-monorepo/refs/heads/main/secrets.tar.gz.enc"
+SOPS_CONFIG_BLOB_URL="https://raw.githubusercontent.com/CarlSchader/personal-monorepo/refs/heads/main/.sops.yaml"
 REPO="carlschader/personal-monorepo"
 
 mkdir -p /var/tmp/personal-monorepo
@@ -23,8 +24,10 @@ if [ ! -z "$4" ]; then
   export SOPS_AGE_SSH_PRIVATE_KEY_FILE=$4
 fi
 
-# decrypt, decompress, and extract the entire secret store blob and save the directory in secrets
 curl -L $SECRET_STORE_BLOB_URL | sops decrypt | tar -xzf - -C ./
+
+# decrypt, decompress, and extract the entire secret store blob and save the directory in secrets
+curl -LO $SOPS_CONFIG_BLOB_URL
 
 # update the secret file with the new secret file contents from stdin
 echo -n "$STDIN_CONTENTS" > $SECRET_FILE_PATH
