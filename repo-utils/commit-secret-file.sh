@@ -12,7 +12,7 @@ cd /var/tmp/personal-monorepo
 # check if the user supplied two args
 if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
   echo "Usage: commit-secret-file <secret_file_path> <commit_message> <github_token> [ssh_key_path]"
-  echo "if ssh_key_path isn't given then we fallback to ~/.ssh/id_ed25519 then ~/.ssh/id_rsa"
+  echo "if ssh_key_path isn't given then we fallback to ~/.ssh/id_ed25519 then to ~/.ssh/id_rsa"
   exit 1
 fi
 
@@ -22,6 +22,15 @@ GITHUB_TOKEN=$3
 
 if [ ! -z "$4" ]; then
   export SOPS_AGE_SSH_PRIVATE_KEY_FILE=$4
+else
+  if [ -f ~/.ssh/id_ed25519 ]; then
+    export SOPS_AGE_SSH_PRIVATE_KEY_FILE=~/.ssh/id_ed25519
+  elif [ -f ~/.ssh/id_rsa ]; then
+    export SOPS_AGE_SSH_PRIVATE_KEY_FILE=~/.ssh/id_rsa
+  else
+    echo "No SSH key found at ~/.ssh/id_ed25519 or ~/.ssh/id_rsa"
+    exit 1
+  fi
 fi
 
 curl -L $SECRET_STORE_BLOB_URL | sops decrypt | tar -xzf - -C ./
