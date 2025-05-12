@@ -11,6 +11,7 @@ import telegram
 from fastapi import FastAPI, Request, Response, status
 import uvicorn
 import boto3
+from dateutil import parser
 
 ### SETUP CONSTANTS AND GLOBALS ###
 
@@ -18,7 +19,6 @@ logger = logging.getLogger('uvicorn.info')
 ssl_context = ssl.create_default_context(cafile=certifi.where())
 
 REPO_FILES_ROOT: str = "https://raw.githubusercontent.com/CarlSchader/personal-monorepo/refs/heads/main/"
-
 
 PORT: int = int(os.getenv("PORT", "8080"))
 SSH_KEY_PATH = os.getenv("SSH_KEY_PATH", "")
@@ -97,8 +97,62 @@ s3_client = boto3.client(
 )
 
 
+## github token
+
+GITHUB_TOKEN: str = ""
+
+
 ### END SETUP ###
 
+def format_transaction_string(transaction: str) -> str:
+    """
+    This function takes in a user sent transaction string and attempts to format it correctly to be added to a ldger compatible .dat file
+    """
+    # Split the input by lines
+    lines = transaction.strip().split('\n')
+    
+    if not lines:
+        raise Exception("Invalid transaction format")
+
+    # First line should contain date and description
+    header_parts = lines[0].strip().split(' ', 1)
+    if len(header_parts) < 2:
+        raise Exception("Invalid transaction format: First line must contain date and description")
+    
+    date_string, description = header_parts
+    date = parser.parse(date_string)
+    
+    # Format the transaction header
+    formatted_transaction = f"{date.strftime('%Y/%m/%d')} {description}\n"
+    
+    # Process account entries (indented lines)
+    nonempty_lines: list[str] = []
+    for line in lines[1:]:
+        line = line.strip()
+        if line:
+            nonempty_lines.append(line)
+        else:
+            break
+
+    if len(nonempty_lines) < 2:
+        raise Exception("Not enough accounts listed")
+
+    for i, line in enumerate(nonempty_lines):
+        if line:
+            splits = line.split()
+
+            if len(splits) != 2 or (i == len(nonempty_lines) - 1 and len(splits) != 1):
+                raise Exception("Invalid transaction format: Each account entry must have exactly two parts (account and amount) inless it's the final account, then it can have just the account name.")
+            account, amount = splits[0], splits[1]
+
+            # validate these are valid
+            if not account or not amount:
+                raise Exception("Invalid transaction format: Account and amount must not be empty")
+
+            # Add proper indentation for account entries
+            formatted_transaction += f"  {account}  {amount}\n"
+    
+    return formatted_transaction
 
 def help_string() -> str:
     return '''
@@ -211,10 +265,50 @@ async def handle_text_message(message_text: str, chat_id: int):
                 capture_output=True,
             )
             await bot.send_message(text=ledger_run.stdout.decode(), chat_id=chat_id)
-        elif len(message_text) >= 11 and message_text[:11] == "transaction":
-            pass
+    
         else:
             await bot.send_message(text=finances_file_bytes.decode(), chat_id=chat_id)
+
+    elif len(message_text) >= 11 and message_text[:11] == "transaction":
+        if len(message_text) == 11:
+            transaction_help_string = """
+                Usage:
+                transaction
+                <date ex: 2025/05/11> <note ex: burrito>
+                  <account ex: expenses:food:chipotle:burrito> <amount ex: $2.00>
+                  ... more accounts
+            """
+            await bot.send_message(text=transaction_help_string, chat_id=chat_id)
+        else:
+            transaction_string = message_text[11:]
+            formatted_transaction = '\n' + format_transaction_string(transaction_string)
+
+            # pull secrets/finances.dat
+            network_decrypt_list: list[str] = [
+                "network-decrypt",
+                # "../repo-utils/network-decrypt.sh", # just for dev
+                "https://raw.githubusercontent.com/CarlSchader/personal-monorepo/refs/heads/main/secrets.tar.gz.enc",
+                "secrets/finances.dat",
+            ]
+
+            commit_secret_file_list = ['commit-secret-file', 'secrets/finances.dat', 'transaction', GITHUB_TOKEN]
+
+            if len(SSH_KEY_PATH) > 0:
+                network_decrypt_list += [SSH_KEY_PATH]
+                commit_secret_file_list += [SSH_KEY_PATH]
+
+            network_decrypt_run = subprocess.run(
+                network_decrypt_list, 
+                capture_output=True,
+            )
+
+            finances_file_bytes: bytes = network_decrypt_run.stdout
+            new_finances_file_bytes: bytes = finances_file_bytes + formatted_transaction.encode() 
+
+            run = subprocess.run(commit_secret_file_list, input=new_finances_file_bytes, capture_output=True)
+            if run.returncode != 0:
+                raise Exception(run.stderr.decode())
+            await bot.send_message(text="transaction recorded, use finances to view it", chat_id=chat_id)
     else:
         await bot.send_message(text=help_string(), chat_id=chat_id)
 
@@ -223,24 +317,23 @@ async def handle_document(document, chat_id):
     try:
         # Get file information from Telegram
         file = await bot.get_file(document['file_id'])
-            file_path = file.file_path
-            file_name = document.get('file_name', f"unknown_{document['file_id']}.file")
-            
-            # Download the file
-            file_content = await file.download_as_bytearray()
-            
-            # Upload to S3
-            s3_client.put_object(
-                Bucket=BUCKET,
-                Key=file_name,
-                Body=file_content
-            )
-            
-            # Notify user of successful upload
-            await bot.send_message(
-                chat_id=chat_id,
-                text=f"Document '{file_name}' has been stored successfully."
-            )
+        file_name = document.get('file_name', f"unknown_{document['file_id']}.file")
+        
+        # Download the file
+        file_content = await file.download_as_bytearray()
+        
+        # Upload to S3
+        s3_client.put_object(
+            Bucket=BUCKET,
+            Key=file_name,
+            Body=file_content
+        )
+        
+        # Notify user of successful upload
+        await bot.send_message(
+            chat_id=chat_id,
+            text=f"Document '{file_name}' has been stored successfully."
+        )
     except Exception as e:
         logger.error(f"Error storing document: {e}")
         await bot.send_message(
