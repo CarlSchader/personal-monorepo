@@ -211,6 +211,8 @@ async def handle_text_message(message_text: str, chat_id: int):
                 capture_output=True,
             )
             await bot.send_message(text=ledger_run.stdout.decode(), chat_id=chat_id)
+        elif len(message_text) >= 11 and message_text[:11] == "transaction":
+            pass
         else:
             await bot.send_message(text=finances_file_bytes.decode(), chat_id=chat_id)
     else:

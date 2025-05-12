@@ -9,31 +9,33 @@
     python = pkgs.python312;
   in 
   rec {
-    packages.default = python.pkgs.buildPythonPackage (
+    packages.telegram = python.pkgs.buildPythonPackage (
       (project.renderers.buildPythonPackage { inherit python; }) // {
         propagatedBuildInputs = [ self.packages."${system}".network-decrypt ];
       }
     );
 
-    apps.default = apps.server;
-
-    apps.server = {
+    apps.telegram-server = {
       type = "app";
-      program = "${packages.default}/bin/server";
+      program = "${packages.telegram}/bin/server";
     };
 
     apps.remind = {
       type = "app";
-      program = "${packages.default}/bin/remind";
+      program = "${packages.telegram}/bin/remind";
     };
     
     apps.register-webhook = {
       type = "app";
-      program = "${packages.default}/bin/register-webhook";
+      program = "${packages.telegram}/bin/register-webhook";
     };
 
     apps.unregister-webhook = {
       type = "app";
-      program = "${packages.default}/bin/unregister-webhook";
+      program = "${packages.telegram}/bin/unregister-webhook";
+    };
+
+    devShells.telegram = pkgs.mkShell {
+      buildInputs = [ python self.packages."${system}".commit-secret-file ];
     };
   })
