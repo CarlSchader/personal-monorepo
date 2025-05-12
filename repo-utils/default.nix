@@ -25,6 +25,7 @@ rec {
     program = "${packages.commit-file}/bin/commit-file";
   };
 
+  # for the life of me I could not get commit-file in the path using mkDerivation. This works though
   packages.commit-secret-file = pkgs.writeShellScriptBin "commit-secret-file" ''
     export PATH="${packages.repo-utils}/bin:${pkgs.gzip}/bin:${pkgs.gnutar}/bin:${pkgs.age}/bin:${pkgs.sops}/bin:$PATH"
     ${builtins.readFile ./commit-secret-file.sh}
