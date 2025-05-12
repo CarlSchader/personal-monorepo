@@ -11,7 +11,6 @@
 - schedule appointment for texas drivers license 2025-5-15 
 - schedule appointment to get truck registered 2025-5-12
 - get training on cardbook embedding model 2025-5-14
-- telegram support for quickly adding expenses 2025-5-12
 - telegram support for quickly updating markdown files 2025-5-13
 - get fitted for tuxedo 2025-5-17
 - cash deposit for appartment 2025-5-25
