@@ -112,6 +112,7 @@ assert len(GITHUB_TOKEN) > 0, "github token is empty"
 
 ### END SETUP ###
 
+
 def format_transaction_string(transaction: str) -> str:
     """
     This function takes in a user sent transaction string and attempts to format it correctly to be added to a ldger compatible .dat file
@@ -146,21 +147,23 @@ def format_transaction_string(transaction: str) -> str:
         raise Exception("Not enough accounts listed")
 
     for i, line in enumerate(nonempty_lines):
+        logger.info(f"{i} {line}")
         if line:
             splits = line.split()
 
-            if len(splits) != 2 or (i == len(nonempty_lines) - 1 and len(splits) != 1):
+            if (i != len(nonempty_lines) - 1 and len(splits) != 2) or (i == len(nonempty_lines) - 1 and len(splits) != 1):
                 raise Exception("Invalid transaction format: Each account entry must have exactly two parts (account and amount) inless it's the final account, then it can have just the account name.")
-            account, amount = splits[0], splits[1]
 
-            # validate these are valid
-            if not account or not amount:
-                raise Exception("Invalid transaction format: Account and amount must not be empty")
+            if len(splits) == 2:
+                account, amount = splits[0], splits[1]
+                formatted_transaction += f"  {account}  {amount}\n"
+            else:
+                account = splits[0]
+                formatted_transaction += f"  {account}\n"
 
-            # Add proper indentation for account entries
-            formatted_transaction += f"  {account}  {amount}\n"
     
     return formatted_transaction
+
 
 def help_string() -> str:
     return '''

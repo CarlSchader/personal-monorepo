@@ -11,7 +11,10 @@
   rec {
     packages.telegram = python.pkgs.buildPythonPackage (
       (project.renderers.buildPythonPackage { inherit python; }) // {
-        propagatedBuildInputs = [ self.packages."${system}".network-decrypt ];
+        propagatedBuildInputs = [ 
+          self.packages."${system}".network-decrypt 
+          self.packages."${system}".commit-secret-file
+        ];
       }
     );
 
@@ -36,6 +39,10 @@
     };
 
     devShells.telegram = pkgs.mkShell {
-      buildInputs = [ python self.packages."${system}".commit-secret-file ];
+      buildInputs = [ 
+        python
+        self.packages."${system}".network-decrypt 
+        self.packages."${system}".commit-secret-file
+      ];
     };
   })
