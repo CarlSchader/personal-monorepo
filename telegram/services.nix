@@ -35,7 +35,7 @@
         environment.SSH_KEY_PATH = cfg.ssh-key-path;
         after = [ "network.target" ];
         serviceConfig = {
-          ExecStart = "${self.packages."${pkgs.system}".default}/bin/server";
+          ExecStart = "${self.packages."${pkgs.system}".telegram}/bin/server";
           Restart = "always";
           User = "root";
         };
@@ -86,7 +86,7 @@
 
       systemd.services."telegram-remind" = {
         enable = true; 
-        script = "${self.packages."${pkgs.system}".default}/bin/remind -b \"${cfg.bot-token}\""; # change this to somewhere in /etc in the future
+        script = "${self.packages."${pkgs.system}".telegram}/bin/remind -b \"${cfg.bot-token}\""; # change this to somewhere in /etc in the future
         serviceConfig = {
           Type = "oneshot";
           User = "root";

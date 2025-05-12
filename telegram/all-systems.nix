@@ -12,6 +12,7 @@
     packages.telegram = python.pkgs.buildPythonPackage (
       (project.renderers.buildPythonPackage { inherit python; }) // {
         propagatedBuildInputs = [ 
+          pkgs.ledger
           self.packages."${system}".network-decrypt 
           self.packages."${system}".commit-secret-file
         ];
