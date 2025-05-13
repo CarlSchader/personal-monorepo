@@ -14,8 +14,13 @@
 -- expenses:personal:rent $1667.00
 -- assets:personal:checking
 
-<!--- (*-6-1) usaa auto insurance -->
-<!---- expenses:personal:usaa:auto-insurance $-->
+- (*-6-1) usaa auto insurance 
+-- expenses:personal:usaa:auto-insurance $1331.20
+-- assets:personal:checking
+
+- (*-12-1) usaa auto insurance 
+-- expenses:personal:usaa:auto-insurance $1331.20
+-- assets:personal:checking
 
 - (*-*-15 00:00:00) saronic salary 
 -- income:saronic:salary $-4700.71
