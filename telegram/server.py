@@ -269,12 +269,18 @@ async def handle_text_message(message_text: str, chat_id: int):
 
         # ledger is a program that can query and format the finances file content
         if len(message_text) > 8: 
+            print("RUN")
             ledger_args = message_text[8:].strip()
+            print(f"ledger args: {ledger_args}")
             ledger_run = subprocess.run(
                 ['ledger', '-f', '-'] + ledger_args.split(), 
                 input=finances_file_bytes,
                 capture_output=True,
             )
+
+            if ledger_run.returncode != 0:
+                raise Exception(ledger_run.stderr.decode())
+
             await bot.send_message(text=ledger_run.stdout.decode(), chat_id=chat_id)
     
         else:
