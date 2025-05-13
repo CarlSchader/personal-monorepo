@@ -25,6 +25,7 @@ PORT: int = int(os.getenv("PORT", "8080"))
 SSH_KEY_PATH = os.getenv("SSH_KEY_PATH", "")
 logger.info(f"SSH_KEY_PATH: {SSH_KEY_PATH}")
 
+DEFAULT_ASSET_ACCOUNT = "assets:personal:checking"
 
 ## trusted chat_ids
 
@@ -150,7 +151,10 @@ def format_transaction_string(transaction: str) -> str:
         else:
             break
 
-    if len(nonempty_lines) < 2:
+    if len(nonempty_lines) == 1:
+        # append default account to the end
+        nonempty_lines.append(DEFAULT_ASSET_ACCOUNT)
+    elif len(nonempty_lines) < 1:
         raise Exception("Not enough accounts listed")
 
     for i, line in enumerate(nonempty_lines):
