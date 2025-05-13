@@ -3,6 +3,7 @@ import ssl
 import os
 import certifi
 import re
+from datetime import datetime
 import logging
 import subprocess
 
@@ -123,13 +124,19 @@ def format_transaction_string(transaction: str) -> str:
     if not lines:
         raise Exception("Invalid transaction format")
 
-    # First line should contain date and description
-    header_parts = lines[0].strip().split(' ', 1)
-    if len(header_parts) < 2:
-        raise Exception("Invalid transaction format: First line must contain date and description")
+    # see if the transaction statrs with a date. if so parse it into date. Else, set date to now      
+    # everything after the date is a transaction message. This should all exist on a single line like so:
+    # [date] <transaction-string>
+    first_line = lines[0].strip()
+    parts = first_line.split(' ', 1)
     
-    date_string, description = header_parts
-    date = parser.parse(date_string)
+    try:
+        date = parser.parse(parts[0])
+        description = parts[1]
+    except (ValueError, IndexError):
+        # If parsing fails, use current date
+        date = datetime.now()
+        description = first_line
     
     # Format the transaction header
     formatted_transaction = f"{date.strftime('%Y/%m/%d')} {description}\n"
@@ -156,6 +163,10 @@ def format_transaction_string(transaction: str) -> str:
 
             if len(splits) == 2:
                 account, amount = splits[0], splits[1]
+                # make sure amount is valid
+                if not (amount.startswith('$') and re.match(r'^\$-?\d+(\.\d{1,2})?$', amount)):
+                    raise Exception(f"Invalid amount format: {amount}. Must be in format $X.XX or $-X.XX")
+                
                 formatted_transaction += f"  {account}  {amount}\n"
             else:
                 account = splits[0]
