@@ -15,3 +15,5 @@
 - finish chapter 1 of matter and interactions 2025-5-13
 - finish chapter 1 of probability models 2025-5-14
 - buy plane tickets for wedding 2025/05/13
+- forward mailing address with usps 2025/5/13
+- make it so documents sent to telegram can have names 2025/5/19
