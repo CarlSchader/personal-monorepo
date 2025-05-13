@@ -292,7 +292,7 @@ async def handle_text_message(message_text: str, chat_id: int):
             await bot.send_message(text=transaction_help_string, chat_id=chat_id)
         else:
             transaction_string = message_text[11:]
-            formatted_transaction = '\n' + format_transaction_string(transaction_string)
+            formatted_transaction = '\n' + format_transaction_string(transaction_string) + '\n'
 
             # pull secrets/finances.dat
             network_decrypt_list: list[str] = [
