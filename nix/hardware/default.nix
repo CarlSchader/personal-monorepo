@@ -57,7 +57,6 @@
         home-manager.users.carl = import ../modules/home.nix;
         home-manager.users.connor = import ../modules/home.nix;
         home-manager.users.saronic = import ../modules/home.nix;
-        home-manager.users.catid = import ../modules/home.nix;
       }
     ];
   };
@@ -71,6 +70,7 @@
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users.saronic = import ../modules/home.nix;
+        home-manager.users.catid = import ../modules/home.nix;
       }
     ];
   };
