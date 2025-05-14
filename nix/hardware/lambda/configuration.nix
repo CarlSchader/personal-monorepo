@@ -176,12 +176,12 @@ in
   };
 
   # Define a user account. Don't forget to set a password with 'passwd'.
-  users.catid.saronic = {
+  users.users.catid = {
     isNormalUser = true;
     description = "Chris";
     extraGroups = [ "networkmanager" "wheel" ];
-    # packages = defaultUserPackages;
-    # shell = defaultShell;
+    packages = defaultUserPackages;
+    shell = defaultShell;
     openssh.authorizedKeys.keys = [ chris-pub-ssh-key ]; 
   };
 
