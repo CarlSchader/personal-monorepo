@@ -311,7 +311,7 @@ async def handle_text_message(message_text: str, chat_id: int):
             await bot.send_message(text=transaction_help_string, chat_id=chat_id)
         else:
             transaction_string = message_text[11:]
-            formatted_transaction = '\n' + format_transaction_string(transaction_string) + '\n'
+            formatted_transaction = '\n\n' + format_transaction_string(transaction_string) + '\n\n'
 
             # pull secrets/finances.dat
             network_decrypt_list: list[str] = [
@@ -333,7 +333,7 @@ async def handle_text_message(message_text: str, chat_id: int):
             )
 
             finances_file_bytes: bytes = network_decrypt_run.stdout
-            new_finances_file_bytes: bytes = finances_file_bytes + formatted_transaction.encode() 
+            new_finances_file_bytes: bytes = finances_file_bytes + formatted_transaction.encode()
 
             run = subprocess.run(commit_secret_file_list, input=new_finances_file_bytes, capture_output=True)
             if run.returncode != 0:
