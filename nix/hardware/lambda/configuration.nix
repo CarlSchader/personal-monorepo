@@ -14,6 +14,7 @@ let
 
   personal-pub-ssh-key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEfes+9mHAnHSb0GjyP305zzFtS2P12e3Ha/Vur+62He carlschader@Carls-MacBook-Pro.local";
   saronic-pub-ssh-key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILnEa9ffHtw4evQmVDKaoVDMLGan0k4Olrs1h+jPvhpc carlschader@Carls-MacBook-Pro.local";
+  chris-pub-ssh-key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPR2GHCgfgKV+EUBziDwxsNyDdwfsTswmpZnoI1TAvuL chris.taylor@saronic.com"
 
   carls-keys = [ personal-pub-ssh-key saronic-pub-ssh-key ];
 
@@ -172,6 +173,16 @@ in
     packages = defaultUserPackages;
     shell = defaultShell;
     openssh.authorizedKeys.keys = carls-keys; 
+  };
+
+  # Define a user account. Don't forget to set a password with 'passwd'.
+  users.catid.saronic = {
+    isNormalUser = true;
+    description = "Chris";
+    extraGroups = [ "networkmanager" "wheel" ];
+    # packages = defaultUserPackages;
+    # shell = defaultShell;
+    openssh.authorizedKeys.keys = [ chris-pub-ssh-key ]; 
   };
 
   # allows third party dynamically linked libs 
