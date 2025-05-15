@@ -7,19 +7,19 @@
 -- assets:personal:checking
 
 - (*-*-19 00:00:00) electricity bill 
--- expenses:personal:electricity
+-- expenses:utilities:electricity
 -- assets:personal:checking
 
 - (*-*-1 00:00:00) rent 
--- expenses:personal:rent $1667.00
+-- expenses:rent $1667.00
 -- assets:personal:checking
 
 - (*-6-1) usaa auto insurance 
--- expenses:personal:usaa:auto-insurance $1331.20
+-- expenses:auto:usaa:auto-insurance $1331.20
 -- assets:personal:checking
 
 - (*-12-1) usaa auto insurance 
--- expenses:personal:usaa:auto-insurance $1331.20
+-- expenses:auto:usaa:auto-insurance $1331.20
 -- assets:personal:checking
 
 - (*-*-15 00:00:00) saronic salary 
@@ -28,4 +28,12 @@
 
 - (*-*-28 00:00:00) saronic salary 
 -- income:saronic:salary $-4700.71
+-- assets:personal:checking
+
+- (*-*-15 00:00:00) internet
+-- expenses:utilities:internet:gfiber $30.30
+-- assets:personal:checking
+
+- (*-*-15 00:00:00) cellular service 
+-- expenses:utilities:verizon:cellular-service $86.23
 -- assets:personal:checking
