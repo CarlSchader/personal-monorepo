@@ -1,16 +1,14 @@
 - verify you have no outstanding tickets that will prevent you from walking on a military base 2025-05-14
-- buy couch 2025-5-11
 - alert me on recurring payments 2025-05-13
 - jailbreak switch 2025-5-15
 - schedule time for piano self teaching 2025-5-12 
 - put mirror on truck 2025-5-14
-- schedule appointment for texas drivers license 2025-5-15 
-- schedule appointment to get truck registered 2025-5-12
+- schedule appointment for texas drivers license 2025-5-25
+- schedule appointment to get truck registered 2025-5-16
 - get training on cardbook embedding model 2025-5-14
 - telegram support for quickly updating markdown files 2025-5-13
 - setup personal llm server 2025-5-18
 - setup ocr parsing of receipt images 2025-5-25
 - finish chapter 1 of matter and interactions 2025-5-13
 - finish chapter 1 of probability models 2025-5-14
-- buy plane tickets for wedding 2025/05/13
 - make it so documents sent to telegram can have names 2025/5/19
