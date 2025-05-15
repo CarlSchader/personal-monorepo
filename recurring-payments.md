@@ -33,7 +33,3 @@
 - (*-*-15 00:00:00) internet
 -- expenses:utilities:internet:gfiber $30.30
 -- assets:personal:checking
-
-- (*-*-15 00:00:00) cellular service 
--- expenses:utilities:verizon:cellular-service $86.23
--- assets:personal:checking
