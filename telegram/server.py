@@ -343,12 +343,28 @@ async def handle_text_message(message_text: str, chat_id: int):
         await bot.send_message(text=help_string(), chat_id=chat_id)
 
 
-async def handle_document(document, chat_id):
+async def handle_document(document, chat_id: int, tag: str | None = None):
+    """
+    If tag is set this will be used as the filename but the file extension will be inferred.
+    """
     try:
         # Get file information from Telegram
         file = await bot.get_file(document['file_id'])
-        file_name = document.get('file_name', f"unknown_{document['file_id']}.file")
         
+        file_path = file.file_path
+        extension = file_path[file_path.rfind('.'):]
+        if len(extension) == 0:
+            extension = '.file'
+
+        if not tag:
+            file_name = document.get("file_name", datetime.now().strftime("%Y-%m-%d_%H:%M:%S") + extension)
+        else:
+            file_name = tag + extension
+        
+        logger.info("FILE")
+        logger.info(file)
+        logger.info(f"FILENAME: {file_name}")
+
         # Download the file
         file_content = await file.download_as_bytearray()
         
@@ -427,7 +443,11 @@ async def webhook(request: Request):
             if 'photo' in message: 
                 logger.info('received photo')
                 document = message['photo'][-1]
-                await handle_document(document, chat_id)
+                if 'caption' in message:
+                    tag = message['caption']
+                else:
+                    tag = None
+                await handle_document(document, chat_id, tag=tag)
 
         except Exception as e:
             logger.error(e)
