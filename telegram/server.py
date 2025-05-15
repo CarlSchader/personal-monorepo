@@ -361,10 +361,6 @@ async def handle_document(document, chat_id: int, tag: str | None = None):
         else:
             file_name = tag + extension
         
-        logger.info("FILE")
-        logger.info(file)
-        logger.info(f"FILENAME: {file_name}")
-
         # Download the file
         file_content = await file.download_as_bytearray()
         
