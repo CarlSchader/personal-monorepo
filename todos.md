@@ -6,7 +6,6 @@
 - schedule appointment for texas drivers license 2025-5-25
 - schedule appointment to get truck registered 2025-5-20
 - get training on cardbook embedding model 2025-5-14
-- telegram support for quickly updating markdown files 2025-5-13
 - setup personal llm server 2025-5-18
 - setup ocr parsing of receipt images 2025-5-25
 - finish chapter 1 of matter and interactions 2025-5-13
