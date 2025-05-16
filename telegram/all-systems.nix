@@ -13,6 +13,7 @@
       (project.renderers.buildPythonPackage { inherit python; }) // {
         propagatedBuildInputs = [ 
           pkgs.ledger
+          self.packages."${system}".commit-file
           self.packages."${system}".network-decrypt 
           self.packages."${system}".commit-secret-file
         ];
@@ -42,6 +43,7 @@
     devShells.telegram = pkgs.mkShell {
       buildInputs = [ 
         python
+        self.packages."${system}".commit-file
         self.packages."${system}".network-decrypt 
         self.packages."${system}".commit-secret-file
       ];

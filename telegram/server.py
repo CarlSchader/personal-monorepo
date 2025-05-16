@@ -251,19 +251,9 @@ async def handle_text_message(message_text: str, chat_id: int):
     message_text = message_text.lower().strip()
 
     # check if message contains <word>.md where word can include dashes, underscores, numbers, and symbols
-    regex = r'\b([\w\-]+\.md)\b'
-    if re.search(regex, message_text):
-        # Extract the markdown filename
-        match = re.search(regex, message_text)
-        if match:
-            md_filename = match.group(1)
-            # Fetch the markdown file from the repository
-            md_content = await fetch_repo_file(md_filename)
-            # Format the markdown for chat
-            formatted_content = format_markdown_for_chat(md_content)
-
-            await bot.send_message(text=formatted_content, chat_id=chat_id)
-    elif len(message_text) >= 8 and message_text[:8] == 'finances':
+    md_regex = r'\b([\w\-]+\.md)\b'
+    
+    if len(message_text) >= 8 and message_text[:8] == 'finances':
         # pull secrets/finances.dat
         subprocess_list: list[str] = [
             "network-decrypt",
@@ -339,6 +329,48 @@ async def handle_text_message(message_text: str, chat_id: int):
             if run.returncode != 0:
                 raise Exception(run.stderr.decode())
             await bot.send_message(text="transaction recorded, use finances to view it", chat_id=chat_id)
+    elif len(message_text) >= 6 and message_text[:6] == "append":
+        if len(message_text) == 6 or len(message_text) == 7 and message_text[6] == ' ':
+            append_help_string = """
+                Usage:
+                append <markdown file> <message>
+            """
+            await bot.send_message(text=append_help_string, chat_id=chat_id)
+        else:
+            message_text = message_text[7:].strip()
+            markdown_file, message = message_text.split(' ', 1)
+            if len(message) == 0:
+                raise Exception("Invalid append command, must be: append <markdown file> <message>")
+            
+            if not re.search(md_regex, markdown_file):
+                raise Exception("Invalid markdown file, must be: append <markdown file> <message>")
+
+            md_content = await fetch_repo_file(markdown_file)
+            md_content += ('\n\n' + message)
+            subprocess_list = [ # This program reads stdin and writes to a file in the repo
+                "commit-file",
+                "--repo=carlschader/personal-monorepo",
+                "--file=" + markdown_file,
+                "--message=" + "appended to " + markdown_file,
+                "--token=" + GITHUB_TOKEN,
+            ]
+
+            if len(SSH_KEY_PATH) > 0:
+                subprocess_list += [SSH_KEY_PATH]
+
+            subprocess.run(subprocess_list, input=md_content.encode())
+            await bot.send_message(text="appended to " + markdown_file, chat_id=chat_id)
+    elif re.search(md_regex, message_text):
+        # Extract the markdown filename
+        match = re.search(md_regex, message_text)
+        if match:
+            md_filename = match.group(1)
+            # Fetch the markdown file from the repository
+            md_content = await fetch_repo_file(md_filename)
+            # Format the markdown for chat
+            formatted_content = format_markdown_for_chat(md_content)
+
+            await bot.send_message(text=formatted_content, chat_id=chat_id)
     else:
         await bot.send_message(text=help_string(), chat_id=chat_id)
 

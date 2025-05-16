@@ -2,9 +2,9 @@
 - alert me on recurring payments 2025-05-13
 - jailbreak switch 2025-5-15
 - schedule time for piano self teaching 2025-5-12 
-- put mirror on truck 2025-5-14
+- put mirror on truck 2025-5-20
 - schedule appointment for texas drivers license 2025-5-25
-- schedule appointment to get truck registered 2025-5-16
+- schedule appointment to get truck registered 2025-5-20
 - get training on cardbook embedding model 2025-5-14
 - telegram support for quickly updating markdown files 2025-5-13
 - setup personal llm server 2025-5-18

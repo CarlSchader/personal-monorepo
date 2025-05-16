@@ -15,14 +15,12 @@ let
 in
 rec {
   packages.repo-utils = python.pkgs.buildPythonPackage (
-    (project.renderers.buildPythonPackage { inherit python; }) // {
-      propagatedBuildInputs = [];
-    }
+    project.renderers.buildPythonPackage { inherit python; }
   );
 
-  apps.commit-file = {
-    type = "app";
-    program = "${packages.commit-file}/bin/commit-file";
+  packages.commit-file = pkgs.writeShellApplication {
+    name = "commit-file";
+    text = "${packages.repo-utils}/bin/commit-file \"$@\"";
   };
 
   # for the life of me I could not get commit-file in the path using mkDerivation. This works though
