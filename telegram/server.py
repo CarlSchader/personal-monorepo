@@ -346,7 +346,7 @@ async def handle_text_message(message_text: str, chat_id: int):
                 raise Exception("Invalid markdown file, must be: append <markdown file> <message>")
 
             md_content = await fetch_repo_file(markdown_file)
-            md_content += ('\n\n' + message)
+            md_content += ('\n' + message)
             subprocess_list = [ # This program reads stdin and writes to a file in the repo
                 "commit-file",
                 "--repo=carlschader/personal-monorepo",
