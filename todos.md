@@ -1,6 +1,5 @@
 - verify you have no outstanding tickets that will prevent you from walking on a military base 2025-05-14
 - alert me on recurring payments 2025-05-13
-- jailbreak switch 2025-5-15
 - schedule time for piano self teaching 2025-5-12 
 - put mirror on truck 2025-5-20
 - schedule appointment for texas drivers license 2025-5-25
