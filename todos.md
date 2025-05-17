@@ -1,5 +1,4 @@
 - verify you have no outstanding tickets that will prevent you from walking on a military base 2025-05-14
-- alert me on recurring payments 2025-05-13
 - put mirror on truck 2025-5-20
 - schedule appointment for texas drivers license 2025-5-25
 - schedule appointment to get truck registered 2025-5-20
