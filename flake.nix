@@ -22,6 +22,6 @@
     ./nix/templates
     ./repo-utils
     ./telegram
-    ./recurrung-payments.nix
+    ./recurring-payments.nix
   ];
 }
