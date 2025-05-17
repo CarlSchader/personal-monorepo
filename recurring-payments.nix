@@ -1,6 +1,6 @@
 { self, ... }:
 {
-  lib.recurring-payments-systemd-unints = [
+  lib.recurring-payments-systemd-units = [
     self.lib.make-echo-remind-service { tag = "test reminder"; message = "testing 123"; calendar-rules = ["*-*-* *:*:30"]; }
     self.lib.make-echo-remind-service { tag = "auto-loan-payment"; message = "Auto loan payment today. $773"; calendar-rules = ["*-*-1 00:00:00"]; }
     self.lib.make-echo-remind-service { tag = "student-loans-payment"; message = "Student loans payment today. $590"; calendar-rules = ["*-*-4 00:00:00"]; }
