@@ -14,11 +14,11 @@
 -- expenses:rent $1667.00
 -- assets:personal:checking
 
-- (*-6-1) usaa auto insurance 
+- (*-6-1 00:00:00) usaa auto insurance 
 -- expenses:auto:usaa:auto-insurance $1331.20
 -- assets:personal:checking
 
-- (*-12-1) usaa auto insurance 
+- (*-12-1 00:00:00) usaa auto insurance 
 -- expenses:auto:usaa:auto-insurance $1331.20
 -- assets:personal:checking
 

@@ -58,7 +58,7 @@
         home-manager.users.connor = import ../modules/home.nix;
         home-manager.users.saronic = import ../modules/home.nix;
       }
-    ];
+    ] ++ self.lib.recurring-payments-systemd-units;
   };
 
   nixosConfigurations.lambda-carl = nixpkgs.lib.nixosSystem {
