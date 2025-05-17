@@ -13,6 +13,7 @@ CHAT_IDS_FILE = "/var/lib/personal-monorepo/chat-ids.txt"
 
 async def execute_async():
     parser = argparse.ArgumentParser(description='Send a message to a Telegram chat.')
+    parser.add_argument("message", type=str, nargs="+")
     parser.add_argument('-b', '--bot-token', type=str, required=False, help=f'bot token. If not specified BOT_TOKEN environment variable is used, if environment variable not set then {FALLBACK_TOKEN_FILE_PATH} is read')
     args = parser.parse_args()
 
@@ -27,7 +28,7 @@ async def execute_async():
         # finally check for an etc file
         with open(FALLBACK_TOKEN_FILE_PATH, "r") as f:
             bot_token = f.read().strip()
-            print("using file at ")
+            print(f"using file at {FALLBACK_TOKEN_FILE_PATH}")
 
     # check if file exists and if not create it and all parent directories
     if not os.path.exists(CHAT_IDS_FILE):
@@ -39,8 +40,8 @@ async def execute_async():
     with open(CHAT_IDS_FILE, 'r') as f:
         chat_ids = [int(line.strip()) for line in f.readlines() if len(line.strip()) > 0]
 
-    # yank message from stdin
-    message = sys.stdin.read()
+    
+    message = ' '.join(args.message)
     bot = telegram.Bot(bot_token)
 
     for chat_id in chat_ids:
