@@ -4,7 +4,8 @@
   # tag: A simple tagged added to the end of the service name to make it uniqure.
   # - this is required because each service needs a unique name.
   # message: The actual message that is sent
-  { tag, message, calendar-rules ? [], bot-token ? "" }: { pkgs, ... }:
+  { tag, message, calendar-rules ? [], bot-token ? "" }: 
+  { pkgs, ... }:
   {
     config = {
       systemd.timers."telegram-echo-remind-${tag}" = {
