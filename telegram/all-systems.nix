@@ -29,6 +29,11 @@
       type = "app";
       program = "${packages.telegram}/bin/remind";
     };
+
+    apps.echo-remind = {
+      type = "app";
+      program = "${packages.telegram}/bin/echo-remind";
+    };
     
     apps.register-webhook = {
       type = "app";

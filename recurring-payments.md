@@ -33,3 +33,4 @@
 - (*-*-15 00:00:00) internet
 -- expenses:utilities:internet:gfiber $30.30
 -- assets:personal:checking
+
