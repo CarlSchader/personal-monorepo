@@ -7,3 +7,4 @@
 - setup ocr parsing of receipt images 2025-5-25
 - finish chapter 1 of matter and interactions 2025-5-13
 - finish chapter 1 of probability models 2025-5-14
+- figure out how to speed up auto suggestions in neovim 2025-5-22

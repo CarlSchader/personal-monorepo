@@ -33,17 +33,7 @@
           NIXPKGS_ALLOW_UNFREE = "1";
 
           shellHook = ''
-            echo "activating shell"
-
-            echo "LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
-
-            python -m venv ./.venv
-            source ./.venv/bin/activate
-
-            # Python with packages
-            touch ./requirements.txt
-
-            echo Done!
+            echo "ml shell activated"
           '';
         };
       }
