@@ -9,8 +9,8 @@
 - gorilla glue
 - shoe holder
 - drying rack
-- mattress
-- couch
 - coffee machine
 - plants
 - art
+- coffee table
+- pillows
