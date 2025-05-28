@@ -60,6 +60,7 @@ in {
     age
     pwgen
     watch
+    zed-editor
 
     # databases
     postgresql
