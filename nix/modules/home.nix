@@ -78,6 +78,7 @@ in {
 
     ## compilers and runtimes
     nodejs
+    bun
     gcc
     cargo
     python310
