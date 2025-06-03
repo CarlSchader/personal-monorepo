@@ -61,6 +61,7 @@ in {
     pwgen
     watch
     zed-editor
+    claude-code
 
     # databases
     postgresql
