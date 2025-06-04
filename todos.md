@@ -11,3 +11,4 @@
 - get bitcoin wallet 2025-6-3
 - sign up for motorcycle riding lessons and license 2025-6-10
 - schedule appointment to get deviated septum fixed 2025-6-15
+- call doctors office about not being able to login to portal 2025-6-5
