@@ -43,6 +43,7 @@ in {
 
     ## dev tools
     git
+    gnumake
     tmux
     neovim
     wezterm
