@@ -82,6 +82,7 @@ in {
     nodejs
     bun
     gcc
+    rustc
     cargo
     python310
     lua
@@ -143,7 +144,7 @@ in {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    initExtra = initExtraAllShells + ''
+    initContent = initExtraAllShells + ''
       autoload -U colors && colors
       PS1="%{$fg[green]%}%n%{$reset_color%}@%{$fg[green]%}%m %{$fg[yellow]%}%~ %{$reset_color%}%% "
     '';
