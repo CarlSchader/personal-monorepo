@@ -63,7 +63,6 @@ in {
     watch
     zed-editor
     claude-code
-    opkssh
 
     # databases
     postgresql
