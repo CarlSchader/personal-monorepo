@@ -44,6 +44,7 @@ in {
     ## dev tools
     git
     gnumake
+    cmake
     tmux
     neovim
     wezterm
