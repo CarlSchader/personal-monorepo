@@ -65,6 +65,9 @@ in {
     zed-editor
     claude-code
 
+    # libraries
+    boost
+
     # databases
     postgresql
     mysql-shell

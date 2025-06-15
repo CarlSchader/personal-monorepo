@@ -7,8 +7,8 @@
 - setup ocr parsing of receipt images 2025-5-25
 - finish chapter 1 of matter and interactions 2025-5-13
 - finish chapter 1 of probability models 2025-5-14
-- figure out how to speed up auto suggestions in neovim 2025-5-22
 - get bitcoin wallet 2025-6-3
 - sign up for motorcycle riding lessons and license 2025-6-10
 - schedule appointment to get deviated septum fixed 2025-6-15
 - call doctors office about not being able to login to portal 2025-6-5
+- stop putting money into a 401k
