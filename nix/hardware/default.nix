@@ -20,8 +20,10 @@
   };
 
   # work laptop
-  darwinConfigurations."Carls-MacBook-Pro" = nix-darwin.lib.darwinSystem {
+  darwinConfigurations."Carls-MacBook-Pro" = nix-darwin.lib.darwinSystem
+    {
     modules = [
+      { nixpkgs = { overlays = [ self.overlays.aarch64-darwin.bitcoin-carl ]; }; }
       ../modules/darwin.nix
       home-manager.darwinModules.home-manager {
         home-manager.useGlobalPkgs = true;
