@@ -16,7 +16,6 @@
     };
     bitcoin-carl = {
       url = "github:CarlSchader/bitcoin-with-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
