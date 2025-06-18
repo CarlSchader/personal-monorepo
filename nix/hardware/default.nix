@@ -10,6 +10,7 @@
 {
   darwinConfigurations."Carls-MacBook-Pro-2" = nix-darwin.lib.darwinSystem {
     modules = [ 
+      { nixpkgs = { overlays = [ self.overlays.aarch64-darwin.bitcoin-carl ]; }; }
       ../modules/darwin.nix
       home-manager.darwinModules.home-manager {
         home-manager.useGlobalPkgs = true;
@@ -67,6 +68,7 @@
   nixosConfigurations.lambda-carl = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     modules = [
+      { nixpkgs = { overlays = [ self.overlays.x86_64-linux.bitcoin-carl ]; }; }
       ./lambda/configuration.nix
       ./lambda/hardware-configuration.nix
       home-manager.nixosModules.home-manager {

@@ -8,11 +8,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1750024300,
-        "narHash": "sha256-xBBQeGFAuAIxSWkkSXqjBBx4WiQFSDASnvBu5owfyB4=",
+        "lastModified": 1750035911,
+        "narHash": "sha256-MoVQ6icizQ/CgSwthW/Qbs5J4nSNEP/CKZ3IDMdsB4Q=",
         "owner": "CarlSchader",
         "repo": "bitcoin-with-flake",
-        "rev": "bf7db93ccaca58a9b302dc02b579b2ee2543590d",
+        "rev": "c9f8da6d4b6bb7f013c0f2f498a727ac0a5547dd",
         "type": "github"
       },
       "original": {
