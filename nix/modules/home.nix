@@ -62,6 +62,8 @@ in {
     age
     pwgen
     watch
+
+    # ai tools
     zed-editor
     claude-code
     
@@ -97,6 +99,7 @@ in {
     go
     docker_26
     jdk23
+    lean4
 
     ## lsps
     nixd
