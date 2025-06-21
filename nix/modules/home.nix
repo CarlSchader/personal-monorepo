@@ -94,7 +94,7 @@ in {
     gcc
     rustc
     cargo
-    python310
+    python312
     lua
     go
     docker_26
@@ -108,6 +108,7 @@ in {
     python312Packages.python-lsp-server
     typescript-language-server
     lua-language-server
+    sourcekit-lsp
 
     # linters
     ruff
