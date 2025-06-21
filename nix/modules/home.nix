@@ -62,6 +62,7 @@ in {
     age
     pwgen
     watch
+    binutils # linker, assembler, etc.
 
     # ai tools
     zed-editor
