@@ -92,7 +92,6 @@ in {
     ## compilers and runtimes
     nodejs
     bun
-    gcc
     rustc
     cargo
     python312
