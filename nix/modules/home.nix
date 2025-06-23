@@ -97,7 +97,7 @@ in {
     python312
     lua
     go
-    docker_26
+    docker_28
     jdk23
     lean4
 
