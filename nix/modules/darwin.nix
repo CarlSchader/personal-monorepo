@@ -31,8 +31,11 @@ in
     [ pkgs.vim ];
 
     environment.etc.motd.text = motd;
-    environment.interactiveShellInit = "cat /etc/motd";
-    environment.loginShellInit = "cat /etc/motd";
+    environment.shellInit = ''
+        cat /etc/motd
+        eval $(ssh-add -s)
+        ssh-add # add private keys
+    '';
 
     # Necessary for using flakes on this system.
     nix.settings.experimental-features = "nix-command flakes";

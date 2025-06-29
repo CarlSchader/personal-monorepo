@@ -3,9 +3,6 @@
 {config, pkgs, ...}: 
 let
   initExtraAllShells = ''
-    eval $(ssh-agent -s)
-    ssh-add ~/.ssh/id_ed25519
-
     export EDITOR="nvim"
     export ANTHROPIC_API_KEY=$(cat ~/.secrets/anthropic-api-key)
     export OPENAI_API_KEY=$(cat ~/.secrets/openai-api-key)
