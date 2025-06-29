@@ -14,7 +14,7 @@ let
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEfes+9mHAnHSb0GjyP305zzFtS2P12e3Ha/Vur+62He carlschader@Carls-MacBook-Pro.local" # personal
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB62ru41HgxMZwQ5z3BxiUmfsx4ict6BgfqTUmRqaALw carlschader@Carls-MacBook-Pro.local" # personal
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILnEa9ffHtw4evQmVDKaoVDMLGan0k4Olrs1h+jPvhpc carlschader@Carls-MacBook-Pro.local" # work 
-    "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAINd9//pPEy5d3mhGpSUnYgqqSqkhYqiXyWVumS0yqImsAAAABHNzaDo= personal key" # yubikey personal
+    "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIN/sQiWl/z33QQMN70MenMKDj3enVgpEVoFVus+PaHWNAAAABHNzaDo= yubikey-carl" # yubikey personal
   ];
   connors-keys = [ 
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE8N1WCZEQv43tuIvndSbtSPa3uYxFUfGh6LN0BFbnyt connorjones@MacBookPro" # connor

@@ -40,6 +40,7 @@ in {
     ## user applications
     brave
     ledger # cli tool for accounting
+    yubikey-manager
 
     ## dev tools
     git
