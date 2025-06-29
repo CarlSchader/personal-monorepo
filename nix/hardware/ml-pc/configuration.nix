@@ -11,9 +11,6 @@ let
     code-cursor
   ];
   carls-keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEfes+9mHAnHSb0GjyP305zzFtS2P12e3Ha/Vur+62He carlschader@Carls-MacBook-Pro.local" # personal
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB62ru41HgxMZwQ5z3BxiUmfsx4ict6BgfqTUmRqaALw carlschader@Carls-MacBook-Pro.local" # personal
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILnEa9ffHtw4evQmVDKaoVDMLGan0k4Olrs1h+jPvhpc carlschader@Carls-MacBook-Pro.local" # work 
     "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIN/sQiWl/z33QQMN70MenMKDj3enVgpEVoFVus+PaHWNAAAABHNzaDo= yubikey-carl" # yubikey personal
   ];
   connors-keys = [ 
