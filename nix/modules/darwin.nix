@@ -23,6 +23,12 @@ let
  
 
     '';
+  
+  shellInit  = ''
+    cat /etc/motd
+    eval $(ssh-agent -s)
+    ssh-add # add private keys
+  '';
 in 
 {
     # List packages installed in system profile. To search by name, run:
@@ -31,11 +37,8 @@ in
     [ pkgs.vim ];
 
     environment.etc.motd.text = motd;
-    environment.shellInit = ''
-        cat /etc/motd
-        eval $(ssh-add -s)
-        ssh-add # add private keys
-    '';
+    environment.loginShellInit = shellInit;
+    environment.interactiveShellInit = shellInit;
 
     # Necessary for using flakes on this system.
     nix.settings.experimental-features = "nix-command flakes";
