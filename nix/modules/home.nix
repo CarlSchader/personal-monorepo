@@ -63,6 +63,7 @@ in {
     pwgen
     watch
     binutils # linker, assembler, etc.
+    openssh
 
     # ai tools
     zed-editor
@@ -73,6 +74,7 @@ in {
 
     # libraries
     boost
+    libfido2 # FIDO2 library for hardware security keys
 
     # databases
     postgresql
