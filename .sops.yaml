@@ -1,4 +1,6 @@
 creation_rules:
+  - pgp: >- 
+        B1CE8C9F3D3F9B8D899BDF4D7FC8E4076D49A57D
   - age: >- 
         ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILnEa9ffHtw4evQmVDKaoVDMLGan0k4Olrs1h+jPvhpc carlschader@Carls-MacBook-Pro.local,
         ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB62ru41HgxMZwQ5z3BxiUmfsx4ict6BgfqTUmRqaALw carlschader@Carls-MacBook-Pro.local

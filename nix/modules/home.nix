@@ -56,11 +56,14 @@ in {
     nmap
     pnpm
     gnumake
-    sops
-    age
     pwgen
     watch
     binutils # linker, assembler, etc.
+
+    # encryption
+    sops
+    age
+    gnupg
     openssh
 
     # ai tools
