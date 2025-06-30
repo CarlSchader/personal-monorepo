@@ -203,6 +203,7 @@ in
     enable = true;
     ports = [ 22 ];
     settings.X11Forwarding = true;
+    passwordAuthentication = false; # force use SSH keys instead
   };
 
   # Open ports in the firewall.
