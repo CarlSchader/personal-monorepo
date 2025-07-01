@@ -1,4 +1,7 @@
 { config, pkgs, ... }:
+let
+  keys = import ../keys.nix;
+in 
 {
   # Git server
   users.users.git = {
@@ -7,7 +10,7 @@
     home = "/var/lib/git-server";
     createHome = true;
     shell = "${pkgs.git}/bin/git-shell";
-    openssh.authorizedKeys.keys = carls-keys;
+    openssh.authorizedKeys.keys = keys.carl;
   };
 
   users.groups.git = {};

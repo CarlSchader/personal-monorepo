@@ -4,6 +4,7 @@
   self,
   nixpkgs, 
   nix-darwin, 
+  disko,
   home-manager, 
   ...
 }:
@@ -44,6 +45,7 @@
       ./ml-pc/configuration.nix
       ./ml-pc/hardware-configuration.nix
       ./ml-pc/disko-config.nix
+      disko.nixosModules.disko
       # ../modules/nginx-reverse-proxy.nix {
       #   config.nginxHost = "carlschader.com";
       #   config.nginxHostPath = "/telegram";
