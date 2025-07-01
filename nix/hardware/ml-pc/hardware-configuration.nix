@@ -18,19 +18,6 @@
         options v4l2loopback nr_devices=8 video_nr=4,5,6,7,8,9,10,11 card_label=v4l2lo0,v4l2lo1,v4l2lo2,v4l2lo3,v4l2lo4,v4l2lo5,v4l2lo6,v4l2lo7
       '';
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/2c3dce8f-628e-4e4a-b4ab-be62597b6083";
-      fsType = "ext4";
-    };
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/94B7-CD5E";
-      fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
-    };
-
-  swapDevices = [ ];
-
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
