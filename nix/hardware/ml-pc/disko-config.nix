@@ -3,13 +3,14 @@
     disk = {
       main = {
         type = "disk";
-        device = "/dev/nvme0n1"; # everything matches template except this guy
+        device = "/dev/disk/by-id/some-disk-id"; # overridden on install from cli 
         content = {
           type = "gpt";
           partitions = {
             boot = {
               size = "1M";
               type = "EF02"; # for grub MBR
+              priority = 1;
             };
             ESP = {
               size = "1G";
