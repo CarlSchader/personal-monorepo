@@ -2,19 +2,14 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running 'nixos-help').
 
-{ config, pkgs, system, ... }:
+{ config, pkgs, ... }:
 let
+  keys = import ../../keys.nix;
   defaultShell = pkgs.bash;
   defaultUserPackages = with pkgs; [
     gcc
     git
     code-cursor
-  ];
-  carls-keys = [
-    "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIN/sQiWl/z33QQMN70MenMKDj3enVgpEVoFVus+PaHWNAAAABHNzaDo= yubikey-carl" # yubikey personal
-  ];
-  connors-keys = [ 
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE8N1WCZEQv43tuIvndSbtSPa3uYxFUfGh6LN0BFbnyt connorjones@MacBookPro" # connor
   ];
 
   motd-string = ''
@@ -149,7 +144,7 @@ in
     extraGroups = [ "networkmanager" "wheel" ];
     packages = defaultUserPackages;
     shell = defaultShell;
-    openssh.authorizedKeys.keys = carls-keys; 
+    openssh.authorizedKeys.keys = keys.carl; 
   };
 
   users.users.connor = {
@@ -158,7 +153,7 @@ in
     extraGroups = [ ];
     packages = defaultUserPackages;
     shell = defaultShell;
-    openssh.authorizedKeys.keys = connors-keys ++ carls-keys; 
+    openssh.authorizedKeys.keys = keys.connor ++ keys.carl; 
   };
 
   # Define a user account. Don't forget to set a password with 'passwd'.
@@ -168,7 +163,7 @@ in
     extraGroups = [ "networkmanager" "wheel" ];
     packages = defaultUserPackages;
     shell = defaultShell;
-    openssh.authorizedKeys.keys = carls-keys; 
+    openssh.authorizedKeys.keys = keys.carl ++ keys.saronic; 
   };
 
   # allows third party dynamically linked libs 
@@ -204,29 +199,7 @@ in
     ports = [ 22 ];
     settings.X11Forwarding = true;
     passwordAuthentication = false; # force use SSH keys instead
-
-    # git server stuff
-    extraConfig = ''
-      Match user git
-        AllowTcpForwarding no
-        AllowAgentForwarding no
-        PasswordAuthentication no
-        PermitTTY no
-        X11Forwarding no
-    '';
   };
-
-  # Git server
-  users.users.git = {
-    isSystemUser = true;
-    group = "git";
-    home = "/var/lib/git-server";
-    createHome = true;
-    shell = "${pkgs.git}/bin/git-shell";
-    openssh.authorizedKeys.keys = carls-keys;
-  };
-
-  users.groups.git = {};
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ 22 ];
@@ -278,6 +251,5 @@ in
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.11"; # Did you read the comment?
-
+  system.stateVersion = "25.05";
 }

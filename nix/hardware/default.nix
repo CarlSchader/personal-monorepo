@@ -43,6 +43,7 @@
       { nixpkgs = { overlays = [ self.overlays.x86_64-linux.bitcoin-carl ]; }; }
       ./ml-pc/configuration.nix
       ./ml-pc/hardware-configuration.nix
+      ./ml-pc/disko-config.nix
       # ../modules/nginx-reverse-proxy.nix {
       #   config.nginxHost = "carlschader.com";
       #   config.nginxHostPath = "/telegram";
