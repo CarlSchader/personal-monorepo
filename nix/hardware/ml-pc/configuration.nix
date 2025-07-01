@@ -204,7 +204,29 @@ in
     ports = [ 22 ];
     settings.X11Forwarding = true;
     passwordAuthentication = false; # force use SSH keys instead
+
+    # git server stuff
+    extraConfig = ''
+      Match user git
+        AllowTcpForwarding no
+        AllowAgentForwarding no
+        PasswordAuthentication no
+        PermitTTY no
+        X11Forwarding no
+    '';
   };
+
+  # Git server
+  users.users.git = {
+    isSystemUser = true;
+    group = "git";
+    home = "/var/lib/git-server";
+    createHome = true;
+    shell = "${pkgs.git}/bin/git-shell";
+    openssh.authorizedKeys.keys = carls-keys;
+  };
+
+  users.groups.git = {};
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ 22 ];
