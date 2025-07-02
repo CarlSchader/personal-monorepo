@@ -44,8 +44,12 @@
       { nixpkgs = { overlays = [ self.overlays.x86_64-linux.bitcoin-carl ]; }; }
       ./ml-pc/configuration.nix
       ./ml-pc/hardware-configuration.nix
-      ./ml-pc/disko-config.nix
-      disko.nixosModules.disko
+
+      disko.nixosModules.disko 
+      ./ml-pc/disko-config.nix {
+        disko.devices.disk.main.device = "/dev/disk/by-id/some-disk-id"; # overridden on install from cli
+      }
+
       # ../modules/nginx-reverse-proxy.nix {
       #   config.nginxHost = "carlschader.com";
       #   config.nginxHostPath = "/telegram";

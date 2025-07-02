@@ -2,8 +2,7 @@
   disko.devices = {
     disk = {
       main = {
-        type = "disk";
-        device = "/dev/disk/by-id/some-disk-id"; # overridden on install from cli 
+        type = "disk"; 
         content = {
           type = "gpt";
           partitions = {
