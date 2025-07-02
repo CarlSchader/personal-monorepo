@@ -47,7 +47,7 @@
 
       disko.nixosModules.disko 
       ./ml-pc/disko-config.nix {
-        disko.devices.disk.main.device = "/dev/disk/by-id/some-disk-id"; # overridden on install from cli
+        disko.devices.disk.main.device = "/dev/nvme0n1"; # overridden on install from cli
       }
 
       # ../modules/nginx-reverse-proxy.nix {
