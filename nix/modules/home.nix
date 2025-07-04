@@ -59,6 +59,7 @@ in {
     pwgen
     watch
     binutils # linker, assembler, etc.
+    nix-index
 
     # encryption
     sops
