@@ -45,6 +45,7 @@
       ./ml-pc/configuration.nix
       ./ml-pc/hardware-configuration.nix
       ../modules/git-server.nix
+      ../modules/git-shared-server.nix
 
       disko.nixosModules.disko 
       ./ml-pc/disko-config.nix {
@@ -75,19 +76,5 @@
       }
     ]; 
     # ++ self.lib.recurring-payments-systemd-units;
-  };
-
-  nixosConfigurations.lambda-carl = nixpkgs.lib.nixosSystem {
-    system = "x86_64-linux";
-    modules = [
-      { nixpkgs = { overlays = [ self.overlays.x86_64-linux.bitcoin-carl ]; }; }
-      ./lambda/configuration.nix
-      ./lambda/hardware-configuration.nix
-      home-manager.nixosModules.home-manager {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.users.saronic = import ../modules/home.nix;
-      }
-    ];
   };
 }
