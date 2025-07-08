@@ -60,6 +60,7 @@ in {
     watch
     binutils # linker, assembler, etc.
     nix-index
+    lsof
 
     # encryption
     sops
@@ -95,6 +96,7 @@ in {
 
     ## compilers and runtimes
     nodejs
+    deno
     bun
     rustc
     cargo
