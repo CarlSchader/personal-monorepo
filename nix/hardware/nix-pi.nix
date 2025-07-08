@@ -6,10 +6,24 @@ let
   SSIDpassword = "RedGreenBlue@1";
   interface = "wlan0";
   hostname = "nix-pi";
+  motd-string = ''
+
+                     _                                  _ 
+                    | |                                (_)
+ _ __ __ _ ___ _ __ | |__   ___ _ __ _ __ _   _   _ __  _ 
+| '__/ _` / __| '_ \| '_ \ / _ \ '__| '__| | | | | '_ \| |
+| | | (_| \__ \ |_) | |_) |  __/ |  | |  | |_| | | |_) | |
+|_|  \__,_|___/ .__/|_.__/ \___|_|  |_|   \__, | | .__/|_|
+              | |                          __/ | | |      
+              |_|                         |___/  |_|      
+'';
 in {
   nix.settings.experimental-features = "nix-command flakes";
 
   nixpkgs.config.allowUnfree = true;
+
+  environment.etc.motd.text = motd-string;
+  environment.interactiveShellInit = "cat /etc/motd";
 
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
