@@ -8,6 +8,9 @@ let
   hostname = "nix-pi";
 in {
   nix.settings.experimental-features = "nix-command flakes";
+
+  nixpkgs.config.allowUnfree = true;
+
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
     initrd.availableKernelModules = [ "xhci_pci" "usbhid" "usb_storage" ];
