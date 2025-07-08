@@ -11,7 +11,7 @@
 {
   darwinConfigurations."Carls-MacBook-Pro-2" = nix-darwin.lib.darwinSystem {
     modules = [ 
-      { nixpkgs = { overlays = [ self.overlays.aarch64-darwin.bitcoin-carl ]; }; }
+      # { nixpkgs = { overlays = [ self.overlays.aarch64-darwin.bitcoin-carl ]; }; }
       ../modules/darwin.nix
       home-manager.darwinModules.home-manager {
         home-manager.useGlobalPkgs = true;
@@ -26,7 +26,7 @@
     {
     modules = [
       { nixpkgs = { overlays = [ 
-          self.overlays.aarch64-darwin.bitcoin-carl 
+          # self.overlays.aarch64-darwin.bitcoin-carl 
           self.overlays.aarch64-darwin.darwin-packages 
       ]; }; }
       ../modules/darwin.nix
@@ -41,7 +41,7 @@
   nixosConfigurations.ml-pc = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     modules = [
-      { nixpkgs = { overlays = [ self.overlays.x86_64-linux.bitcoin-carl ]; }; }
+      # { nixpkgs = { overlays = [ self.overlays.x86_64-linux.bitcoin-carl ]; }; }
       ./ml-pc/configuration.nix
       ./ml-pc/hardware-configuration.nix
       ../modules/git-server.nix
@@ -81,7 +81,6 @@
   nixosConfigurations.nix-pi = nixpkgs.lib.nixosSystem {
     system = "aarch64-linux";
     modules = [
-      { nixpkgs = { overlays = [ self.overlays.aarch64-linux.bitcoin-carl ]; }; }
       ./nix-pi.nix
       home-manager.nixosModules.home-manager {
         home-manager.useGlobalPkgs = true;

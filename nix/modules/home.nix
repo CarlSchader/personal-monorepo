@@ -72,9 +72,6 @@ in {
     # ai tools
     zed-editor
     claude-code
-    
-    # bitcoin tools
-    bitcoin-carl
 
     # libraries
     boost
