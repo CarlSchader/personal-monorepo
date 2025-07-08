@@ -77,4 +77,17 @@
     ]; 
     # ++ self.lib.recurring-payments-systemd-units;
   };
+
+  nixosConfigurations.raspberry-pi = nixpkgs.lib.nixosSystem {
+    system = "aarch64-linux";
+    modules = [
+      { nixpkgs = { overlays = [ self.overlays.aarch64-linux.bitcoin-carl ]; }; }
+      ./raspberry-pi.nix
+      home-manager.nixosModules.home-manager {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.users.carl = import ../modules/home.nix;
+      }
+    ];
+  };
 }
