@@ -6,6 +6,7 @@ let
   SSIDpassword = "RedGreenBlue@1";
   interface = "wlan0";
   hostname = "nix-pi";
+  keys = ../keys.nix;
   motd-string = ''
 
                      _                                  _ 
@@ -61,6 +62,8 @@ in {
       isNormalUser = true;
       password = password;
       extraGroups = [ "wheel" ];
+      packages = with pkgs; [ vim neovim git curl ];
+      openssh.authorizedKeys.keys = keys.carl; 
     };
   };
 
