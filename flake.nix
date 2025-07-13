@@ -18,10 +18,10 @@
       url = "github:nix-community/pyproject.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    bitcoin-carl = {
-      url = "github:CarlSchader/bitcoin-with-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # bitcoin-carl = {
+    #   url = "github:CarlSchader/bitcoin-with-flake";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs = { flake-utils, ... }@inputs:
