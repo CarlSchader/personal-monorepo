@@ -2,20 +2,17 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running 'nixos-help').
 
-{ config, pkgs, system, ... }:
+{ config, pkgs, ... }:
 let
   defaultShell = pkgs.bash;
 
   defaultUserPackages = with pkgs; [
     gcc
     git
-    code-cursor
+    vim
   ];
 
-  saronic-key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILnEa9ffHtw4evQmVDKaoVDMLGan0k4Olrs1h+jPvhpc carlschader@Carls-MacBook-Pro.local";
-
-  # carls-keys = [ personal-pub-ssh-key saronic-pub-ssh-key ];
-  saronic-user-keys = [ saronic-key ];
+  keys = import ../../keys.nix;
 
   motd-string = ''
     ___          _ _      _               _        _      
@@ -55,7 +52,7 @@ in
       mandatoryFeatures = [ ];
     }
     {
-      hostName = "mondo";
+      hostName = "mondo2";
       system = "x86_64-linux";
       sshUser = "saronic";
       # protocol = "ssh";
@@ -114,33 +111,6 @@ in
 
   environment.etc.motd.text = motd-string;
   environment.interactiveShellInit = "cat /etc/motd";
-  
-  # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    layout = "us";
-
-    desktopManager = {
-      xterm.enable = false;
-      # xfce = {
-      #   enable = true;
-      #   noDesktop = true;
-      #   enableXfwm = false;
-      # };
-    };
-
-    displayManager.defaultSession = "none+i3";
-
-    windowManager.i3 = {
-      enable = true;
-      extraPackages = with pkgs; [
-        dmenu i3status i3lock
-      ];
-    };
-
-    videoDrivers = ["nvidia"]; # was causing black screen
-  };
-
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -171,17 +141,7 @@ in
     extraGroups = [ "networkmanager" "wheel" ];
     packages = defaultUserPackages;
     shell = defaultShell;
-    openssh.authorizedKeys.keys = saronic-user-keys; 
-  };
-
-  # Define a user account. Don't forget to set a password with 'passwd'.
-  users.users.catid = {
-    isNormalUser = true;
-    description = "Chris";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = defaultUserPackages;
-    shell = defaultShell;
-    openssh.authorizedKeys.keys = [ chris-pub-ssh-key ]; 
+    openssh.authorizedKeys.keys = keys.saronic; 
   };
 
   # allows third party dynamically linked libs 

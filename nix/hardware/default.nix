@@ -78,6 +78,20 @@
     # ++ self.lib.recurring-payments-systemd-units;
   };
 
+  nixosConfigurations.lambda-carl = nixpkgs.lib.nixosSystem {
+    system = "x86_64-linux";
+    modules = [
+      ./lambda/configuration.nix
+      ./lambda/hardware-configuration.nix
+      
+      home-manager.nixosModules.home-manager {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.users.saronic = import ../modules/home.nix;
+      }
+    ]; 
+  };
+
   nixosConfigurations.nix-pi = nixpkgs.lib.nixosSystem {
     system = "aarch64-linux";
     modules = [
