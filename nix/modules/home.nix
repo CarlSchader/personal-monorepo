@@ -32,7 +32,7 @@ let
 
     pwgen-secure = "pwgen -1cns 16";
 
-    r2 = "aws --endpoint-url https://$(cat ~/.secrets/r2-account-id).r2.cloudflarestorage.com --region wnam s3";
+    r2 = "aws --profile=r2 --endpoint-url https://$(cat ~/.secrets/r2-account-id).r2.cloudflarestorage.com --region wnam s3";
   };
 in {  
   home.packages = with pkgs; [ 
