@@ -34,7 +34,7 @@ let
 
     r2 = "aws --profile=r2 --endpoint-url https://$(cat ~/.secrets/r2-account-id).r2.cloudflarestorage.com --region wnam s3";
   };
-in {  
+in {
   home.packages = with pkgs; [ 
     ## user applications
     brave
@@ -63,6 +63,7 @@ in {
     binutils # linker, assembler, etc.
     nix-index
     lsof
+    refresh-auth-sock
 
     # encryption
     sops

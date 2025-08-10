@@ -1,2 +1,0 @@
-- gradient based hyper parameter search
--- Basically use gradient descent with respect to hyper params instead of random grid search
