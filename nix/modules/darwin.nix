@@ -27,7 +27,7 @@ let
   shellInit  = ''
     cat /etc/motd
     eval $(ssh-agent -s)
-    ssh-add # add private keys
+    # ssh-add # add private keys
   '';
 in 
 {
