@@ -142,11 +142,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1754799826,
-        "narHash": "sha256-2tep88jqlLjtyLhrq8SZf7lBxpYQrhAIAnoP0aBZbhI=",
+        "lastModified": 1754845425,
+        "narHash": "sha256-JC4IceAI9UtHMq0GRoc/3ZxVCZ/ukvZ8XaG47TfVBtc=",
         "owner": "carlschader",
         "repo": "refresh-auth-sock",
-        "rev": "0a11ffdf6eb8e373c4958116a87609b456064f4d",
+        "rev": "7200d23ed354a527780e249c93a364f794637025",
         "type": "github"
       },
       "original": {
