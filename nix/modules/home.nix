@@ -74,6 +74,7 @@ in {
     # ai tools
     zed-editor
     claude-code
+    codex
 
     # libraries
     boost
