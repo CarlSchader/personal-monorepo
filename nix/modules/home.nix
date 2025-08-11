@@ -7,10 +7,10 @@ let
     export ANTHROPIC_API_KEY=$(cat ~/.secrets/anthropic-api-key)
     export OPENAI_API_KEY=$(cat ~/.secrets/openai-api-key)
   '';
-  initExtraZsh = ''
+  initExtraZsh = initExtraAllShells + ''
     eval "$(direnv hook zsh)"
   '';
-  initExtraBash = ''
+  initExtraBash = initExtraAllShells + ''
     eval "$(direnv hook bash)"
   '';
   shellAliases = {
@@ -170,18 +170,18 @@ in {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    initContent = initExtraAllShells + ''
+    initContent = initExtraZsh + ''
       autoload -U colors && colors
       PS1="%{$fg[green]%}%n%{$reset_color%}@%{$fg[green]%}%m %{$fg[yellow]%}%~ %{$reset_color%}%% "
     '';
-    shellAliases = shellAliases + initExtraZsh;
+    shellAliases = shellAliases;
   };
 
   programs.bash = {
     enable = true;
     enableCompletion = true;
     shellAliases = shellAliases;
-    initExtra = initExtraAllShells + initExtraBash;
+    initExtra = initExtraBash;
   };
 
   nix.registry.configs = {
