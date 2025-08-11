@@ -174,14 +174,14 @@ in {
       autoload -U colors && colors
       PS1="%{$fg[green]%}%n%{$reset_color%}@%{$fg[green]%}%m %{$fg[yellow]%}%~ %{$reset_color%}%% "
     '';
-    shellAliases = shellAliases;
+    shellAliases = shellAliases + initExtraZsh;
   };
 
   programs.bash = {
     enable = true;
     enableCompletion = true;
     shellAliases = shellAliases;
-    initExtra = initExtraAllShells;
+    initExtra = initExtraAllShells + initExtraBash;
   };
 
   nix.registry.configs = {
