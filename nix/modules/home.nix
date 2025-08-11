@@ -7,6 +7,12 @@ let
     export ANTHROPIC_API_KEY=$(cat ~/.secrets/anthropic-api-key)
     export OPENAI_API_KEY=$(cat ~/.secrets/openai-api-key)
   '';
+  initExtraZsh = ''
+    eval "$(direnv hook zsh)"
+  '';
+  initExtraBash = ''
+    eval "$(direnv hook bash)"
+  '';
   shellAliases = {
     n = "nvim";
     t = "tmux";
@@ -64,6 +70,7 @@ in {
     nix-index
     lsof
     refresh-auth-sock
+    direnv
 
     # encryption
     sops
