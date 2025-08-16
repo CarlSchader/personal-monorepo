@@ -71,6 +71,7 @@ in {
     lsof
     refresh-auth-sock
     direnv
+    ncdu
 
     # encryption
     sops
