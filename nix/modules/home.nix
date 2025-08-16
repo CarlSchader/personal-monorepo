@@ -7,6 +7,12 @@ let
     export ANTHROPIC_API_KEY=$(cat ~/.secrets/anthropic-api-key)
     export OPENAI_API_KEY=$(cat ~/.secrets/openai-api-key)
   '';
+  initExtraZsh = initExtraAllShells + ''
+    eval "$(direnv hook zsh)"
+  '';
+  initExtraBash = initExtraAllShells + ''
+    eval "$(direnv hook bash)"
+  '';
   shellAliases = {
     n = "nvim";
     t = "tmux";
@@ -32,10 +38,9 @@ let
 
     pwgen-secure = "pwgen -1cns 16";
 
-    # cloudflare r2. ~/.aws/config should have a profile named "r2" with the correct credentials.
     r2 = "aws --profile=r2 --endpoint-url https://$(cat ~/.secrets/r2-account-id).r2.cloudflarestorage.com --region wnam s3";
   };
-in {  
+in {
   home.packages = with pkgs; [ 
     ## user applications
     brave
@@ -64,6 +69,8 @@ in {
     binutils # linker, assembler, etc.
     nix-index
     lsof
+    refresh-auth-sock
+    direnv
 
     # encryption
     sops
@@ -74,6 +81,7 @@ in {
     # ai tools
     zed-editor
     claude-code
+    codex
 
     # libraries
     boost
@@ -162,7 +170,7 @@ in {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    initContent = initExtraAllShells + ''
+    initContent = initExtraZsh + ''
       autoload -U colors && colors
       PS1="%{$fg[green]%}%n%{$reset_color%}@%{$fg[green]%}%m %{$fg[yellow]%}%~ %{$reset_color%}%% "
     '';
@@ -173,7 +181,7 @@ in {
     enable = true;
     enableCompletion = true;
     shellAliases = shellAliases;
-    initExtra = initExtraAllShells;
+    initExtra = initExtraBash;
   };
 
   nix.registry.configs = {

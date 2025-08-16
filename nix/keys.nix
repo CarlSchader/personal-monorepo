@@ -16,7 +16,9 @@ rec {
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAvZz4gz+5WGHH7zDI5hW740UKbXEQWNB6IakhyMECCI"
   ];
 
-  saronic = [];
+  saronic = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILnEa9ffHtw4evQmVDKaoVDMLGan0k4Olrs1h+jPvhpc carlschader@Carls-MacBook-Pro.local"
+  ];
 
   shared = carl ++ connor ++ jav;
 }
