@@ -62,5 +62,6 @@ in
     users.users.carlschader = {
         name = "carlschader";
         home = "/Users/carlschader";
+        packages = with pkgs; [ obsidian ];
     };
 }
