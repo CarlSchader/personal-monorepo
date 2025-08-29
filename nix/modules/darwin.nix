@@ -63,5 +63,6 @@ in
         name = "carlschader";
         home = "/Users/carlschader";
         packages = with pkgs; [ obsidian ];
+        shell = pkgs.nushell;
     };
 }

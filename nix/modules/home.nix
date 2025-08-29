@@ -7,12 +7,23 @@ let
     export ANTHROPIC_API_KEY=$(cat ~/.secrets/anthropic-api-key)
     export OPENAI_API_KEY=$(cat ~/.secrets/openai-api-key)
   '';
+
   initExtraZsh = initExtraAllShells + ''
     eval "$(direnv hook zsh)"
+    # nu # activate nushell
   '';
+
   initExtraBash = initExtraAllShells + ''
     eval "$(direnv hook bash)"
+    # nu # activate nushell
   '';
+
+  initExtraNuShell = ''
+    $env.EDITOR = "nvim"
+    $env.ANTHROPIC_API_KEY = (cat ~/.secrets/anthropic-api-key)
+    $env.OPENAI_API_KEY = (cat ~/.secrets/openai-api-key)
+  '';
+
   shellAliases = {
     n = "nvim";
     t = "tmux";
@@ -39,6 +50,34 @@ let
     pwgen-secure = "pwgen -1cns 16";
 
     r2 = "aws --profile=r2 --endpoint-url https://$(cat ~/.secrets/r2-account-id).r2.cloudflarestorage.com --region wnam s3";
+  };
+
+  nuShellAliases = {
+    n = "nvim";
+    t = "tmux";
+    ll = "ls -lhG";
+    ls = "ls -G";
+    l = "ls -G";
+    g = "grep";
+    k = "kubectl";
+
+    # git aliases
+    gfa = "git fetch --all";
+    ga = "git add .";
+    gca = "git add . and git commit -am";
+    gpo = "git push origin";
+    # gpob = "git push origin $(git branch | grep \\* | awk '{ print $2 }')";
+    gp = "git pull";
+    gs = "git switch";
+    # gclean = "git branch -D $(git branch | grep -v \\* | grep -v main | grep -v master)";
+
+    tarz = "tar --zstd";
+    venv = "source .venv/bin/activate";
+    necho = "echo -n";
+
+    pwgen-secure = "pwgen -1cns 16";
+
+    # r2 = "aws --profile=r2 --endpoint-url https://$(cat ~/.secrets/r2-account-id).r2.cloudflarestorage.com --region wnam s3";
   };
 in {
   home.packages = with pkgs; [ 
@@ -183,6 +222,12 @@ in {
     enableCompletion = true;
     shellAliases = shellAliases;
     initExtra = initExtraBash;
+  };
+
+  programs.nushell = {
+    enable = false;
+    shellAliases = nuShellAliases;
+    extraConfig = initExtraNuShell;
   };
 
   nix.registry.configs = {
