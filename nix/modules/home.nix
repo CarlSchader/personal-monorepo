@@ -111,6 +111,7 @@ in {
     refresh-auth-sock
     direnv
     ncdu
+    gdb
 
     # encryption
     sops
