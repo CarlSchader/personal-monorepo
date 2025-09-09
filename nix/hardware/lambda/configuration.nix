@@ -112,6 +112,31 @@ in
   environment.etc.motd.text = motd-string;
   environment.interactiveShellInit = "cat /etc/motd";
 
+  services.xserver = {
+    enable = true;
+    layout = "us";
+
+    desktopManager = {
+      xterm.enable = false;
+      # xfce = {
+      #   enable = true;
+      #   noDesktop = true;
+      #   enableXfwm = false;
+      # };
+    };
+
+    displayManager.defaultSession = "none+i3";
+
+    windowManager.i3 = {
+      enable = true;
+      extraPackages = with pkgs; [
+        dmenu i3status i3lock
+      ];
+    };
+
+    videoDrivers = ["nvidia"]; # was causing black screen
+  };
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -213,6 +238,6 @@ in
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Did you read the comment?
 
 }
