@@ -164,6 +164,7 @@ in {
     typescript-language-server
     lua-language-server
     sourcekit-lsp
+    ccls
 
     # linters
     ruff
