@@ -57,7 +57,16 @@ in
       sshUser = "saronic";
       # protocol = "ssh";
       maxJobs = 16;
-      supportedFeatures = [ "big-parallel" "kvm" "nvidia-L4" ];
+      supportedFeatures = [ "big-parallel" "kvm" ];
+      mandatoryFeatures = [ ];
+    }
+    {
+      hostName = "turbo5";
+      system = "x86_64-linux";
+      sshUser = "saronic";
+      # protocol = "ssh";
+      maxJobs = 1;
+      supportedFeatures = [ "nvidia-L4" ];
       mandatoryFeatures = [ ];
     }
   ];
