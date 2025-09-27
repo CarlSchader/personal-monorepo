@@ -121,7 +121,6 @@ in {
     openssh
 
     # ai tools
-    zed-editor
     claude-code
     codex
 
