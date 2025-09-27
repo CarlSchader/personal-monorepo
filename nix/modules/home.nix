@@ -112,6 +112,7 @@ in {
     direnv
     ncdu
     gdb
+    jwt-cli
 
     # encryption
     sops
