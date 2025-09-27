@@ -153,6 +153,7 @@ in {
     lua
     go
     docker_28
+    docker-compose
     jdk23
     lean4
 
