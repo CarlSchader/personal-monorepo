@@ -22,6 +22,10 @@
       url = "github:carlschader/refresh-auth-sock";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    log-server = {
+      url = "github:carlschader/log-server";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # bitcoin-carl = {
     #   url = "github:CarlSchader/bitcoin-with-flake";
     #   inputs.nixpkgs.follows = "nixpkgs";
