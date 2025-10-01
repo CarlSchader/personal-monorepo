@@ -10,6 +10,7 @@ let
     gcc
     git
     vim
+    xclip
   ];
 
   keys = import ../../keys.nix;
