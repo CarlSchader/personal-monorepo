@@ -127,21 +127,12 @@ in
     layout = "us";
 
     desktopManager = {
-      xterm.enable = false;
+      xterm.enable = true;
       # xfce = {
       #   enable = true;
       #   noDesktop = true;
       #   enableXfwm = false;
       # };
-    };
-
-    displayManager.defaultSession = "none+i3";
-
-    windowManager.i3 = {
-      enable = true;
-      extraPackages = with pkgs; [
-        dmenu i3status i3lock
-      ];
     };
 
     videoDrivers = ["nvidia"]; # was causing black screen
@@ -238,7 +229,7 @@ in
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.latest;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
   # end nvidia
 
