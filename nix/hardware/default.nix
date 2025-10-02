@@ -62,12 +62,13 @@
         config.nginxAcmeEmail = "carlschader@proton.me";
       }
 
+      # log-server module
       log-server.nixosModules.default {
         config.services.log-server = {
           enable = true;
           port = 6000;
           host = "0.0.0.0";
-          jwt-secret = "TEST";
+          jwt-secret = "/etc/log-server/jwt-secret";
         };
       }
 

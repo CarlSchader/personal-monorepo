@@ -9,7 +9,7 @@ let
   defaultUserPackages = with pkgs; [
     gcc
     git
-    code-cursor
+    vim
   ];
 
   motd-string = ''
@@ -94,21 +94,12 @@ in
     layout = "us";
 
     desktopManager = {
-      xterm.enable = false;
+      xterm.enable = true;
       # xfce = {
       #   enable = true;
       #   noDesktop = true;
       #   enableXfwm = false;
       # };
-    };
-
-    displayManager.defaultSession = "none+i3";
-
-    windowManager.i3 = {
-      enable = true;
-      extraPackages = with pkgs; [
-        dmenu i3status i3lock
-      ];
     };
 
     videoDrivers = ["nvidia"]; # was causing black screen
