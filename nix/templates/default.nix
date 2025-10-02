@@ -3,6 +3,10 @@
 { ... }:
 {
   templates = {
+    uv = {
+      path = ./uv;
+      description = "uv flake";
+    };
     venv = {
       path = ./python;
       description = "Python virutal environment project template";
