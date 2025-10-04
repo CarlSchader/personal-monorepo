@@ -16,6 +16,6 @@ while IFS= read -r line; do
   KEY=$(echo "$line" | cut -d: -f1 | xargs) # get the part before the colon and trim whitespace
   VALUE=$(echo "$line" | cut -d: -f2- | xargs) # get the part after the colon and trim whitespace
   if [[ -n "$KEY" && -n "$VALUE" ]]; then
-    echo "export \"${KEY}=${VALUE}\""
+    echo "export ${KEY}=\"${VALUE}\""
   fi
 done <<< "$LINES"
