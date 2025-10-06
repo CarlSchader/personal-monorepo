@@ -64,4 +64,12 @@ in
         home = "/Users/carlschader";
         packages = with pkgs; [ obsidian ];
     };
+
+    # User configuration
+    users.users.saronic = {
+        name = "saronic";
+        home = "/Users/saronic";
+        packages = with pkgs; [ obsidian ];
+        shell = pkgs.nushell;
+    };
 }

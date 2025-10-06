@@ -18,7 +18,6 @@
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users.carlschader = import ../modules/home.nix;
-        home-manager.users.saronic = import ../modules/home.nix;
       }
     ];
   };
@@ -31,11 +30,12 @@
           self.overlays.aarch64-darwin.refresh-auth-sock 
           self.overlays.aarch64-darwin.darwin-packages 
       ]; }; }
-      ../modules/darwin.nix
+      ../modules/darwin-saronic.nix
       home-manager.darwinModules.home-manager {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users.carlschader = import ../modules/home.nix;
+        home-manager.users.saronic = import ../modules/home.nix;
       }
     ];
   };
