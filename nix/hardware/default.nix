@@ -18,6 +18,7 @@
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users.carlschader = import ../modules/home.nix;
+        home-manager.users.saronic = import ../modules/home.nix;
       }
     ];
   };
