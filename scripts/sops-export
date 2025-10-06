@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+SECRETS_FILE="secrets.yaml"
+
+# check if argument is provided
+if [[ -n "$1" ]]; then
+  SECRETS_FILE="$1"
+fi
+
+LINES=$(sops -d "$SECRETS_FILE")
+
+# each line looks like KEY: VALUE
+# we want to export KEY="VALUE"
+
+while IFS= read -r line; do
+  KEY=$(echo "$line" | cut -d: -f1 | xargs) # get the part before the colon and trim whitespace
+  VALUE=$(echo "$line" | cut -d: -f2- | xargs) # get the part after the colon and trim whitespace
+  if [[ -n "$KEY" && -n "$VALUE" ]]; then
+    echo "export ${KEY}=\"${VALUE}\""
+  fi
+done <<< "$LINES"

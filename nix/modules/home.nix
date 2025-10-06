@@ -6,6 +6,7 @@ let
     export EDITOR="nvim"
     export ANTHROPIC_API_KEY=$(cat ~/.secrets/anthropic-api-key)
     export OPENAI_API_KEY=$(cat ~/.secrets/openai-api-key)
+    export GPG_TTY=$(tty)
   '';
 
   initExtraZsh = initExtraAllShells + ''
@@ -49,7 +50,7 @@ let
 
     pwgen-secure = "pwgen -1cns 16";
 
-    r2 = "aws --profile=r2 --endpoint-url https://$(cat ~/.secrets/r2-account-id).r2.cloudflarestorage.com --region wnam s3";
+    # r2 = "aws --profile=r2 --endpoint-url https://$(cat ~/.secrets/r2-account-id).r2.cloudflarestorage.com --region wnam s3";
   };
 
   nuShellAliases = {
@@ -113,6 +114,7 @@ in {
     ncdu
     gdb
     jwt-cli
+    xclip
 
     # encryption
     sops

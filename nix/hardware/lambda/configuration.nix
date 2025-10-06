@@ -126,15 +126,6 @@ in
     enable = true;
     layout = "us";
 
-    desktopManager = {
-      xterm.enable = true;
-      # xfce = {
-      #   enable = true;
-      #   noDesktop = true;
-      #   enableXfwm = false;
-      # };
-    };
-
     videoDrivers = ["nvidia"]; # was causing black screen
   };
 

@@ -37,6 +37,7 @@
     ./nix/hardware
     ./nix/templates
     ./nix/overlays.nix
+    ./nix/packages.nix
     ./repo-utils
     ./telegram
   ];
