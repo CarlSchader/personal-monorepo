@@ -43,6 +43,7 @@ in
     # Necessary for using flakes on this system.
     nix.settings.experimental-features = "nix-command flakes";
     
+    programs.bash.enable = true;
 
     # Enable alternative shell support in nix-darwin.
     # programs.fish.enable = true;
@@ -70,6 +71,6 @@ in
         name = "saronic";
         home = "/Users/saronic";
         packages = with pkgs; [ obsidian ];
-        shell = pkgs.nushell;
+        shell = pkgs.bash;
     };
 }

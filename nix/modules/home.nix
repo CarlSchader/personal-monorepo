@@ -16,6 +16,7 @@ let
 
   initExtraBash = initExtraAllShells + ''
     eval "$(direnv hook bash)"
+    export PS1="\[\033[m\]|\[\033[1;35m\]\t\[\033[m\]|\[\e[1m\]\u\[\e[1;36m\]\[\033[m\]@\[\e[1;36m\]\h\[\033[m\]:\[\e[0m\]\[\e[1;32m\][\W]> \[\e[0m\]"
     # nu # activate nushell
   '';
 
@@ -186,6 +187,8 @@ in {
     extraConfig = ''
       local config = wezterm.config_builder()
 
+      config.default_prog = {"${pkgs.bash}/bin/bash", "-l"}
+
       local dark_color_scheme = 'deep'
       local light_color_scheme = 'dayfox'
 
@@ -213,9 +216,17 @@ in {
   };
 
   programs.zsh = {
-    enable = true;
-    enableCompletion = true;
+    enable = false;
+    enableCompletion = false;
+
+    sessionVariables = {
+      ZSH_DISABLE_COMPFIX = "true"; # disable compfix warning
+    };
+
     initContent = initExtraZsh + ''
+      export ZSH_DISABLE_COMPFIX=true
+      autoload -Uz compinit
+      # compinit
       autoload -U colors && colors
       PS1="%{$fg[green]%}%n%{$reset_color%}@%{$fg[green]%}%m %{$fg[yellow]%}%~ %{$reset_color%}%% "
     '';
