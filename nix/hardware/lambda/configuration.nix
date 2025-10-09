@@ -70,6 +70,15 @@ in
       supportedFeatures = [ "nvidia-L4" ];
       mandatoryFeatures = [ ];
     }
+    {
+      hostName = "scalar";
+      system = "x86_64-linux";
+      sshUser = "saronic";
+      # protocol = "ssh";
+      maxJobs = 10;
+      supportedFeatures = [ "nixos-test,benchmark,big-parallel,kvm,nvidia-ada-RTX6000" ];
+      mandatoryFeatures = [ "nvidia-ada-RTX6000" ];
+    }
   ];
   nix.distributedBuilds = true;
   nix.extraOptions = "builders-use-substitutes = true";

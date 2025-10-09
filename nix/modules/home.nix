@@ -187,8 +187,6 @@ in {
     extraConfig = ''
       local config = wezterm.config_builder()
 
-      config.default_prog = {"${pkgs.bash}/bin/bash", "-l"}
-
       local dark_color_scheme = 'deep'
       local light_color_scheme = 'dayfox'
 
@@ -216,17 +214,12 @@ in {
   };
 
   programs.zsh = {
-    enable = false;
+    enable = true;
     enableCompletion = false;
 
-    sessionVariables = {
-      ZSH_DISABLE_COMPFIX = "true"; # disable compfix warning
-    };
-
     initContent = initExtraZsh + ''
-      export ZSH_DISABLE_COMPFIX=true
       autoload -Uz compinit
-      # compinit
+      compinit -u
       autoload -U colors && colors
       PS1="%{$fg[green]%}%n%{$reset_color%}@%{$fg[green]%}%m %{$fg[yellow]%}%~ %{$reset_color%}%% "
     '';
