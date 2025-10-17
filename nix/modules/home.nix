@@ -16,7 +16,6 @@ let
 
   initExtraBash = initExtraAllShells + ''
     eval "$(direnv hook bash)"
-    export PS1="\[\033[m\]|\[\033[1;35m\]\t\[\033[m\]|\[\e[1m\]\u\[\e[1;36m\]\[\033[m\]@\[\e[1;36m\]\h\[\033[m\]:\[\e[0m\]\[\e[1;32m\][\W]> \[\e[0m\]"
     # nu # activate nushell
   '';
 
@@ -29,9 +28,9 @@ let
   shellAliases = {
     n = "nvim";
     t = "tmux";
-    ll = "ls -lhG";
-    ls = "ls -G";
-    l = "ls -G";
+    ll = "ls --color=auto -lhG";
+    ls = "ls --color=auto -G";
+    l = "ls --color=auto -G";
     g = "grep";
     k = "kubectl";
 
