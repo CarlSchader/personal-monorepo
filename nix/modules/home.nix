@@ -150,8 +150,10 @@ in {
     nodejs
     deno
     bun
-    rustc
-    cargo
+    # rustc
+    (rust-bin.stable.latest.default.override { extensions = [ "rust-src" ];})
+    # cargo
+    # rustup
     python312
     lua
     go
