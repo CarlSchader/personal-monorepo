@@ -40,6 +40,23 @@
     ];
   };
 
+  # work laptop 2
+  darwinConfigurations."Carls-MacBook-Air" = nix-darwin.lib.darwinSystem
+    {
+    modules = [
+      { nixpkgs = { overlays = [ 
+          self.overlays.aarch64-darwin.refresh-auth-sock 
+          self.overlays.aarch64-darwin.darwin-packages 
+      ]; }; }
+      ../modules/darwin-saronic-air.nix
+      home-manager.darwinModules.home-manager {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.users."carl.schader" = import ../modules/home.nix;
+      }
+    ];
+  };
+
   nixosConfigurations.ml-pc = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     modules = [
