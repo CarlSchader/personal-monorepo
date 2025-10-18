@@ -7,12 +7,18 @@
   disko,
   home-manager, 
   log-server,
+  rust-overlay,
   ...
 }:
-{
+let 
+  shared-overlays = system: [
+    self.overlays.${system}.refresh-auth-sock
+    rust-overlay.overlays.default
+  ];
+in {
   darwinConfigurations."Carls-MacBook-Pro-2" = nix-darwin.lib.darwinSystem {
     modules = [ 
-      { nixpkgs = { overlays = [ self.overlays.aarch64-darwin.refresh-auth-sock ]; }; }
+      { nixpkgs = { overlays = [ self.overlays.aarch64-darwin.darwin-packages ] ++ ( shared-overlays "aarch64-darwin" ); }; }
       ../modules/darwin.nix
       home-manager.darwinModules.home-manager {
         home-manager.useGlobalPkgs = true;
@@ -42,10 +48,7 @@
   darwinConfigurations."Carls-MacBook-Pro" = nix-darwin.lib.darwinSystem
     {
     modules = [
-      { nixpkgs = { overlays = [ 
-          self.overlays.aarch64-darwin.refresh-auth-sock 
-          self.overlays.aarch64-darwin.darwin-packages 
-      ]; }; }
+      { nixpkgs = { overlays = [ self.overlays.aarch64-darwin.darwin-packages ] ++ ( shared-overlays "aarch64-darwin" ); }; }
       ../modules/darwin-saronic.nix
       home-manager.darwinModules.home-manager {
         home-manager.useGlobalPkgs = true;
@@ -60,10 +63,7 @@
   darwinConfigurations."Carls-MacBook-Air" = nix-darwin.lib.darwinSystem
     {
     modules = [
-      { nixpkgs = { overlays = [ 
-          self.overlays.aarch64-darwin.refresh-auth-sock 
-          self.overlays.aarch64-darwin.darwin-packages 
-      ]; }; }
+      { nixpkgs = { overlays = [ self.overlays.aarch64-darwin.darwin-packages ] ++ ( shared-overlays "aarch64-darwin" ); }; }
       ../modules/darwin-saronic-air.nix
       home-manager.darwinModules.home-manager {
         home-manager.useGlobalPkgs = true;
@@ -76,7 +76,7 @@
   nixosConfigurations.ml-pc = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     modules = [
-      { nixpkgs = { overlays = [ self.overlays.x86_64-linux.refresh-auth-sock ]; }; }
+      { nixpkgs = { overlays = ( shared-overlays "x86_64-linux" ); }; }
       ./ml-pc/configuration.nix
       ./ml-pc/hardware-configuration.nix
       ../modules/git-server.nix
@@ -129,7 +129,7 @@
   nixosConfigurations.lambda-carl = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     modules = [
-      { nixpkgs = { overlays = [ self.overlays.x86_64-linux.refresh-auth-sock ]; }; }
+      { nixpkgs = { overlays = ( shared-overlays "x86_64-linux" ); }; }
       ./lambda/configuration.nix
       ./lambda/hardware-configuration.nix
       

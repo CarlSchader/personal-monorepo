@@ -76,7 +76,7 @@ in
       sshUser = "saronic";
       # protocol = "ssh";
       maxJobs = 16;
-      supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" "nvidia-ada-RTX6000" ];
+      supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
       mandatoryFeatures = [ "nvidia-ada-RTX6000" ];
     }
   ];
