@@ -28,13 +28,10 @@ in {
     ];
   };
 
-  darwinConfigurations."Carls-MacBook-Air-2" = nix-darwin.lib.darwinSystem
+  darwinConfigurations."carls-air-2" = nix-darwin.lib.darwinSystem
     {
     modules = [
-      { nixpkgs = { overlays = [ 
-          self.overlays.aarch64-darwin.refresh-auth-sock 
-          self.overlays.aarch64-darwin.darwin-packages 
-      ]; }; }
+      { nixpkgs = { overlays = [ self.overlays.aarch64-darwin.darwin-packages ] ++ ( shared-overlays "aarch64-darwin" ); }; }
       ../modules/darwin-air.nix
       home-manager.darwinModules.home-manager {
         home-manager.useGlobalPkgs = true;
