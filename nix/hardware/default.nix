@@ -28,7 +28,7 @@ in {
     ];
   };
 
-  darwinConfigurations."carls-air-2" = nix-darwin.lib.darwinSystem
+  darwinConfigurations."Carls-MacBook-Air-2" = nix-darwin.lib.darwinSystem
     {
     modules = [
       { nixpkgs = { overlays = [ self.overlays.aarch64-darwin.darwin-packages ] ++ ( shared-overlays "aarch64-darwin" ); }; }
