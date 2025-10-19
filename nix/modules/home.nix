@@ -2,16 +2,50 @@
 
 {config, pkgs, ...}: 
 let
+  sshAgentScript = ''
+    # Path to store agent environment
+    SSH_AGENT_ENV="$HOME/.ssh/agent.env"
+
+    # Function to start a new agent
+    start_agent() {
+      echo "Starting new ssh-agent..."
+      ssh-agent -s | grep -v '^echo' > "$SSH_AGENT_ENV"
+      chmod 600 "$SSH_AGENT_ENV"
+      # shellcheck disable=SC1090
+      source "$SSH_AGENT_ENV" >/dev/null
+      echo "Started new ssh-agent ($SSH_AGENT_PID)"
+    }
+
+
+    # If Apple’s launchd SSH_AUTH_SOCK is set, ignore it
+    if [[ "$SSH_AUTH_SOCK" == /private/tmp/com.apple.launchd.* ]]; then
+      unset SSH_AUTH_SOCK
+    fi
+
+    # Reuse existing agent if possible, otherwise start a new one
+    if [ -f "$SSH_AGENT_ENV" ]; then
+      # shellcheck disable=SC1090
+      source "$SSH_AGENT_ENV" >/dev/null
+      if ! ps -p $SSH_AGENT_PID >/dev/null 2>&1; then
+        start_agent
+      fi
+    else
+      start_agent
+    fi
+
+    export SSH_AUTH_SOCK
+    export SSH_AGENT_PID
+  '';
+
   initExtraAllShells = ''
     export EDITOR="nvim"
     export ANTHROPIC_API_KEY=$(cat ~/.secrets/anthropic-api-key)
     export OPENAI_API_KEY=$(cat ~/.secrets/openai-api-key)
     export GPG_TTY=$(tty)
     export SOPS_EDITOR="vim"
-    ssh-add
   '';
 
-  initExtraZsh = initExtraAllShells + ''
+  initExtraZsh = initExtraAllShells + sshAgentScript + ''
     eval "$(direnv hook zsh)"
     # nu # activate nushell
   '';
