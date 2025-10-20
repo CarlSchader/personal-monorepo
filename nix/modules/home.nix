@@ -183,7 +183,7 @@ in {
     mcap-cli
 
     ## compilers and runtimes
-    nodejs
+    nodejs_24
     deno
     bun
     # rustc
