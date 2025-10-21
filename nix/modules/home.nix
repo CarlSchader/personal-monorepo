@@ -162,6 +162,7 @@ in {
     # ai tools
     claude-code
     codex
+    opencode
 
     # libraries
     boost
