@@ -170,7 +170,6 @@ in {
 
     # databases
     postgresql
-    mysql-shell
 
     # cloud tools
     flyctl
