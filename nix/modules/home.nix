@@ -191,12 +191,12 @@ in {
     # cargo
     # rustup
     python312
-    lua
+    luajitPackages.luarocks-nix
+    lua51Packages.lua
     go
     docker_28
     docker-compose
     jdk23
-    lean4
 
     ## lsps
     nixd
