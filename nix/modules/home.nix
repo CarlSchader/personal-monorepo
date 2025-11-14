@@ -13,6 +13,7 @@ let
   initExtraZsh = initExtraAllShells + ''
     source <(ssh-agent)
     ssh-add
+    ssh-add ~/.ssh/id_ed25519_sk_rk
     eval "$(direnv hook zsh)"
     # nu # activate nushell
   '';
