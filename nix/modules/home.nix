@@ -8,11 +8,11 @@ let
     export OPENAI_API_KEY=$(cat ~/.secrets/openai-api-key)
     export GPG_TTY=$(tty)
     export SOPS_EDITOR="vim"
-    source <(ssh-agent)
-    ssh-add
   '';
 
   initExtraZsh = initExtraAllShells + ''
+    source <(ssh-agent)
+    ssh-add
     eval "$(direnv hook zsh)"
     # nu # activate nushell
   '';
