@@ -1,6 +1,6 @@
 # nix-darwin configuration
 
-{ pkgs, ... }: 
+{ pkgs, config, ... }: 
 let
   motd = ''
 
@@ -32,7 +32,7 @@ in
     # List packages installed in system profile. To search by name, run:
     # $ nix-env -qaP | grep wget
     environment.systemPackages =
-    [ pkgs.vim ];
+    with pkgs; [ vim ];
 
     environment.etc.motd.text = motd;
     environment.loginShellInit = shellInit;
