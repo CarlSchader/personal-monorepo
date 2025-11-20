@@ -115,7 +115,7 @@ in {
     nix-index
     lsof
     refresh-auth-sock
-    # cococrawl
+    cococrawl
     direnv
     ncdu
     gdb
