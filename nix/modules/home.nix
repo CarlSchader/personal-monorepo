@@ -173,7 +173,7 @@ in {
     python312Packages.python-lsp-server
     typescript-language-server
     lua-language-server
-    sourcekit-lsp
+    # sourcekit-lsp # this fucks up the ml-pc
     ccls
 
     # linters
