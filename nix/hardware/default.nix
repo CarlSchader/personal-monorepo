@@ -14,6 +14,7 @@ let
   shared-overlays = system: [
     self.overlays.${system}.refresh-auth-sock
     rust-overlay.overlays.default
+    self.overlays.${system}.cococrawl
   ];
 in {
   darwinConfigurations."Carls-MacBook-Pro-2" = nix-darwin.lib.darwinSystem {

@@ -115,6 +115,7 @@ in {
     nix-index
     lsof
     refresh-auth-sock
+    # cococrawl
     direnv
     ncdu
     gdb
@@ -164,7 +165,6 @@ in {
     go
     docker_28
     docker-compose
-    jdk23
 
     ## lsps
     nixd

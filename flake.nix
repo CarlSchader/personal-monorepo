@@ -26,6 +26,10 @@
       url = "github:carlschader/refresh-auth-sock";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    cococrawl = {
+      url = "github:carlschader/cococrawl";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     log-server = {
       url = "github:carlschader/log-server";
       inputs.nixpkgs.follows = "nixpkgs";
