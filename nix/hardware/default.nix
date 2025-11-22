@@ -16,10 +16,11 @@ let
     rust-overlay.overlays.default
     self.overlays.${system}.cococrawl
   ];
+  darwin-nixpkgs-config = { allowUnsupportedSystem = true; };
 in {
   darwinConfigurations."Carls-MacBook-Pro-2" = nix-darwin.lib.darwinSystem {
     modules = [ 
-      { nixpkgs = { overlays = [ self.overlays.aarch64-darwin.darwin-packages ] ++ ( shared-overlays "aarch64-darwin" ); }; }
+      { nixpkgs = { config = darwin-nixpkgs-config; overlays = [ self.overlays.aarch64-darwin.darwin-packages ] ++ ( shared-overlays "aarch64-darwin" ); }; }
       ../modules/darwin.nix
       home-manager.darwinModules.home-manager {
         home-manager.useGlobalPkgs = true;
@@ -32,7 +33,7 @@ in {
   darwinConfigurations."Carls-MacBook-Air-2" = nix-darwin.lib.darwinSystem
     {
     modules = [
-      { nixpkgs = { overlays = [ self.overlays.aarch64-darwin.darwin-packages ] ++ ( shared-overlays "aarch64-darwin" ); }; }
+      { nixpkgs = { config = darwin-nixpkgs-config; overlays = [ self.overlays.aarch64-darwin.darwin-packages ] ++ ( shared-overlays "aarch64-darwin" ); }; }
       ../modules/darwin-air.nix
       home-manager.darwinModules.home-manager {
         home-manager.useGlobalPkgs = true;
@@ -46,7 +47,7 @@ in {
   darwinConfigurations."Carls-MacBook-Pro" = nix-darwin.lib.darwinSystem
     {
     modules = [
-      { nixpkgs = { overlays = [ self.overlays.aarch64-darwin.darwin-packages ] ++ ( shared-overlays "aarch64-darwin" ); }; }
+      { nixpkgs = { config = darwin-nixpkgs-config; overlays = [ self.overlays.aarch64-darwin.darwin-packages ] ++ ( shared-overlays "aarch64-darwin" ); }; }
       ../modules/darwin-saronic.nix
       home-manager.darwinModules.home-manager {
         home-manager.useGlobalPkgs = true;
@@ -61,7 +62,7 @@ in {
   darwinConfigurations."Carls-MacBook-Air" = nix-darwin.lib.darwinSystem
     {
     modules = [
-      { nixpkgs = { overlays = [ self.overlays.aarch64-darwin.darwin-packages ] ++ ( shared-overlays "aarch64-darwin" ); }; }
+      { nixpkgs = { config = darwin-nixpkgs-config; overlays = [ self.overlays.aarch64-darwin.darwin-packages ] ++ ( shared-overlays "aarch64-darwin" ); }; }
       ../modules/darwin-saronic-air.nix
       home-manager.darwinModules.home-manager {
         home-manager.useGlobalPkgs = true;
