@@ -27,6 +27,42 @@ let
                    /_/
 
   '';
+
+  # old-nvidia-package = pkgs.callPackage (pkgs.fetchurl {
+  #   url = "https://download.nvidia.com/XFree86/Linux-x86_64/575.64.05/NVIDIA-Linux-x86_64-575.64.05.run";
+  #   sha256 = "sha256-hfK1D5EiYcGRegss9+H5dDr/0Aj9wPIJ9NVWP3dNUC0=";
+  # }) {};
+
+  # Pick an existing driver as a base (e.g. the 'latest' one)
+  baseNvidia = pkgs.linuxPackages.nvidiaPackages.latest;
+
+  # Override only the source and version fields
+  nvidia575_64_05 = baseNvidia.overrideAttrs (old: {
+    version = "575.64.05";
+    src = pkgs.fetchurl {
+      url = "https://download.nvidia.com/XFree86/Linux-x86_64/575.64.05/NVIDIA-Linux-x86_64-575.64.05.run";
+      sha256 = "hfK1D5EiYcGRegss9+H5dDr/0Aj9wPIJ9NVWP3dNUC0=";
+    };
+  });
+
+  # Override only the source and version fields
+  nvidia570_207 = baseNvidia.overrideAttrs (old: {
+    version = "570.207";
+    src = pkgs.fetchurl {
+      url = "https://download.nvidia.com/XFree86/Linux-x86_64/570.207/NVIDIA-Linux-x86_64-570.207.run";
+      sha256 = "sha256-LWvSWZeWYjdItXuPkXBmh/i5uMvh4HeyGmPsLGWJfOI=";
+    };
+  });
+
+  # Override only the source and version fields
+  nvidia580_95_05 = baseNvidia.overrideAttrs (old: {
+    version = "580.95.05";
+    src = pkgs.fetchurl {
+      url = "https://download.nvidia.com/XFree86/Linux-x86_64/580.95.05/NVIDIA-Linux-x86_64-580.95.05.run";
+      sha256 = "sha256-hJ7w746EK5gGss3p8RwTA9VPGpp2lGfk5dlhsv4Rgqc=";
+    };
+  });
+
 in 
 {
   # Bootloader.
@@ -154,6 +190,7 @@ in
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.nvidia.acceptLicense = false;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -228,7 +265,7 @@ in
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = nvidia580_95_05;
   };
   # end nvidia
 
