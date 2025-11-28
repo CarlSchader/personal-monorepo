@@ -121,6 +121,7 @@ in {
     gdb
     jwt-cli
     xclip
+    mdbook
 
     # encryption
     sops
@@ -155,10 +156,7 @@ in {
     nodejs_24
     deno
     bun
-    # rustc
     (rust-bin.stable.latest.default.override { extensions = [ "rust-src" ];})
-    # cargo
-    # rustup
     python312
     luajitPackages.luarocks-nix
     lua51Packages.lua
