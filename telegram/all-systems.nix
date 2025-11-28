@@ -1,20 +1,28 @@
-{ self, nixpkgs, pyproject-nix, flake-utils, ... }:
-  flake-utils.lib.eachDefaultSystem (system:
+{
+  self,
+  nixpkgs,
+  pyproject-nix,
+  flake-utils,
+  ...
+}:
+flake-utils.lib.eachDefaultSystem (
+  system:
   let
-    pkgs = import nixpkgs { inherit system; };   
+    pkgs = import nixpkgs { inherit system; };
     project = pyproject-nix.lib.project.loadPyproject {
       projectRoot = ./.;
     };
 
     python = pkgs.python312;
-  in 
+  in
   rec {
     packages.telegram = python.pkgs.buildPythonPackage (
-      (project.renderers.buildPythonPackage { inherit python; }) // {
-        propagatedBuildInputs = [ 
+      (project.renderers.buildPythonPackage { inherit python; })
+      // {
+        propagatedBuildInputs = [
           pkgs.ledger
           self.packages."${system}".commit-file
-          self.packages."${system}".network-decrypt 
+          self.packages."${system}".network-decrypt
           self.packages."${system}".commit-secret-file
         ];
       }
@@ -34,7 +42,7 @@
       type = "app";
       program = "${packages.telegram}/bin/echo-remind";
     };
-    
+
     apps.register-webhook = {
       type = "app";
       program = "${packages.telegram}/bin/register-webhook";
@@ -46,11 +54,12 @@
     };
 
     devShells.telegram = pkgs.mkShell {
-      buildInputs = [ 
+      buildInputs = [
         python
         self.packages."${system}".commit-file
-        self.packages."${system}".network-decrypt 
+        self.packages."${system}".network-decrypt
         self.packages."${system}".commit-secret-file
       ];
     };
-  })
+  }
+)

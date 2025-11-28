@@ -1,6 +1,6 @@
 # home-manager configuration
 
-{config, pkgs, ...}: 
+{ config, pkgs, ... }:
 let
   initExtraAllShells = ''
     export EDITOR="nvim"
@@ -84,8 +84,9 @@ let
 
     # r2 = "aws --profile=r2 --endpoint-url https://$(cat ~/.secrets/r2-account-id).r2.cloudflarestorage.com --region wnam s3";
   };
-in {
-  home.packages = with pkgs; [ 
+in
+{
+  home.packages = with pkgs; [
     ## user applications
     brave
     ledger # cli tool for accounting
@@ -156,7 +157,7 @@ in {
     nodejs_24
     deno
     bun
-    (rust-bin.stable.latest.default.override { extensions = [ "rust-src" ];})
+    (rust-bin.stable.latest.default.override { extensions = [ "rust-src" ]; })
     python312
     luajitPackages.luarocks-nix
     lua51Packages.lua
@@ -177,8 +178,9 @@ in {
     # linters
     ruff
     prettierd
+    nixfmt
 
-    # packaging and project management 
+    # packaging and project management
     uv
   ];
 

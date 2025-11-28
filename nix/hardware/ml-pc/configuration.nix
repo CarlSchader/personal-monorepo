@@ -14,17 +14,17 @@ let
   ];
 
   motd-string = ''
-  
-     ______           ___      
-    / ____/___ ______/ ( )_____ 
-   / /   / __ `/ ___/ /|// ___/
-  / /___/ /_/ / /  / /  (__  )
-  \____/\__,_/_/__/_/  /____/
-     ____ ___  / /     ____  _____
-    / __ `__ \/ /_____/ __ \/ ___/
-   / / / / / / /_____/ /_/ / /__
-  /_/ /_/ /_/_/     / .___/\___/
-                   /_/
+
+       ______           ___      
+      / ____/___ ______/ ( )_____ 
+     / /   / __ `/ ___/ /|// ___/
+    / /___/ /_/ / /  / /  (__  )
+    \____/\__,_/_/__/_/  /____/
+       ____ ___  / /     ____  _____
+      / __ `__ \/ /_____/ __ \/ ___/
+     / / / / / / /_____/ /_/ / /__
+    /_/ /_/ /_/_/     / .___/\___/
+                     /_/
 
   '';
 
@@ -63,7 +63,7 @@ let
     };
   });
 
-in 
+in
 {
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -76,20 +76,40 @@ in
   systemd.targets.hibernate.enable = false;
   systemd.targets.hybrid-sleep.enable = false;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   networking.hostName = "ml-pc"; # Define your hostname.
 
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 22 80 88 443 ];
-    allowedTCPPortRanges = [ 
-      { from = 8000; to = 9000; }
-      { from = 3000; to = 4000; }
+    allowedTCPPorts = [
+      22
+      80
+      88
+      443
+    ];
+    allowedTCPPortRanges = [
+      {
+        from = 8000;
+        to = 9000;
+      }
+      {
+        from = 3000;
+        to = 4000;
+      }
     ];
     allowedUDPPortRanges = [
-      { from = 8000; to = 9000; }
-      { from = 3000; to = 4000; }
+      {
+        from = 8000;
+        to = 9000;
+      }
+      {
+        from = 3000;
+        to = 4000;
+      }
     ];
   };
 
@@ -130,9 +150,8 @@ in
     enable = true;
     layout = "us";
 
-    videoDrivers = ["nvidia"]; # was causing black screen
+    videoDrivers = [ "nvidia" ]; # was causing black screen
   };
-
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -160,10 +179,13 @@ in
   users.users.carl = {
     isNormalUser = true;
     description = "Carl Schader";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = defaultUserPackages;
     shell = defaultShell;
-    openssh.authorizedKeys.keys = keys.carl; 
+    openssh.authorizedKeys.keys = keys.carl;
   };
 
   users.users.connor = {
@@ -172,20 +194,23 @@ in
     extraGroups = [ ];
     packages = defaultUserPackages;
     shell = defaultShell;
-    openssh.authorizedKeys.keys = keys.connor ++ keys.carl; 
+    openssh.authorizedKeys.keys = keys.connor ++ keys.carl;
   };
 
   # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.saronic = {
     isNormalUser = true;
     description = "carlschader-saronic";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = defaultUserPackages;
     shell = defaultShell;
-    openssh.authorizedKeys.keys = keys.carl ++ keys.saronic; 
+    openssh.authorizedKeys.keys = keys.carl ++ keys.saronic;
   };
 
-  # allows third party dynamically linked libs 
+  # allows third party dynamically linked libs
   programs.nix-ld.enable = true;
 
   # Allow unfree packages
@@ -199,7 +224,7 @@ in
     dmidecode
     linuxPackages.v4l2loopback
     v4l-utils
-    # nodejs_23 
+    # nodejs_23
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -231,7 +256,6 @@ in
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-
   # nvidia stuff
   hardware.graphics = {
     enable = true;
@@ -243,7 +267,7 @@ in
 
     # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
     # Enable this if you have graphical corruption issues or application crashes after waking
-    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
+    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
     # of just the bare essentials.
     powerManagement.enable = false;
 
@@ -253,9 +277,9 @@ in
 
     # Use the NVidia open source kernel module (not to be confused with the
     # independent third-party "nouveau" open source driver).
-    # Support is limited to the Turing and later architectures. Full list of 
-    # supported GPUs is at: 
-    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
+    # Support is limited to the Turing and later architectures. Full list of
+    # supported GPUs is at:
+    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
     # Only available from driver 515.43.04+
     # Currently alpha-quality/buggy, so false is currently the recommended setting.
     open = false;

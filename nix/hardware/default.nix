@@ -1,28 +1,37 @@
 # hardware nix configs sub-flake
 
-{ 
+{
   self,
-  nixpkgs, 
-  nix-darwin, 
+  nixpkgs,
+  nix-darwin,
   disko,
-  home-manager, 
+  home-manager,
   log-server,
   rust-overlay,
   ...
 }:
-let 
+let
   shared-overlays = system: [
     self.overlays.${system}.refresh-auth-sock
     rust-overlay.overlays.default
     self.overlays.${system}.cococrawl
   ];
-  darwin-nixpkgs-config = { allowUnsupportedSystem = true; };
-in {
+  darwin-nixpkgs-config = {
+    allowUnsupportedSystem = true;
+  };
+in
+{
   darwinConfigurations."Carls-MacBook-Pro-2" = nix-darwin.lib.darwinSystem {
-    modules = [ 
-      { nixpkgs = { config = darwin-nixpkgs-config; overlays = [ self.overlays.aarch64-darwin.darwin-packages ] ++ ( shared-overlays "aarch64-darwin" ); }; }
+    modules = [
+      {
+        nixpkgs = {
+          config = darwin-nixpkgs-config;
+          overlays = [ self.overlays.aarch64-darwin.darwin-packages ] ++ (shared-overlays "aarch64-darwin");
+        };
+      }
       ../modules/darwin.nix
-      home-manager.darwinModules.home-manager {
+      home-manager.darwinModules.home-manager
+      {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users.carlschader = import ../modules/home.nix;
@@ -30,12 +39,17 @@ in {
     ];
   };
 
-  darwinConfigurations."Carls-MacBook-Air-2" = nix-darwin.lib.darwinSystem
-    {
+  darwinConfigurations."Carls-MacBook-Air-2" = nix-darwin.lib.darwinSystem {
     modules = [
-      { nixpkgs = { config = darwin-nixpkgs-config; overlays = [ self.overlays.aarch64-darwin.darwin-packages ] ++ ( shared-overlays "aarch64-darwin" ); }; }
+      {
+        nixpkgs = {
+          config = darwin-nixpkgs-config;
+          overlays = [ self.overlays.aarch64-darwin.darwin-packages ] ++ (shared-overlays "aarch64-darwin");
+        };
+      }
       ../modules/darwin-air.nix
-      home-manager.darwinModules.home-manager {
+      home-manager.darwinModules.home-manager
+      {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users."carl" = import ../modules/home.nix;
@@ -44,12 +58,17 @@ in {
   };
 
   # work laptop
-  darwinConfigurations."Carls-MacBook-Pro" = nix-darwin.lib.darwinSystem
-    {
+  darwinConfigurations."Carls-MacBook-Pro" = nix-darwin.lib.darwinSystem {
     modules = [
-      { nixpkgs = { config = darwin-nixpkgs-config; overlays = [ self.overlays.aarch64-darwin.darwin-packages ] ++ ( shared-overlays "aarch64-darwin" ); }; }
+      {
+        nixpkgs = {
+          config = darwin-nixpkgs-config;
+          overlays = [ self.overlays.aarch64-darwin.darwin-packages ] ++ (shared-overlays "aarch64-darwin");
+        };
+      }
       ../modules/darwin-saronic.nix
-      home-manager.darwinModules.home-manager {
+      home-manager.darwinModules.home-manager
+      {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users.carlschader = import ../modules/home.nix;
@@ -59,12 +78,17 @@ in {
   };
 
   # work laptop 2
-  darwinConfigurations."Carls-MacBook-Air" = nix-darwin.lib.darwinSystem
-    {
+  darwinConfigurations."Carls-MacBook-Air" = nix-darwin.lib.darwinSystem {
     modules = [
-      { nixpkgs = { config = darwin-nixpkgs-config; overlays = [ self.overlays.aarch64-darwin.darwin-packages ] ++ ( shared-overlays "aarch64-darwin" ); }; }
+      {
+        nixpkgs = {
+          config = darwin-nixpkgs-config;
+          overlays = [ self.overlays.aarch64-darwin.darwin-packages ] ++ (shared-overlays "aarch64-darwin");
+        };
+      }
       ../modules/darwin-saronic-air.nix
-      home-manager.darwinModules.home-manager {
+      home-manager.darwinModules.home-manager
+      {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users."carl.schader" = import ../modules/home.nix;
@@ -75,20 +99,26 @@ in {
   nixosConfigurations.ml-pc = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     modules = [
-      { nixpkgs = { overlays = ( shared-overlays "x86_64-linux" ); }; }
+      {
+        nixpkgs = {
+          overlays = (shared-overlays "x86_64-linux");
+        };
+      }
       ./ml-pc/configuration.nix
       ./ml-pc/hardware-configuration.nix
       ../modules/git-server.nix
       ../modules/git-shared-server.nix
 
-      disko.nixosModules.disko 
-      ./ml-pc/disko-config.nix {
+      disko.nixosModules.disko
+      ./ml-pc/disko-config.nix
+      {
         disko.devices.disk.main.device = "/dev/nvme0n1"; # overridden on install from cli
       }
 
       # exposes log server at https://carlschader.com/log-server
       # even though log-server is only http
-      ../modules/nginx-reverse-proxy.nix {
+      ../modules/nginx-reverse-proxy.nix
+      {
         config.nginxHost = "carlschader.com";
         config.nginxHostPath = "/log-server";
         config.nginxProxy = "http://0.0.0.0:6000";
@@ -96,7 +126,8 @@ in {
       }
 
       # log-server module
-      log-server.nixosModules.default {
+      log-server.nixosModules.default
+      {
         config.services.log-server = {
           enable = true;
           port = 6000;
@@ -114,37 +145,44 @@ in {
       #     # bot-token = builtins.readFile ../../secrets/telegram-bot/bot-token;
       #   };
       # }
-      home-manager.nixosModules.home-manager {
+      home-manager.nixosModules.home-manager
+      {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users.carl = import ../modules/home.nix;
         home-manager.users.connor = import ../modules/home.nix;
         home-manager.users.saronic = import ../modules/home.nix;
       }
-    ]; 
+    ];
     # ++ self.lib.recurring-payments-systemd-units;
   };
 
   nixosConfigurations.lambda-carl = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     modules = [
-      { nixpkgs = { overlays = ( shared-overlays "x86_64-linux" ); }; }
+      {
+        nixpkgs = {
+          overlays = (shared-overlays "x86_64-linux");
+        };
+      }
       ./lambda/configuration.nix
       ./lambda/hardware-configuration.nix
-      
-      home-manager.nixosModules.home-manager {
+
+      home-manager.nixosModules.home-manager
+      {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users.saronic = import ../modules/home.nix;
       }
-    ]; 
+    ];
   };
 
   nixosConfigurations.nix-pi = nixpkgs.lib.nixosSystem {
     system = "aarch64-linux";
     modules = [
       ./nix-pi.nix
-      home-manager.nixosModules.home-manager {
+      home-manager.nixosModules.home-manager
+      {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users.carl = import ../modules/home.nix;

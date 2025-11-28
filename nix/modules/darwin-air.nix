@@ -1,6 +1,6 @@
 # nix-darwin configuration
 
-{ pkgs, config, ... }: 
+{ pkgs, config, ... }:
 let
   motd = ''
 
@@ -20,48 +20,47 @@ let
      \ \ \_/\ \/\ \L\.\_/\ \__/\ \ \L\ \/\ \L\ \/\ \L\ \ \ \\`\
       \ \_\\ \_\ \__/.\_\ \____\\ \____/\ \____/\ \____/\ \_\ \_\
        \/_/ \/_/\/__/\/_/\/____/ \/___/  \/___/  \/___/  \/_/\/_/
- 
 
-    '';
-  
-  shellInit  = ''
+
+  '';
+
+  shellInit = ''
     cat /etc/motd
   '';
-in 
+in
 {
-    # List packages installed in system profile. To search by name, run:
-    # $ nix-env -qaP | grep wget
-    environment.systemPackages =
-    with pkgs; [ vim ];
+  # List packages installed in system profile. To search by name, run:
+  # $ nix-env -qaP | grep wget
+  environment.systemPackages = with pkgs; [ vim ];
 
-    environment.etc.motd.text = motd;
-    environment.loginShellInit = shellInit;
-    environment.interactiveShellInit = shellInit;
+  environment.etc.motd.text = motd;
+  environment.loginShellInit = shellInit;
+  environment.interactiveShellInit = shellInit;
 
-    # Necessary for using flakes on this system.
-    nix.settings.experimental-features = "nix-command flakes";
-    
-    # determinate nix with nix darwin
-    nix.enable = false;
+  # Necessary for using flakes on this system.
+  nix.settings.experimental-features = "nix-command flakes";
 
-    # Enable alternative shell support in nix-darwin.
-    # programs.fish.enable = true;
+  # determinate nix with nix darwin
+  nix.enable = false;
 
-    # Set Git commit hash for darwin-version.
-    # system.configurationRevision = self.rev or self.dirtyRev or null;
+  # Enable alternative shell support in nix-darwin.
+  # programs.fish.enable = true;
 
-    # Used for backwards compatibility, please read the changelog before changing.
-    # $ darwin-rebuild changelog
-    system.stateVersion = 5;
+  # Set Git commit hash for darwin-version.
+  # system.configurationRevision = self.rev or self.dirtyRev or null;
 
-    # The platform the configuration will be used on.
-    nixpkgs.hostPlatform = "aarch64-darwin";
-    nixpkgs.config.allowUnfree = true;
+  # Used for backwards compatibility, please read the changelog before changing.
+  # $ darwin-rebuild changelog
+  system.stateVersion = 5;
 
-    # User configuration
-    users.users.carl = {
-        name = "carl";
-        home = "/Users/carl";
-        packages = with pkgs; [ ];
-    };
+  # The platform the configuration will be used on.
+  nixpkgs.hostPlatform = "aarch64-darwin";
+  nixpkgs.config.allowUnfree = true;
+
+  # User configuration
+  users.users.carl = {
+    name = "carl";
+    home = "/Users/carl";
+    packages = with pkgs; [ ];
+  };
 }

@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   user = "carl";
   password = "RedGreenBlue@1";
@@ -9,16 +14,17 @@ let
   keys = ../keys.nix;
   motd-string = ''
 
-                     _                                  _ 
-                    | |                                (_)
- _ __ __ _ ___ _ __ | |__   ___ _ __ _ __ _   _   _ __  _ 
-| '__/ _` / __| '_ \| '_ \ / _ \ '__| '__| | | | | '_ \| |
-| | | (_| \__ \ |_) | |_) |  __/ |  | |  | |_| | | |_) | |
-|_|  \__,_|___/ .__/|_.__/ \___|_|  |_|   \__, | | .__/|_|
-              | |                          __/ | | |      
-              |_|                         |___/  |_|      
-'';
-in {
+                         _                                  _ 
+                        | |                                (_)
+     _ __ __ _ ___ _ __ | |__   ___ _ __ _ __ _   _   _ __  _ 
+    | '__/ _` / __| '_ \| '_ \ / _ \ '__| '__| | | | | '_ \| |
+    | | | (_| \__ \ |_) | |_) |  __/ |  | |  | |_| | | |_) | |
+    |_|  \__,_|___/ .__/|_.__/ \___|_|  |_|   \__, | | .__/|_|
+                  | |                          __/ | | |      
+                  |_|                         |___/  |_|      
+  '';
+in
+{
   nix.settings.experimental-features = "nix-command flakes";
 
   nixpkgs.config.allowUnfree = true;
@@ -28,7 +34,11 @@ in {
 
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
-    initrd.availableKernelModules = [ "xhci_pci" "usbhid" "usb_storage" ];
+    initrd.availableKernelModules = [
+      "xhci_pci"
+      "usbhid"
+      "usb_storage"
+    ];
     loader = {
       grub.enable = false;
       generic-extlinux-compatible.enable = true;
@@ -62,8 +72,13 @@ in {
       isNormalUser = true;
       password = password;
       extraGroups = [ "wheel" ];
-      packages = with pkgs; [ vim neovim git curl ];
-      openssh.authorizedKeys.keys = keys.carl; 
+      packages = with pkgs; [
+        vim
+        neovim
+        git
+        curl
+      ];
+      openssh.authorizedKeys.keys = keys.carl;
     };
   };
 

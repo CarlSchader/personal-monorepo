@@ -1,7 +1,7 @@
 { pkgs, ... }:
 let
   keys = import ../keys.nix;
-in 
+in
 {
   # Git server
   users.users.git-shared = {
@@ -13,7 +13,7 @@ in
     openssh.authorizedKeys.keys = keys.shared;
   };
 
-  users.groups.git-shared = {};
+  users.groups.git-shared = { };
 
   services.openssh.extraConfig = ''
     Match user git-shared

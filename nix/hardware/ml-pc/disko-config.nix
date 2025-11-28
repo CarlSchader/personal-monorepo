@@ -2,7 +2,7 @@
   disko.devices = {
     disk = {
       main = {
-        type = "disk"; 
+        type = "disk";
         content = {
           type = "gpt";
           partitions = {

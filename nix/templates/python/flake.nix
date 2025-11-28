@@ -4,11 +4,16 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
-    bitcoin-carl.url = "git@github.com:CarlSchader/bitcoin-with-flake"
   };
 
-  outputs = { self, nixpkgs, flake-utils }:
-    flake-utils.lib.eachDefaultSystem (system:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+    }:
+    flake-utils.lib.eachDefaultSystem (
+      system:
       let
         pkgs = import nixpkgs {
           inherit system;
@@ -25,7 +30,7 @@
 
           shellHook = ''
             echo "activating shell"
-            
+
             python -m venv ./.venv
             source ./.venv/bin/activate
 

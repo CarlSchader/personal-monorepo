@@ -16,13 +16,13 @@ let
   keys = import ../../keys.nix;
 
   motd-string = ''
-    ___          _ _      _               _        _      
-  / __|__ _ _ _| ( )___ | |   __ _ _ __ | |__  __| |__ _ 
- | (__/ _` | '_| |/(_-< | |__/ _` | '  \| '_ \/ _` / _` |
-  \___\__,_|_| |_| /__/ |____\__,_|_|_|_|_.__/\__,_\__,_|
-                                                           
-        '';
-in 
+       ___          _ _      _               _        _      
+     / __|__ _ _ _| ( )___ | |   __ _ _ __ | |__  __| |__ _ 
+    | (__/ _` | '_| |/(_-< | |__/ _` | '  \| '_ \/ _` / _` |
+     \___\__,_|_| |_| /__/ |____\__,_|_|_|_|_.__/\__,_\__,_|
+                                                              
+  '';
+in
 {
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -36,8 +36,15 @@ in
   systemd.targets.hybrid-sleep.enable = false;
 
   nix.settings = {
-      experimental-features = [ "nix-command" "flakes" ];
-      trusted-users = [ "root" "saronic" "@wheel" ];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    trusted-users = [
+      "root"
+      "saronic"
+      "@wheel"
+    ];
   };
 
   # remote builder setup
@@ -46,10 +53,13 @@ in
       hostName = "flyingbrick";
       system = "aarch64-linux";
       sshUser = "saronic";
-      
+
       # protocol = "ssh";
       maxJobs = 16;
-      supportedFeatures = [ "big-parallel" "kvm" ];
+      supportedFeatures = [
+        "big-parallel"
+        "kvm"
+      ];
       mandatoryFeatures = [ ];
     }
     {
@@ -58,7 +68,10 @@ in
       sshUser = "saronic";
       # protocol = "ssh";
       maxJobs = 16;
-      supportedFeatures = [ "big-parallel" "kvm" ];
+      supportedFeatures = [
+        "big-parallel"
+        "kvm"
+      ];
       mandatoryFeatures = [ ];
     }
     {
@@ -76,7 +89,12 @@ in
       sshUser = "saronic";
       # protocol = "ssh";
       maxJobs = 16;
-      supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
+      supportedFeatures = [
+        "nixos-test"
+        "benchmark"
+        "big-parallel"
+        "kvm"
+      ];
       mandatoryFeatures = [ "nvidia-ada-RTX6000" ];
     }
   ];
@@ -92,10 +110,20 @@ in
     trustedInterfaces = [ "tailscale0" ];
     allowedUDPPorts = [ config.services.tailscale.port ];
 
-    allowedTCPPorts = [ 22 80 443 ];
-    allowedTCPPortRanges = [ 
-      { from = 8000; to = 9000; }
-      { from = 3000; to = 4000; }
+    allowedTCPPorts = [
+      22
+      80
+      443
+    ];
+    allowedTCPPortRanges = [
+      {
+        from = 8000;
+        to = 9000;
+      }
+      {
+        from = 3000;
+        to = 4000;
+      }
     ];
   };
 
@@ -135,7 +163,7 @@ in
     enable = true;
     layout = "us";
 
-    videoDrivers = ["nvidia"]; # was causing black screen
+    videoDrivers = [ "nvidia" ]; # was causing black screen
   };
 
   # Enable CUPS to print documents.
@@ -164,13 +192,16 @@ in
   users.users.saronic = {
     isNormalUser = true;
     description = "saronic";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = defaultUserPackages;
     shell = defaultShell;
-    openssh.authorizedKeys.keys = keys.saronic; 
+    openssh.authorizedKeys.keys = keys.saronic;
   };
 
-  # allows third party dynamically linked libs 
+  # allows third party dynamically linked libs
   programs.nix-ld.enable = true;
 
   # Allow unfree packages
@@ -183,7 +214,7 @@ in
     linuxPackages.v4l2loopback
     v4l-utils
     tailscale
-    # nodejs_23 
+    # nodejs_23
   ];
 
   services.openssh = {
@@ -207,7 +238,7 @@ in
 
     # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
     # Enable this if you have graphical corruption issues or application crashes after waking
-    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
+    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
     # of just the bare essentials.
     powerManagement.enable = false;
 
@@ -217,9 +248,9 @@ in
 
     # Use the NVidia open source kernel module (not to be confused with the
     # independent third-party "nouveau" open source driver).
-    # Support is limited to the Turing and later architectures. Full list of 
-    # supported GPUs is at: 
-    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
+    # Support is limited to the Turing and later architectures. Full list of
+    # supported GPUs is at:
+    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
     # Only available from driver 515.43.04+
     # Currently alpha-quality/buggy, so false is currently the recommended setting.
     open = true;

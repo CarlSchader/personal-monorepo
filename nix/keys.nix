@@ -5,8 +5,8 @@ rec {
     "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAID5SFmX6iIuILf/Xljssm1C8QgEv0jUQW2aoEh1h6WRHAAAABHNzaDo= yubikey3"
     "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIHuG0LK/0zJ0aShQ9o83SJX+q/N3Cm+QvIW+XVHDPrPLAAAABHNzaDo= yubikey4"
   ];
-  
-  connor = [ 
+
+  connor = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE8N1WCZEQv43tuIvndSbtSPa3uYxFUfGh6LN0BFbnyt connorjones@MacBookPro" # connor
   ];
 

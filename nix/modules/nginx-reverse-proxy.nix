@@ -1,4 +1,9 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 {
   options.nginxHost = lib.mkOption {
     type = lib.types.str;
@@ -46,7 +51,7 @@
         };
       };
     };
-    
+
     security.acme.certs = {
       "${config.nginxHost}".email = config.nginxAcmeEmail;
     };
