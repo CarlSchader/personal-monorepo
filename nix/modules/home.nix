@@ -162,8 +162,6 @@ in
     luajitPackages.luarocks-nix
     lua51Packages.lua
     go
-    docker_28
-    docker-compose
 
     ## lsps
     nixd
@@ -221,7 +219,7 @@ in
 
   programs.zsh = {
     enable = true;
-    enableCompletion = false;
+    enableCompletion = true;
 
     initContent = initExtraZsh + ''
       autoload -Uz compinit

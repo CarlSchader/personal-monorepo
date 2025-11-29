@@ -20,5 +20,5 @@ rec {
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILnEa9ffHtw4evQmVDKaoVDMLGan0k4Olrs1h+jPvhpc carlschader@Carls-MacBook-Pro.local"
   ];
 
-  shared = carl ++ connor ++ jav;
+  shared = carl ++ connor;
 }
