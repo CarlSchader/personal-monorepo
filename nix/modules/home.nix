@@ -119,6 +119,8 @@ in
     cococrawl
     direnv
     ncdu
+    netcat
+    nload
     gdb
     jwt-cli
     xclip
