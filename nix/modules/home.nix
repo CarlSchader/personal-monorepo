@@ -6,6 +6,7 @@ let
     export EDITOR="nvim"
     export ANTHROPIC_API_KEY=$(cat ~/.secrets/anthropic-api-key)
     export OPENAI_API_KEY=$(cat ~/.secrets/openai-api-key)
+    export GEMINI_API_KEY=$(cat ~/.secrets/gemini-api-key)
     export GPG_TTY=$(tty)
     export SOPS_EDITOR="vim"
   '';
