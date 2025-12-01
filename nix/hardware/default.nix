@@ -115,26 +115,41 @@ in
         disko.devices.disk.main.device = "/dev/nvme0n1"; # overridden on install from cli
       }
 
-      # exposes log server at https://carlschader.com/log-server
-      # even though log-server is only http
-      ../modules/nginx-reverse-proxy.nix
-      {
-        config.nginxHost = "carlschader.com";
-        config.nginxHostPath = "/log-server";
-        config.nginxProxy = "http://0.0.0.0:6000";
-        config.nginxAcmeEmail = "carlschader@proton.me";
-      }
+      # # exposes log server at https://carlschader.com/log-server
+      # # even though log-server is only http
+      # ../modules/nginx-reverse-proxy.nix
+      # {
+      #   config.nginxHost = "carlschader.com";
+      #   config.nginxHostPath = "/log-server";
+      #   config.nginxProxy = "http://0.0.0.0:6000";
+      #   config.nginxAcmeEmail = "carlschader@proton.me";
+      # }
+      #
+      # # log-server module
+      # log-server.nixosModules.default
+      # {
+      #   config.services.log-server = {
+      #     enable = true;
+      #     port = 6000;
+      #     host = "0.0.0.0";
+      #     jwt-secret = "/etc/log-server/jwt-secret";
+      #   };
+      # }
 
-      # log-server module
-      log-server.nixosModules.default
-      {
-        config.services.log-server = {
-          enable = true;
-          port = 6000;
-          host = "0.0.0.0";
-          jwt-secret = "/etc/log-server/jwt-secret";
-        };
-      }
+      # ../modules/nginx-reverse-proxy.nix
+      # {
+      #   config.nginxHost = "carlschader.com";
+      #   config.nginxHostPath = "/cal/";
+      #   config.nginxProxy = "http://0.0.0.0:5232";
+      #   config.nginxAcmeEmail = "carlschader@proton.me";
+      # }
+      # ({ lib, config, pkgs, ...}: {
+      #   services.radicale = {
+      #     enable = true;
+      #     settings.server.hosts = [ "0.0.0.0:5232" ];
+      #     settings.auth.type = "none";
+      #   };
+      # })
 
       # self.nixosModules.telegram-server {
       #   config.services.telegram-server = { ssh-key-path="/home/carl/.ssh/id_ed25519"; };
