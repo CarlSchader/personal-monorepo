@@ -126,6 +126,7 @@ in
     jwt-cli
     xclip
     mdbook
+    gh
 
     # encryption
     sops
@@ -149,9 +150,6 @@ in
     flyctl
     awscli2
     google-cloud-sdk
-
-    # # services
-    # nginx
 
     # saronic
     mcap-cli
