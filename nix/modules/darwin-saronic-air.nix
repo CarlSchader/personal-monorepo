@@ -121,9 +121,6 @@ in
   users.users."carl.schader" = {
     name = "carl.schader";
     home = "/Users/carl.schader";
-    packages = with pkgs; [
-      obsidian
-      tailscale
-    ];
+    packages = [];
   };
 }
