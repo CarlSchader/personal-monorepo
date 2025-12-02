@@ -7,6 +7,7 @@
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-2505.url = "github:NixOS/nixpkgs/nixos-25.05";
     flake-utils = {
       url = "github:numtide/flake-utils";
     };

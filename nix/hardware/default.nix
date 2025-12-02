@@ -6,7 +6,7 @@
   nix-darwin,
   disko,
   home-manager,
-  log-server,
+  # log-server,
   rust-overlay,
   ...
 }:
@@ -83,7 +83,7 @@ in
       {
         nixpkgs = {
           config = darwin-nixpkgs-config;
-          overlays = [ self.overlays.aarch64-darwin.darwin-packages ] ++ (shared-overlays "aarch64-darwin");
+          overlays = [ self.overlays.aarch64-darwin.darwin-packages self.overlays.aarch64-darwin.tailscale ] ++ (shared-overlays "aarch64-darwin");
         };
       }
       ../modules/darwin-saronic-air.nix

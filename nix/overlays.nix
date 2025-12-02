@@ -1,10 +1,15 @@
 {
+  nixpkgs-2505,
   flake-utils,
   refresh-auth-sock,
   cococrawl,
   ...
 }:
-flake-utils.lib.eachDefaultSystem (system: {
+flake-utils.lib.eachDefaultSystem (system:
+let
+  pkgs-2505 = import nixpkgs-2505 { inherit system; };
+in 
+{
   # overlays.bitcoin-carl = final: prev: {
   #   bitcoin-carl = bitcoin-carl.packages.${system}.default;
   # };
@@ -19,5 +24,9 @@ flake-utils.lib.eachDefaultSystem (system: {
 
   overlays.darwin-packages = final: prev: {
     binutils = prev.darwin.binutils;
+  };
+
+  overlays.tailscale = final: prev: {
+    tailscale = pkgs-2505.tailscale;
   };
 })

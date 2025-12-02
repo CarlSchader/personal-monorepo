@@ -121,6 +121,6 @@ in
   users.users."carl.schader" = {
     name = "carl.schader";
     home = "/Users/carl.schader";
-    packages = [];
+    packages = [ pkgs.tailscale];
   };
 }
