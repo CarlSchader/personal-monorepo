@@ -1,4 +1,5 @@
 {
+  self,
   nixpkgs-2505,
   flake-utils,
   refresh-auth-sock,
@@ -17,6 +18,10 @@ in
   overlays.refresh-auth-sock = final: prev: {
     refresh-auth-sock = refresh-auth-sock.packages.${system}.default;
   };
+
+  overlays.sops-export = final: prev: {
+      sops-export = self.packages.${system}.sops-export;
+    };
 
   overlays.cococrawl = final: prev: {
     cococrawl = cococrawl.packages.${system}.default;

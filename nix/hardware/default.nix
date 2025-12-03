@@ -15,6 +15,7 @@ let
     self.overlays.${system}.refresh-auth-sock
     rust-overlay.overlays.default
     self.overlays.${system}.cococrawl
+    self.overlays.${system}.sops-export
   ];
   darwin-nixpkgs-config = {
     allowUnsupportedSystem = true;

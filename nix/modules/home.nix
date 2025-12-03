@@ -130,6 +130,7 @@ in
 
     # encryption
     sops
+    sops-export
     age
     gnupg
     openssh
