@@ -121,6 +121,7 @@ in
   users.users."carl.schader" = {
     name = "carl.schader";
     home = "/Users/carl.schader";
+    uid = 501;
     packages = [ pkgs.tailscale];
   };
 }
