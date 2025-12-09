@@ -94,13 +94,13 @@ in
     allowedTCPPortRanges = [
       {
         from = 8000;
-        to = 65535;
+        to = 8999;
       }
     ];
     allowedUDPPortRanges = [
       {
         from = 8000;
-        to = 65535;
+        to = 8999;
       }
     ];
   };
