@@ -94,13 +94,13 @@ in
     allowedTCPPortRanges = [
       {
         from = 8000;
-        to = 8999;
+        to = 65535;
       }
     ];
     allowedUDPPortRanges = [
       {
         from = 8000;
-        to = 8999;
+        to = 65535;
       }
     ];
   };
@@ -199,7 +199,7 @@ in
     ];
     packages = defaultUserPackages;
     shell = defaultShell;
-    openssh.authorizedKeys.keys = keys.carl ++ keys.saronic;
+    openssh.authorizedKeys.keys = keys.saronic;
   };
 
   # allows third party dynamically linked libs
