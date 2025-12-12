@@ -109,6 +109,7 @@ in
       ./ml-pc/hardware-configuration.nix
       ../modules/git-server.nix
       ../modules/git-shared-server.nix
+      ../modules/saronic-builders.nix
 
       disko.nixosModules.disko
       ./ml-pc/disko-config.nix
