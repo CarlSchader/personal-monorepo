@@ -9,7 +9,12 @@
 let
   system = "aarch64-darwin";
 
-  pkgs = import nixpkgs { inherit system; config = { allowUnfree = true; }; };
+  pkgs = import nixpkgs {
+    inherit system;
+    config = {
+      allowUnfree = true;
+    };
+  };
   pkgs-2505 = import nixpkgs-2505 { inherit system; };
 in
 {
