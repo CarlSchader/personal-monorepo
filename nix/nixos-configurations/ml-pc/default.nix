@@ -10,7 +10,7 @@ let
   system = "x86_64-linux";
 
   home-manager-config = ../../lib/home.nix;
-  home-manager-rust-overlay-config = ../../lib/home-rust-overlay.nix;
+  home-manager-rust-overlay-config = ../../lib/rust-overlay-home.nix;
 
   merged-home-manager-config = lib.mkMerge [
     home-manager-config
@@ -42,7 +42,7 @@ in
       }
 
       self.nixosModules."${system}-carl-user"
-      self.nixosModules."${system}-saronc-user"
+      self.nixosModules."${system}-saronic-user"
       self.nixosModules."${system}-connor-user"
 
       home-manager.nixosModules.home-manager

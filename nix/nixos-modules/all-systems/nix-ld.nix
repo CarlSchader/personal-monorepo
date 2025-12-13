@@ -1,6 +1,8 @@
 { ... }:
 {
-  nixosModules.nix-ld = { ... }: {
-    programs.nix-ld.enable = true;
-  };
+  nixosModules.nix-ld =
+    { ... }:
+    {
+      programs.nix-ld.enable = true;
+    };
 }

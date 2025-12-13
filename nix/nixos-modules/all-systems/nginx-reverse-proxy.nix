@@ -1,6 +1,6 @@
 { ... }:
 {
-  nixosModule.nginx-reverse-proxy =
+  nixosModules.nginx-reverse-proxy =
     {
       lib,
       config,

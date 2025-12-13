@@ -1,6 +1,6 @@
 { ... }:
 {
-  nixosModule.experimental-features =
+  nixosModules.experimental-features =
     { ... }:
     {
       nix.settings.experimental-features = [

@@ -1,6 +1,8 @@
 { ... }:
 {
-  nixosModules.dockerd = { ... }: {
-    virtualisation.docker.enable = true;
-  };
+  nixosModules.dockerd =
+    { ... }:
+    {
+      virtualisation.docker.enable = true;
+    };
 }

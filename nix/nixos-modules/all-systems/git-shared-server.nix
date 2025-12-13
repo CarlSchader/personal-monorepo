@@ -3,7 +3,7 @@ let
   keys = import ../../lib/keys.nix;
 in
 {
-  nixosModule.git-shared-server =
+  nixosModules.git-shared-server =
     { pkgs, ... }:
     {
       users.users.git-shared = {

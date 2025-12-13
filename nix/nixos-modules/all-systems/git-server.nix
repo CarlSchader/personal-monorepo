@@ -3,7 +3,7 @@ let
   keys = import ../../lib/keys.nix;
 in
 {
-  nixosModule.git-server =
+  nixosModules.git-server =
     { pkgs, ... }:
     {
       # Git server
