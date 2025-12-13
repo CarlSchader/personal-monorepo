@@ -37,9 +37,14 @@ let
 
   '';
 
+  
   shellInit = ''
-    cat /etc/motd
+    if [ -z "$MOTD_SHOWN" ]; then
+      cat /etc/motd
+      export MOTD_SHOWN=1
+    fi
   '';
+
 
   make-motd-module =
     motd-string:
@@ -47,6 +52,7 @@ let
     {
       environment.etc.motd.text = motd-string;
       environment.loginShellInit = shellInit;
+      environment.interactiveShellInit = shellInit;
     };
 in
 {
