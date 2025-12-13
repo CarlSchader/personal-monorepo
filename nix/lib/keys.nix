@@ -1,4 +1,4 @@
-rec {
+{
   carl = [
     "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIN/sQiWl/z33QQMN70MenMKDj3enVgpEVoFVus+PaHWNAAAABHNzaDo= yubikey-carl" # yubikey personal
     "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIMIssaCueh863XJ1p8wVWNScHOehySTPmrZPjyK9PDJAAAAABHNzaDo= carls-yubikey-2"
