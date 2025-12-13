@@ -10,5 +10,6 @@ flake-utils.lib.meld inputs [
   ./openssh.nix
   ./rust-overlay-module.nix
   ./saronic-builders.nix
+  ./system-packages.nix
   ./tailscaled.nix
 ]

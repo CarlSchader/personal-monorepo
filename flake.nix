@@ -35,6 +35,10 @@
       url = "github:carlschader/cococrawl";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    neovim-config = {
+      url = "github:carlschader/neovim-config";
+      nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
