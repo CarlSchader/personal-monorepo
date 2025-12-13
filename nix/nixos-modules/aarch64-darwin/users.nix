@@ -9,20 +9,20 @@ in
   nixosModules."${system}-carl-user" =
     { ... }:
     {
-      name = "carl";
-      home = "/Users/carl";
       users.users.carl = {
-        packages = self.common.${system}.common;
+        name = "carl";
+        home = "/Users/carl";
+        packages = self.common.${system}.user-packages;
       };
     };
 
   nixosModules."${system}-carlschader-user" =
     { ... }:
     {
-      name = "carlschader";
-      home = "/Users/carlschader";
       users.users.carl = {
-        packages = self.common.${system}.common;
+        name = "carlschader";
+        home = "/Users/carlschader";
+        packages = self.common.${system}.user-packages;
       };
     };
 
@@ -32,8 +32,9 @@ in
     {
       users.users."carl.schader" = {
         name = "carl.schader";
+        uid = 501;
         home = "/Users/carl.schader";
-        packages = self.common.${system}.common;
+        packages = self.common.${system}.user-packages;
       };
     };
 }

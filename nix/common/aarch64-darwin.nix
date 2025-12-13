@@ -9,21 +9,23 @@
 let
   system = "aarch64-darwin";
 
-  pkgs = import nixpkgs { inherit system; };
+  pkgs = import nixpkgs { inherit system; config = { allowUnfree = true; }; };
   pkgs-2505 = import nixpkgs-2505 { inherit system; };
 in
 {
-  common.${system}.user-packages = [
-    self.packages.${system}.sops-export
-    refresh-auth-sock.packages.${system}.default
-    cococrawl.packages.${system}.default
-    pkgs-2505.tailscale
-    pkgs.darwin.binutils
-    pkgs.obsidian
-  ];
+  common.${system} = {
+    user-packages = [
+      self.packages.${system}.sops-export
+      refresh-auth-sock.packages.${system}.default
+      cococrawl.packages.${system}.default
+      pkgs-2505.tailscale
+      pkgs.darwin.binutils
+      pkgs.obsidian
+    ];
 
-  common.${system}.system-packages = with pkgs; [
-    vim
-    git
-  ];
+    system-packages = with pkgs; [
+      vim
+      git
+    ];
+  };
 }

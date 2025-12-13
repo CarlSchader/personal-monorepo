@@ -6,7 +6,16 @@
   ...
 }:
 let
+  inherit (nixpkgs) lib;
   system = "x86_64-linux";
+
+  home-manager-config = ../../lib/home.nix;
+  home-manager-rust-overlay-config = ../../lib/home-rust-overlay.nix;
+
+  merged-home-manager-config = lib.mkMerge [
+    home-manager-config
+    home-manager-rust-overlay-config
+  ];
 in
 {
   nixosConfigurations.ml-pc = nixpkgs.lib.nixosSystem {
@@ -20,6 +29,7 @@ in
       self.nixosModules.git-server
       self.nixosModules.git-shared-server
       self.nixosModules.carls-ml-pc-motd
+      self.nixosModules.rust-overlay-module
       self.nixosModules.saronic-builders
       self.nixosModules.tailscaled
 
@@ -37,9 +47,9 @@ in
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.users.carl = self.nixosModules.home;
-        home-manager.users.connor = self.nixosModules.home;
-        home-manager.users.saronic = self.nixosModules.home;
+        home-manager.users.carl = merged-home-manager-config;
+        home-manager.users.connor = merged-home-manager-config;
+        home-manager.users.saronic = merged-home-manager-config;
       }
     ];
   };
