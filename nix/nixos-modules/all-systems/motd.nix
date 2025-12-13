@@ -37,14 +37,12 @@ let
 
   '';
 
-  
   shellInit = ''
     if [ -z "$MOTD_SHOWN" ]; then
       cat /etc/motd
       export MOTD_SHOWN=1
     fi
   '';
-
 
   make-motd-module =
     motd-string:
