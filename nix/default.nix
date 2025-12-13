@@ -4,5 +4,4 @@ flake-utils.lib.meld inputs [
   ./darwin-configurations
   ./nixos-configurations
   ./nixos-modules
-  ./packages.nix
 ]

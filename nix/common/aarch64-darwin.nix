@@ -1,5 +1,4 @@
 {
-  self,
   nixpkgs,
   nixpkgs-2505,
   refresh-auth-sock,
@@ -20,7 +19,6 @@ in
 {
   common.${system} = {
     user-packages = [
-      self.packages.${system}.sops-export
       refresh-auth-sock.packages.${system}.default
       cococrawl.packages.${system}.default
       pkgs-2505.tailscale
