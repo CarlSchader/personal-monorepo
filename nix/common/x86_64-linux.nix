@@ -22,7 +22,6 @@ in
 
     system-packages = with pkgs; [
       vim
-      neovim
       git
       dmidecode
       linuxPackages.v4l2loopback
