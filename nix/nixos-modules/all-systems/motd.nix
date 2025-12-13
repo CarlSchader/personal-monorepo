@@ -47,7 +47,6 @@ let
     {
       environment.etc.motd.text = motd-string;
       environment.loginShellInit = shellInit;
-      environment.interactiveShellInit = shellInit;
     };
 in
 {
