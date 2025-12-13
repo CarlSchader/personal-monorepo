@@ -7,7 +7,7 @@
 let
   system = "aarch64-darwin";
   darwin-module = import ./darwin.nix;
-  home-module = import ../nixos-modules/all-system/home.nix;
+  home-module = import ../nixos-modules/all-systems/home.nix;
 in
 {
   darwinConfigurations."Carls-MacBook-Pro-2" = nix-darwin.lib.darwinSystem {
@@ -16,7 +16,6 @@ in
 
       self.nixosModules."${system}-carlschader-user"
       self.nixosModules.aarch64-darwin-system-packages
-      self.nixosModules.experimental-features
       self.nixosModules.carls-macbook-motd
       self.nixosModules.saronic-builders
 
@@ -35,7 +34,6 @@ in
 
       self.nixosModules."${system}-carl-user"
       self.nixosModules.aarch64-darwin-system-packages
-      self.nixosModules.experimental-features
       self.nixosModules.carls-macbook-motd
       self.nixosModules.saronic-builders
 
@@ -56,7 +54,6 @@ in
       self.nixosModules."${system}-carlschader-user"
       self.nixosModules."${system}-saronic-user"
       self.nixosModules.aarch64-darwin-system-packages
-      self.nixosModules.experimental-features
       self.nixosModules.carls-macbook-motd
       self.nixosModules.saronic-builders
 
@@ -77,7 +74,6 @@ in
 
       self.nixosModules."${system}-carl.schader-user"
       self.nixosModules.aarch64-darwin-system-packages
-      self.nixosModules.experimental-features
       self.nixosModules.carls-macbook-motd
       self.nixosModules.saronic-builders
 

@@ -23,10 +23,6 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    opkssh = {
-      url = "github:openpubkey/opkssh";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     pyproject-nix = {
       url = "github:nix-community/pyproject.nix";
       inputs.nixpkgs.follows = "nixpkgs";

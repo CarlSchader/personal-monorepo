@@ -129,6 +129,7 @@ in
         age
         gnupg
         openssh
+        opkssh
 
         # ai tools
         claude-code

@@ -2,7 +2,6 @@
   self,
   nixpkgs,
   nixpkgs-2505,
-  opkssh,
   refresh-auth-sock,
   cococrawl,
   ...
@@ -12,7 +11,6 @@ let
 
   pkgs = import nixpkgs { inherit system; };
   pkgs-2505 = import nixpkgs-2505 { inherit system; };
-  opkssh-pkg = opkssh.packages.${system}.opkssh;
 in
 {
   common.${system}.user-packages = [
@@ -20,7 +18,6 @@ in
     refresh-auth-sock.packages.${system}.default
     cococrawl.packages.${system}.default
     pkgs-2505.tailscale
-    opkssh-pkg
     pkgs.darwin.binutils
     pkgs.obsidian
   ];
