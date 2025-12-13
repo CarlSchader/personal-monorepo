@@ -93,14 +93,14 @@ in
     ];
     allowedTCPPortRanges = [
       {
-        from = 8000;
-        to = 8999;
+        from = 3000;
+        to = 9000;
       }
     ];
     allowedUDPPortRanges = [
       {
-        from = 8000;
-        to = 8999;
+        from = 3000;
+        to = 9000;
       }
     ];
   };
@@ -197,7 +197,7 @@ in
       "networkmanager"
       "wheel"
     ];
-    packages = defaultUserPackages;
+    packages = [ pkgs.tailscale ] ++ defaultUserPackages;
     shell = defaultShell;
     openssh.authorizedKeys.keys = keys.saronic;
   };

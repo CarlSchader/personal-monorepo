@@ -102,7 +102,7 @@ in
     modules = [
       {
         nixpkgs = {
-          overlays = (shared-overlays "x86_64-linux");
+          overlays = [ self.overlays.x86_64-linux.tailscale ] ++ (shared-overlays "x86_64-linux");
         };
       }
       ./ml-pc/configuration.nix
@@ -110,6 +110,7 @@ in
       ../modules/git-server.nix
       ../modules/git-shared-server.nix
       ../modules/saronic-builders.nix
+      ../modules/tailscaled.nix
 
       disko.nixosModules.disko
       ./ml-pc/disko-config.nix
