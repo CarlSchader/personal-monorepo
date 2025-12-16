@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   nixosModules.saronic-builders =
     { ... }:
@@ -56,4 +56,6 @@
       nix.distributedBuilds = true;
       nix.extraOptions = "builders-use-substitutes = true";
     };
+
+    environment.systemPackages = with pkgs; [ opkssh ];
 }
