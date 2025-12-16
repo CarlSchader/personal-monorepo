@@ -1,34 +1,39 @@
-{ pkgs, ... }:
+{ ... }:
 {
   nixosModules.saronic-builders =
-    { ... }:
+    { pkgs, ... }:
     {
       nix.buildMachines = [
-        {
-          hostName = "flyingbrick";
-          system = "aarch64-linux";
-          sshUser = "saronic";
+        
+        # These builders will slow you down due to network latency unless on company wifi
 
-          # protocol = "ssh";
-          maxJobs = 16;
-          supportedFeatures = [
-            "big-parallel"
-            "kvm"
-          ];
-          mandatoryFeatures = [ ];
-        }
-        {
-          hostName = "mondo2";
-          system = "x86_64-linux";
-          sshUser = "saronic";
-          # protocol = "ssh";
-          maxJobs = 16;
-          supportedFeatures = [
-            "big-parallel"
-            "kvm"
-          ];
-          mandatoryFeatures = [ ];
-        }
+        # {
+        #   hostName = "flyingbrick";
+        #   system = "aarch64-linux";
+        #   sshUser = "saronic";
+        #
+        #   # protocol = "ssh";
+        #   maxJobs = 16;
+        #   supportedFeatures = [
+        #     "big-parallel"
+        #     "kvm"
+        #   ];
+        #   mandatoryFeatures = [ ];
+        # }
+        # {
+        #   hostName = "mondo2";
+        #   system = "x86_64-linux";
+        #   sshUser = "saronic";
+        #   # protocol = "ssh";
+        #   maxJobs = 16;
+        #   supportedFeatures = [
+        #     "big-parallel"
+        #     "kvm"
+        #   ];
+        #   mandatoryFeatures = [ ];
+        # }
+
+
         {
           hostName = "turbo5";
           system = "x86_64-linux";
@@ -55,7 +60,7 @@
       ];
       nix.distributedBuilds = true;
       nix.extraOptions = "builders-use-substitutes = true";
+      
+      environment.systemPackages = with pkgs; [ opkssh ];
     };
-
-    environment.systemPackages = with pkgs; [ opkssh ];
 }
