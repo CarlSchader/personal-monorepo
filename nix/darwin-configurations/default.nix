@@ -11,8 +11,8 @@ let
   system = "aarch64-darwin";
   darwin-module = import ./darwin.nix;
 
-  home-manager-config = import ../lib/home.nix;
-  home-manager-rust-overlay-config = import ../lib/rust-overlay-home.nix;
+  home-manager-config = import ../home-manager/home.nix;
+  home-manager-rust-overlay-config = import ../home-manager/rust-overlay-home.nix;
 
   merged-home-manager-config = lib.mkMerge [
     home-manager-config

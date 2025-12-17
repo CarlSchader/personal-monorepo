@@ -3,14 +3,15 @@
   nixpkgs,
   disko,
   home-manager,
+  neovim-config,
   ...
 }:
 let
   inherit (nixpkgs) lib;
   system = "x86_64-linux";
 
-  home-manager-config = ../../lib/home.nix;
-  home-manager-rust-overlay-config = ../../lib/rust-overlay-home.nix;
+  home-manager-config = ../../home-manager/home.nix;
+  home-manager-rust-overlay-config = ../../home-manager/rust-overlay-home.nix;
 
   merged-home-manager-config = lib.mkMerge [
     home-manager-config
@@ -34,6 +35,7 @@ in
       self.nixosModules.rust-overlay-module
       self.nixosModules.saronic-builders
       self.nixosModules.tailscaled
+      neovim-config.nixosModule.defualt
 
       disko.nixosModules.disko
       ./disko-config.nix
