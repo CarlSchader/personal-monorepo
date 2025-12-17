@@ -18,6 +18,8 @@ in
       cococrawl.packages.${system}.default
       pkgs-2505.tailscale
       pkgs.binutils
+      pkgs.brave
+      pkgs.obsidian
     ];
 
     system-packages = with pkgs; [

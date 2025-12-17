@@ -24,6 +24,7 @@ in
       pkgs-2505.tailscale
       pkgs.darwin.binutils
       pkgs.obsidian
+      pkgs.brave
     ];
 
     system-packages = with pkgs; [
