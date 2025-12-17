@@ -136,11 +136,6 @@
       # databases
       postgresql
 
-      # cloud tools
-      flyctl
-      awscli2
-      google-cloud-sdk
-
       # saronic
       mcap-cli
 

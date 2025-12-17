@@ -19,6 +19,7 @@ let
 
   saronic-home-manager-modules = [
     self.nixosModules.saronic-opk-home
+    self.nixosModules.saronic-awscli-home
   ];
 
   common-home-config = lib.mkMerge common-home-manager-modules;
