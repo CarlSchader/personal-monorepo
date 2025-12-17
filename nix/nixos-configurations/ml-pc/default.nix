@@ -36,6 +36,7 @@ in
       self.nixosModules.rust-overlay-module
       self.nixosModules.saronic-builders
       self.nixosModules.tailscaled
+      self.nixosModules.wezterm
 
       disko.nixosModules.disko
       ./disko-config.nix

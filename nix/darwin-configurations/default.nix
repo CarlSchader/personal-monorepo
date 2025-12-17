@@ -31,6 +31,7 @@ in
       self.nixosModules.carls-macbook-motd
       self.nixosModules.rust-overlay-module
       self.nixosModules.saronic-builders
+      self.nixosModules.wezterm
 
       home-manager.darwinModules.home-manager
       {
@@ -50,6 +51,7 @@ in
       self.nixosModules.carls-macbook-motd
       self.nixosModules.rust-overlay-module
       self.nixosModules.saronic-builders
+      self.nixosModules.wezterm
 
       home-manager.darwinModules.home-manager
       {
@@ -74,6 +76,7 @@ in
       self.nixosModules.carls-macbook-motd
       self.nixosModules.rust-overlay-module
       self.nixosModules.saronic-builders
+      self.nixosModules.wezterm
 
       home-manager.darwinModules.home-manager
       {
@@ -95,6 +98,7 @@ in
       self.nixosModules.carls-macbook-motd
       self.nixosModules.rust-overlay-module
       self.nixosModules.saronic-builders
+      self.nixosModules.wezterm
 
       home-manager.darwinModules.home-manager
       {
