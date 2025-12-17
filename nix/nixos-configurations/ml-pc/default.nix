@@ -10,16 +10,19 @@ let
   inherit (nixpkgs) lib;
   system = "x86_64-linux";
 
-  home-manager-config = ../../home-manager/home.nix;
-  home-manager-rust-overlay-config = ../../home-manager/rust-overlay-home.nix;
-  wezterm-config = ../../home-manager/wezterm.nix;
-
-  merged-home-manager-config = lib.mkMerge [
-    home-manager-config
-    home-manager-rust-overlay-config
-    wezterm-config
+  common-home-manager-modules = [
+    self.nixosModules.home
+    self.nixosModules.rust-overlay-home
+    self.nixosModules.wezterm-home
     neovim-config.nixosModules.home-manager
   ];
+
+  saronic-home-manager-modules = [
+    self.nixosModules.saronic-opk-home
+  ];
+
+  common-home-config = lib.mkMerge common-home-manager-modules;
+  saronic-home-config = lib.mkMerge (common-home-manager-modules ++ saronic-home-manager-modules);
 in
 {
   nixosConfigurations.ml-pc = nixpkgs.lib.nixosSystem {
@@ -53,9 +56,9 @@ in
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.users.carl = merged-home-manager-config;
-        home-manager.users.connor = merged-home-manager-config;
-        home-manager.users.saronic = merged-home-manager-config;
+        home-manager.users.carl = common-home-config;
+        home-manager.users.connor = common-home-config;
+        home-manager.users.saronic = saronic-home-config;
       }
     ];
   };
