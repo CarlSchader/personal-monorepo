@@ -14,10 +14,12 @@ let
 
   home-manager-config = import ../home-manager/home.nix;
   home-manager-rust-overlay-config = import ../home-manager/rust-overlay-home.nix;
+  wezterm-config = ../home-manager/wezterm.nix;
 
   merged-home-manager-config = lib.mkMerge [
     home-manager-config
     home-manager-rust-overlay-config
+    wezterm-config
     neovim-config.nixosModules.home-manager
   ];
 in
@@ -31,7 +33,6 @@ in
       self.nixosModules.carls-macbook-motd
       self.nixosModules.rust-overlay-module
       self.nixosModules.saronic-builders
-      self.nixosModules.wezterm
 
       home-manager.darwinModules.home-manager
       {
@@ -51,7 +52,6 @@ in
       self.nixosModules.carls-macbook-motd
       self.nixosModules.rust-overlay-module
       self.nixosModules.saronic-builders
-      self.nixosModules.wezterm
 
       home-manager.darwinModules.home-manager
       {
@@ -76,7 +76,6 @@ in
       self.nixosModules.carls-macbook-motd
       self.nixosModules.rust-overlay-module
       self.nixosModules.saronic-builders
-      self.nixosModules.wezterm
 
       home-manager.darwinModules.home-manager
       {
@@ -98,7 +97,6 @@ in
       self.nixosModules.carls-macbook-motd
       self.nixosModules.rust-overlay-module
       self.nixosModules.saronic-builders
-      self.nixosModules.wezterm
 
       home-manager.darwinModules.home-manager
       {

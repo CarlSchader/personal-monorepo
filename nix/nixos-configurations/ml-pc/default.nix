@@ -12,10 +12,12 @@ let
 
   home-manager-config = ../../home-manager/home.nix;
   home-manager-rust-overlay-config = ../../home-manager/rust-overlay-home.nix;
+  wezterm-config = ../../home-manager/wezterm.nix;
 
   merged-home-manager-config = lib.mkMerge [
     home-manager-config
     home-manager-rust-overlay-config
+    wezterm-config
     neovim-config.nixosModules.home-manager
   ];
 in
@@ -36,7 +38,6 @@ in
       self.nixosModules.rust-overlay-module
       self.nixosModules.saronic-builders
       self.nixosModules.tailscaled
-      self.nixosModules.wezterm
 
       disko.nixosModules.disko
       ./disko-config.nix
