@@ -16,6 +16,7 @@ let
   merged-home-manager-config = lib.mkMerge [
     home-manager-config
     home-manager-rust-overlay-config
+    neovim-config.nixosModules.home-manager
   ];
 in
 {
