@@ -158,7 +158,7 @@ in
     ## lsps
     nixd
     rust-analyzer
-    pyright
+    ty
     python312Packages.python-lsp-server
     typescript-language-server
     lua-language-server
