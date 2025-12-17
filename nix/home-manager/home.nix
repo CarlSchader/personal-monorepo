@@ -92,7 +92,6 @@ in
     cmake
     tmux
     vim
-    neovim
     wezterm
     ripgrep
     kubectl

@@ -35,7 +35,7 @@ in
       self.nixosModules.rust-overlay-module
       self.nixosModules.saronic-builders
       self.nixosModules.tailscaled
-      neovim-config.nixosModule.defualt
+      neovim-config.nixosModules.default
 
       disko.nixosModules.disko
       ./disko-config.nix
