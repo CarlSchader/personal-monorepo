@@ -18,10 +18,15 @@ sso_start_url = https://start.us-gov-west-1.us-gov-home.awsapps.com/directory/sa
 sso_region = us-gov-west-1
 sso_registration_scopes = sso:account:access
 
-[profile commercial-software]
-sso_start_url=https://d-9a6761a818.awsapps.com/start/#
+[sso-session commercial]
+sso_start_url = https://d-9a6761a818.awsapps.com/start/#
 sso_region = us-east-2
-sso_account_id = 838084779945
+sso_registration_scopes = sso:account:access
+
+[profile commercial-software]
+sso_session = commercial
+sso_region = us-east-2
+sso_account_id = 898313346540
 sso_role_name = SoftwareAdministratorAccess
 region = us-east-2
 output = json

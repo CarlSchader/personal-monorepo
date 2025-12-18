@@ -19,7 +19,7 @@ in
   nixosModules."${system}-carlschader-user" =
     { ... }:
     {
-      users.users.carl = {
+      users.users.carlschader = {
         name = "carlschader";
         home = "/Users/carlschader";
         packages = self.common.${system}.user-packages;

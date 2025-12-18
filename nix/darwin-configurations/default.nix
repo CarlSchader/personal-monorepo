@@ -69,13 +69,9 @@ in
   # work laptop
   darwinConfigurations."Carls-MacBook-Pro" = nix-darwin.lib.darwinSystem {
     modules = [
-      {
-
-      }
       darwin-module
 
       self.nixosModules."${system}-carlschader-user"
-      self.nixosModules."${system}-saronic-user"
       self.nixosModules.aarch64-darwin-system-packages
       self.nixosModules.carls-macbook-motd
       self.nixosModules.rust-overlay-module
@@ -85,8 +81,7 @@ in
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.users.carlschader = common-home-config;
-        home-manager.users.saronic = saronic-home-config;
+        home-manager.users.carlschader = saronic-home-config;
       }
     ];
   };
