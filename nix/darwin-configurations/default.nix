@@ -34,7 +34,7 @@ in
 
       self.nixosModules."${system}-carlschader-user"
       self.nixosModules.aarch64-darwin-system-packages
-      self.nixosModules.carls-macbook-motd
+      # self.nixosModules.carls-macbook-motd
       self.nixosModules.rust-overlay-module
       self.nixosModules.saronic-builders
 
@@ -53,7 +53,7 @@ in
 
       self.nixosModules."${system}-carl-user"
       self.nixosModules.aarch64-darwin-system-packages
-      self.nixosModules.carls-macbook-motd
+      # self.nixosModules.carls-macbook-motd
       self.nixosModules.rust-overlay-module
       self.nixosModules.saronic-builders
 
@@ -73,7 +73,7 @@ in
 
       self.nixosModules."${system}-carlschader-user"
       self.nixosModules.aarch64-darwin-system-packages
-      self.nixosModules.carls-macbook-motd
+      # self.nixosModules.carls-macbook-motd
       self.nixosModules.rust-overlay-module
       self.nixosModules.saronic-builders
 
@@ -93,7 +93,7 @@ in
 
       self.nixosModules."${system}-carl.schader-user"
       self.nixosModules.aarch64-darwin-system-packages
-      self.nixosModules.carls-macbook-motd
+      # self.nixosModules.carls-macbook-motd
       self.nixosModules.rust-overlay-module
       self.nixosModules.saronic-builders
 
