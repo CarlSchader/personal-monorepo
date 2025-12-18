@@ -27,7 +27,7 @@ in
     {
       users.users.saronic = {
         isNormalUser = true;
-        description = "carlschader-saronic";
+        description = "saronic";
         extraGroups = [
           "networkmanager"
           "wheel"

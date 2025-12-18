@@ -19,7 +19,7 @@ in
       pkgs-2505.tailscale
       pkgs.binutils
       pkgs.brave
-      pkgs.obsidian
+      # pkgs.obsidian
     ];
 
     system-packages = with pkgs; [
