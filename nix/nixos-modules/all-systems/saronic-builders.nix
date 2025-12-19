@@ -1,7 +1,7 @@
 { ... }:
 {
   nixosModules.saronic-builders =
-    { pkgs, ... }:
+    { ... }:
     {
       nix.buildMachines = [
         
@@ -60,7 +60,5 @@
       ];
       nix.distributedBuilds = true;
       nix.extraOptions = "builders-use-substitutes = true";
-      
-      environment.systemPackages = with pkgs; [ opkssh ];
     };
 }

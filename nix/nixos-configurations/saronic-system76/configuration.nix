@@ -1,9 +1,4 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { ... }:
-
 {
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -17,6 +12,28 @@
   systemd.targets.hybrid-sleep.enable = false;
 
   networking.hostName = "carls-system76"; # Define your hostname.
+
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [
+      22
+      80
+      88
+      443
+    ];
+    allowedTCPPortRanges = [
+      {
+        from = 3000;
+        to = 9000;
+      }
+    ];
+    allowedUDPPortRanges = [
+      {
+        from = 3000;
+        to = 9000;
+      }
+    ];
+  };
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -47,13 +64,6 @@
 
   environment.pathsToLink = [ "/libexec" ];
 
-  # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    layout = "us";
-
-    videoDrivers = [ "nvidia" ]; # was causing black screen
-  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -93,4 +103,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.05";}
+  system.stateVersion = "25.05";
+}

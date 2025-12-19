@@ -32,9 +32,6 @@ in
 
       self.nixosModules.x86_64-linux-system-packages
       self.nixosModules.experimental-features
-      self.nixosModules.git-server
-      self.nixosModules.git-shared-server
-      # self.nixosModules.carls-ml-pc-motd
       self.nixosModules.nix-ld
       self.nixosModules.openssh
       self.nixosModules.rust-overlay-module
