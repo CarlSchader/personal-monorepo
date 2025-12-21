@@ -33,6 +33,7 @@ in
       self.nixosModules.carls-ml-pc-motd
       self.nixosModules.nix-ld
       self.nixosModules.openssh
+      self.nixosModules.parallelism
       self.nixosModules.rust-overlay-module
       self.nixosModules.tailscaled
 

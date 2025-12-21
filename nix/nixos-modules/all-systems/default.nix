@@ -8,6 +8,7 @@ flake-utils.lib.meld inputs [
   ./nginx-reverse-proxy.nix
   ./nix-ld.nix
   ./openssh.nix
+  ./parallelism.nix
   ./rust-overlay-module.nix
   ./saronic-builders.nix
   ./tailscaled.nix
