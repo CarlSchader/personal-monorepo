@@ -34,6 +34,7 @@ in
       self.nixosModules.experimental-features
       self.nixosModules.nix-ld
       self.nixosModules.openssh
+      self.nixosModules.parallelism
       self.nixosModules.rust-overlay-module
       self.nixosModules.saronic-builders
       self.nixosModules.tailscaled
