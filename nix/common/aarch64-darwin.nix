@@ -30,6 +30,7 @@ in
     system-packages = with pkgs; [
       vim
       git
+      htop
     ];
   };
 }
