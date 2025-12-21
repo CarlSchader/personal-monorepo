@@ -17,13 +17,7 @@ let
     neovim-config.nixosModules.home-manager
   ];
 
-  saronic-home-manager-modules = [
-    self.nixosModules.saronic-opk-home
-    self.nixosModules.saronic-awscli-home
-  ];
-
   common-home-config = lib.mkMerge common-home-manager-modules;
-  saronic-home-config = lib.mkMerge (common-home-manager-modules ++ saronic-home-manager-modules);
 in
 {
   nixosConfigurations.ml-pc = nixpkgs.lib.nixosSystem {
@@ -40,7 +34,6 @@ in
       self.nixosModules.nix-ld
       self.nixosModules.openssh
       self.nixosModules.rust-overlay-module
-      self.nixosModules.saronic-builders
       self.nixosModules.tailscaled
 
       disko.nixosModules.disko
@@ -50,7 +43,6 @@ in
       }
 
       self.nixosModules."${system}-carl-user"
-      self.nixosModules."${system}-saronic-user"
       self.nixosModules."${system}-connor-user"
 
       home-manager.nixosModules.home-manager
@@ -59,7 +51,6 @@ in
         home-manager.useUserPackages = true;
         home-manager.users.carl = common-home-config;
         home-manager.users.connor = common-home-config;
-        home-manager.users.saronic = saronic-home-config;
       }
     ];
   };
