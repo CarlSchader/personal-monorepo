@@ -28,6 +28,7 @@ in
       dmidecode
       linuxPackages.v4l2loopback
       v4l-utils
+      htop
     ];
   };
 }
