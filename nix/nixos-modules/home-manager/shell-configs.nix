@@ -15,6 +15,12 @@
       eval "$(direnv hook zsh)"
     '';
 
+    loginExtra = ''
+      source <(ssh-agent)
+      ssh-add
+      ssh-add ~/.ssh/id_ed25519_sk_rk
+    ''; 
+
     shellAliases = {
       n = "nvim";
       t = "tmux";
@@ -67,6 +73,7 @@
       inherit sessionVariables;
       inherit initContent;
       inherit shellAliases;
+      inherit loginExtra;
     };
   };
 }
