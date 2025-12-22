@@ -13,6 +13,7 @@ let
   common-home-manager-modules = [
     self.nixosModules.home
     self.nixosModules.rust-overlay-home
+    self.nixosModules.shell-configs-home
     self.nixosModules.wezterm-home
     neovim-config.nixosModules.home-manager
   ];
@@ -35,7 +36,6 @@ in
       self.nixosModules.openssh
       self.nixosModules.parallelism
       self.nixosModules.rust-overlay-module
-      self.nixosModules.shell-configs
 
       disko.nixosModules.disko
       ./disko-config.nix

@@ -1,22 +1,18 @@
 { ... }:
 {
-  nixosModules.shell-configs = { pkgs, ... }:
+  nixosModules.shell-configs-home = { ... }:
   let
-    shellInit = ''
-      export EDITOR="nvim"
+    sessionVariables = {
+      EDITOR = "nvim";
+      SOPS_EDITOR = "vim";
+    };
+    initContent = ''
       export ANTHROPIC_API_KEY=$(cat ~/.secrets/anthropic-api-key)
       export OPENAI_API_KEY=$(cat ~/.secrets/openai-api-key)
       export GEMINI_API_KEY=$(cat ~/.secrets/gemini-api-key)
       export GPG_TTY=$(tty)
-      export SOPS_EDITOR="vim"
 
       eval "$(direnv hook zsh)"
-    '';
-
-    loginShellInit = ''
-      # source <(ssh-agent)
-      # ssh-add
-      # ssh-add ~/.ssh/id_ed25519_sk_rk
     '';
 
     shellAliases = {
@@ -45,20 +41,19 @@
     };
   in
   {
-    users.defaultUserShell = pkgs.zsh;
-
     programs.zsh = {
       enable = true;
+      autosuggestion.enable = true;
       enableCompletion = true;
-      enableBashCompletion = true;
-      enableLsColors = true;
-
-      autosuggestions = {
-        enable = true;
-        async = true;
+      enableVteIntegration = true;
+    
+      history = {
+        append = true;
+        expireDuplicatesFirst = true;
+        extended = true;
       };
 
-      ohMyZsh = {
+      oh-my-zsh = {
         enable = true;
         theme = "clean";
         # plugins = [ ];
@@ -68,10 +63,10 @@
         enable = true;
         highlighters = [ "main" "brackets" "root" "cursor" "line" ];
       };
-      
-      inherit shellInit;
+
+      inherit sessionVariables;
+      inherit initContent;
       inherit shellAliases;
-      inherit loginShellInit;
     };
   };
 }

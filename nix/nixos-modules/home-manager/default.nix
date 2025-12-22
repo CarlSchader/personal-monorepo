@@ -4,5 +4,6 @@ flake-utils.lib.meld inputs [
   ./home.nix
   ./rust-overlay-home.nix
   ./saronic-opk.nix
+  ./shell-configs.nix
   ./wezterm.nix
 ]

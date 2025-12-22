@@ -12,6 +12,7 @@ let
   common-home-manager-modules = [
     self.nixosModules.home
     self.nixosModules.rust-overlay-home
+    self.nixosModules.shell-configs-home
     self.nixosModules.wezterm-home
     neovim-config.nixosModules.home-manager
   ];
