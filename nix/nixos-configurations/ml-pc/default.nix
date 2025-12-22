@@ -35,7 +35,7 @@ in
       self.nixosModules.openssh
       self.nixosModules.parallelism
       self.nixosModules.rust-overlay-module
-      self.nixosModules.tailscaled
+      self.nixosModules.shell-configs
 
       disko.nixosModules.disko
       ./disko-config.nix

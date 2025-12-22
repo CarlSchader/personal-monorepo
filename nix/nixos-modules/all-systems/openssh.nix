@@ -9,8 +9,8 @@
         settings = {
           X11Forwarding = true;
           AllowAgentForwarding = true;
+          PasswordAuthentication = false; # force use SSH keys instead
         };
-        passwordAuthentication = false; # force use SSH keys instead
       };
     };
 }

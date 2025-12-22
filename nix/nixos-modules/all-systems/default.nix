@@ -11,5 +11,6 @@ flake-utils.lib.meld inputs [
   ./parallelism.nix
   ./rust-overlay-module.nix
   ./saronic-builders.nix
+  ./shell-configs.nix
   ./tailscaled.nix
 ]
