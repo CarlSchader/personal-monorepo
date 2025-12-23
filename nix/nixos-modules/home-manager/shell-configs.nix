@@ -15,14 +15,12 @@
 
       eval "$(direnv hook zsh)"
 
-      # Skip initialization if this is an SSH session
-      if [[ -n "$SSH_CLIENT" || -n "$SSH_TTY" || -n "$SSH_CONNECTION" ]]; then
-        return
+      # only run this code if we're not in an ssh session 
+      if [ -z "$SSH_CLIENT" ] && [ -z "$SSH_TTY" && [ -z "$SSH_CONNECTION" ] ]; then
+        source <(ssh-agent)
+        ssh-add
+        ssh-add ~/.ssh/id_ed25519_sk_rk
       fi
-
-      source <(ssh-agent)
-      ssh-add
-      ssh-add ~/.ssh/id_ed25519_sk_rk
     '';
 
     shellAliases = {
