@@ -15,7 +15,7 @@
       eval "$(direnv hook zsh)"
     '';
 
-    loginExtra = ''
+    initExtra = ''
       # Skip initialization if this is an SSH session
       if [[ -n "$SSH_CLIENT" || -n "$SSH_TTY" || -n "$SSH_CONNECTION" ]]; then
         return
@@ -79,8 +79,8 @@
 
       inherit sessionVariables;
       inherit initContent;
+      inherit initExtra;
       inherit shellAliases;
-      inherit loginExtra;
     };
   };
 }
