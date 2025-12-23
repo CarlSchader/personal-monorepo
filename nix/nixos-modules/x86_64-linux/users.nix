@@ -11,6 +11,7 @@ in
     { pkgs, ... }:
     {
       users.defaultUserShell = pkgs.zsh;
+      programs.zsh.enable = true;
       users.users.carl = {
         isNormalUser = true;
         description = "Carl Schader";
@@ -27,6 +28,7 @@ in
     { pkgs, ... }:
     {
       users.defaultUserShell = pkgs.zsh;
+      programs.zsh.enable = true;
       users.users.saronic = {
         isNormalUser = true;
         description = "saronic";
@@ -43,6 +45,7 @@ in
     { pkgs, ... }:
     {
       users.defaultUserShell = pkgs.zsh;
+      programs.zsh.enable = true;
       users.users.connor = {
         isNormalUser = true;
         description = "Connor Jones";
