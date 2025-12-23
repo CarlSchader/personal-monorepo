@@ -36,6 +36,7 @@
       xclip
       mdbook
       gh
+      tokei
 
       # encryption
       sops
