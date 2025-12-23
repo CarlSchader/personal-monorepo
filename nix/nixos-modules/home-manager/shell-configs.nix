@@ -6,6 +6,7 @@
       EDITOR = "nvim";
       SOPS_EDITOR = "vim";
     };
+
     initContent = ''
       export ANTHROPIC_API_KEY=$(cat ~/.secrets/anthropic-api-key)
       export OPENAI_API_KEY=$(cat ~/.secrets/openai-api-key)
@@ -13,9 +14,7 @@
       export GPG_TTY=$(tty)
 
       eval "$(direnv hook zsh)"
-    '';
 
-    initExtra = ''
       # Skip initialization if this is an SSH session
       if [[ -n "$SSH_CLIENT" || -n "$SSH_TTY" || -n "$SSH_CONNECTION" ]]; then
         return
@@ -24,7 +23,7 @@
       source <(ssh-agent)
       ssh-add
       ssh-add ~/.ssh/id_ed25519_sk_rk
-    ''; 
+    '';
 
     shellAliases = {
       n = "nvim";
@@ -79,7 +78,6 @@
 
       inherit sessionVariables;
       inherit initContent;
-      inherit initExtra;
       inherit shellAliases;
     };
   };
