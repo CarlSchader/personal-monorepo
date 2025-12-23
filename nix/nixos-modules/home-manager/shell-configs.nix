@@ -16,6 +16,11 @@
     '';
 
     loginExtra = ''
+      # Skip initialization if this is an SSH session
+      if [[ -n "$SSH_CLIENT" || -n "$SSH_TTY" || -n "$SSH_CONNECTION" ]]; then
+        return
+      fi
+
       source <(ssh-agent)
       ssh-add
       ssh-add ~/.ssh/id_ed25519_sk_rk
