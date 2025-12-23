@@ -1,6 +1,6 @@
 { ... }:
 {
-  nixosModules.shell-configs-home = { ... }:
+  nixosModules.shell-configs-home = { pkgs, ... }:
   let
     sessionVariables = {
       EDITOR = "nvim";
@@ -47,6 +47,10 @@
     };
   in
   {
+    home.shell.enableZshIntegration = true;
+
+    shell = pkgs.zsh;
+
     programs.zsh = {
       enable = true;
       autosuggestion.enable = true;
