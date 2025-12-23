@@ -16,7 +16,7 @@
       eval "$(direnv hook zsh)"
 
       # only run this code if we're not in an ssh session 
-      if [ -z "$SSH_CLIENT" ] && [ -z "$SSH_TTY" && [ -z "$SSH_CONNECTION" ] ]; then
+      if [ -z "$SSH_CLIENT" ] && [ -z "$SSH_TTY" ] && [ -z "$SSH_CONNECTION" ]; then
         source <(ssh-agent)
         ssh-add
         ssh-add ~/.ssh/id_ed25519_sk_rk
