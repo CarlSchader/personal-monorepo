@@ -1,5 +1,6 @@
 { flake-utils, ... }@inputs:
 flake-utils.lib.meld inputs [
+  ./common.nix
   ./saronic-awscli.nix
   ./home.nix
   ./rust-overlay-home.nix
