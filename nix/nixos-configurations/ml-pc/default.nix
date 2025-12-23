@@ -2,23 +2,10 @@
   self,
   nixpkgs,
   disko,
-  home-manager,
-  neovim-config,
   ...
 }:
 let
-  inherit (nixpkgs) lib;
   system = "x86_64-linux";
-
-  common-home-manager-modules = [
-    self.nixosModules.home
-    self.nixosModules.rust-overlay-home
-    self.nixosModules.shell-configs-home
-    self.nixosModules.wezterm-home
-    neovim-config.nixosModules.home-manager
-  ];
-
-  common-home-config = lib.mkMerge common-home-manager-modules;
 in
 {
   nixosConfigurations.ml-pc = nixpkgs.lib.nixosSystem {
@@ -35,7 +22,6 @@ in
       self.nixosModules.nix-ld
       self.nixosModules.openssh
       self.nixosModules.parallelism
-      self.nixosModules.rust-overlay-module
 
       disko.nixosModules.disko
       ./disko-config.nix
@@ -46,13 +32,7 @@ in
       self.nixosModules."${system}-carl-user"
       self.nixosModules."${system}-connor-user"
 
-      home-manager.nixosModules.home-manager
-      {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.users.carl = common-home-config;
-        home-manager.users.connor = common-home-config;
-      }
+      (self.nixosModules.common-home-manager-nixos [ "carl" "connor" ])
     ];
   };
 }

@@ -17,80 +17,59 @@ let
   ];
 
   common-home-modules = lib.mkMerge common-home-manager-modules;
-  saronic-home-modules = lib.mkMerge saronic-home-manager-modules;
+  # saronic includes common + saronic modules
+  saronic-home-modules = lib.mkMerge (common-home-manager-modules ++ saronic-home-manager-modules);
 in
 {
-  nixosModules.common-home-manager-nixos = { config, pkgs, ... }: 
-  {
+  nixosModules.common-home-manager-nixos = users: { lib, ... }: {
     imports = [ 
       self.nixosModules.rust-overlay-module 
-      (home-manager.nixosModules.home-manager)
-    ];
-
-    config = {
-      home-manager.users = lib.mapAttrs (name: user: common-home-modules) (
-        lib.filterAttrs (name: user: 
-          if pkgs.stdenv.isDarwin 
-          then (user.home or "") != "" && lib.hasPrefix "/Users/" (user.home or "")
-          else user.isNormalUser or false
-        ) config.users.users
-      );
-    };
-  };
-
-  nixosModules.saronic-home-manager-nixos = { config, pkgs, ... }: {
-    imports = [ 
-      self.nixosModules.rust-overlay-module 
-      (home-manager.nixosModules.home-manager)
+      home-manager.nixosModules.home-manager
     ];
 
     config = {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
-      home-manager.users = lib.mapAttrs (name: user: saronic-home-modules) (
-        lib.filterAttrs (name: user: 
-          if pkgs.stdenv.isDarwin 
-          then (user.home or "") != "" && lib.hasPrefix "/Users/" (user.home or "")
-          else user.isNormalUser or false
-        ) config.users.users
-      );
+      home-manager.users = lib.genAttrs users (_: common-home-modules);
     };
   };
 
-  nixosModules.common-home-manager-darwin = { config, pkgs, ... }: 
-  {
+  nixosModules.saronic-home-manager-nixos = users: { lib, ... }: {
     imports = [ 
       self.nixosModules.rust-overlay-module 
-      (home-manager.darwinModules.home-manager)
-    ];
-
-    config = {
-      home-manager.users = lib.mapAttrs (name: user: common-home-modules) (
-        lib.filterAttrs (name: user: 
-          if pkgs.stdenv.isDarwin 
-          then (user.home or "") != "" && lib.hasPrefix "/Users/" (user.home or "")
-          else user.isNormalUser or false
-        ) config.users.users
-      );
-    };
-  };
-
-  nixosModules.saronic-home-manager-darwin = { config, pkgs, ... }: {
-    imports = [ 
-      self.nixosModules.rust-overlay-module 
-      (home-manager.darwinModules.home-manager)
+      home-manager.nixosModules.home-manager
     ];
 
     config = {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
-      home-manager.users = lib.mapAttrs (name: user: saronic-home-modules) (
-        lib.filterAttrs (name: user: 
-          if pkgs.stdenv.isDarwin 
-          then (user.home or "") != "" && lib.hasPrefix "/Users/" (user.home or "")
-          else user.isNormalUser or false
-        ) config.users.users
-      );
+      home-manager.users = lib.genAttrs users (_: saronic-home-modules);
+    };
+  };
+
+  nixosModules.common-home-manager-darwin = users: { lib, ... }: {
+    imports = [ 
+      self.nixosModules.rust-overlay-module 
+      home-manager.darwinModules.home-manager
+    ];
+
+    config = {
+      home-manager.useGlobalPkgs = true;
+      home-manager.useUserPackages = true;
+      home-manager.users = lib.genAttrs users (_: common-home-modules);
+    };
+  };
+
+  nixosModules.saronic-home-manager-darwin = users: { lib, ... }: {
+    imports = [ 
+      self.nixosModules.rust-overlay-module 
+      home-manager.darwinModules.home-manager
+    ];
+
+    config = {
+      home-manager.useGlobalPkgs = true;
+      home-manager.useUserPackages = true;
+      home-manager.users = lib.genAttrs users (_: saronic-home-modules);
     };
   };
 }

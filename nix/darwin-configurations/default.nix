@@ -13,7 +13,7 @@ in
       darwin-module
 
       self.nixosModules."${system}-carlschader-user"
-      self.nixosModules.common-home-manager-darwin
+      (self.nixosModules.common-home-manager-darwin [ "carlschader" ])
 
       self.nixosModules.aarch64-darwin-system-packages
       self.nixosModules.carls-macbook-motd
@@ -28,7 +28,7 @@ in
       darwin-module
 
       self.nixosModules."${system}-carl-user"
-      self.nixosModules.common-home-manager-darwin
+      (self.nixosModules.common-home-manager-darwin [ "carl" ])
 
       self.nixosModules.aarch64-darwin-system-packages
       self.nixosModules.carls-macbook-motd
@@ -43,7 +43,7 @@ in
       darwin-module
 
       self.nixosModules."${system}-carlschader-user"
-      self.nixosModules.common-home-manager-darwin
+      (self.nixosModules.common-home-manager-darwin [ "carlschader" ])
 
       self.nixosModules.aarch64-darwin-system-packages
       self.nixosModules.saronic-macbook-motd
@@ -59,7 +59,7 @@ in
       darwin-module
 
       self.nixosModules."${system}-carl.schader-user"
-      self.nixosModules.saronic-home-manager-darwin
+      (self.nixosModules.saronic-home-manager-darwin [ "carl.schader" ])
 
       self.nixosModules.aarch64-darwin-system-packages
       self.nixosModules.carls-macbook-motd
