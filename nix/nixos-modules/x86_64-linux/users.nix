@@ -8,8 +8,9 @@ let
 in
 {
   nixosModules."${system}-carl-user" =
-    { ... }:
+    { pkgs, ... }:
     {
+      users.defaultUserShell = pkgs.zsh;
       users.users.carl = {
         isNormalUser = true;
         description = "Carl Schader";
@@ -23,8 +24,9 @@ in
     };
 
   nixosModules."${system}-saronic-user" =
-    { ... }:
+    { pkgs, ... }:
     {
+      users.defaultUserShell = pkgs.zsh;
       users.users.saronic = {
         isNormalUser = true;
         description = "saronic";
@@ -38,8 +40,9 @@ in
     };
 
   nixosModules."${system}-connor-user" =
-    { ... }:
+    { pkgs, ... }:
     {
+      users.defaultUserShell = pkgs.zsh;
       users.users.connor = {
         isNormalUser = true;
         description = "Connor Jones";
