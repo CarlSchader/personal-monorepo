@@ -38,7 +38,8 @@
       gpo = "git push origin";
       gpob = "git push origin $(git branch | grep \\* | awk '{ print $2 }')";
       gp = "git pull";
-      gs = "git switch";
+      gs = "git status";
+      gsw = "git switch";
       gclean = "git branch -D $(git branch | grep -v \\* | grep -v main | grep -v master)";
 
       tarz = "tar --zstd";
