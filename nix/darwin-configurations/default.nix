@@ -43,12 +43,11 @@ in
       darwin-module
 
       self.nixosModules."${system}-carlschader-user"
-      (self.nixosModules.common-home-manager-darwin [ "carlschader" ])
+      (self.nixosModules.saronic-home-manager-darwin [ "carlschader" ])
 
       self.nixosModules.aarch64-darwin-system-packages
       self.nixosModules.carls-macbook-motd
       self.nixosModules.parallelism
-      self.nixosModules.rust-overlay-module
       self.nixosModules.saronic-builders
     ];
   };
