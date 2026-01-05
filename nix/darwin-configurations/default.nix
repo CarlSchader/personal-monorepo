@@ -46,7 +46,7 @@ in
       (self.nixosModules.common-home-manager-darwin [ "carlschader" ])
 
       self.nixosModules.aarch64-darwin-system-packages
-      self.nixosModules.saronic-macbook-motd
+      self.nixosModules.carls-macbook-motd
       self.nixosModules.parallelism
       self.nixosModules.rust-overlay-module
       self.nixosModules.saronic-builders
