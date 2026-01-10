@@ -22,6 +22,7 @@ in
       self.nixosModules.nix-ld
       self.nixosModules.openssh
       self.nixosModules.parallelism
+      self.nixosModules.xrdp-gnome
 
       disko.nixosModules.disko
       ./disko-config.nix
