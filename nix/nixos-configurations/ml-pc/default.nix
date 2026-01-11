@@ -18,6 +18,7 @@ in
       self.nixosModules.experimental-features
       self.nixosModules.git-server
       self.nixosModules.git-shared-server
+      self.nixosModules.gnome
       self.nixosModules.carls-ml-pc-motd
       self.nixosModules.nix-ld
       self.nixosModules.openssh
